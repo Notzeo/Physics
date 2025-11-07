@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Unit 2 Quiz: Second Law & Entropy</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    
+    <style>
+        /* --- Base & Global Styling (Reused from index.html) --- */
+        html { font-size: 16px; }
+        body {
+            font-family: 'Quicksand', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff0f5; 
+            color: #333;
+            min-height: 100vh;
+            text-rendering: optimizeLegibility;
+            -webkit-overflow-scrolling: touch; 
+        }
+
+        .container {
+            max-width: 100%; 
+            width: 900px; 
+            margin: auto;
+            padding: 1.25rem 1rem;
+        }
+
+        /* --- Header/Title Styling --- */
+        header {
+            text-align: center;
+            padding: 2.5rem 0;
+            /* Light Green/Teal Gradient for Unit 2 Distinction */
+            background: linear-gradient(135deg, #b2dfdb, #e0f2f1); 
+            color: #004d40;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+            border-radius: 0 0 30px 30px; 
+        }
+
+        h1.main-title {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.75rem; 
+            margin: 0;
+            font-weight: 700;
+        }
+
+        p.cute-line {
+            font-size: 1rem;
+            margin-top: 0.3rem;
+            font-style: italic;
+            font-weight: 400;
+            color: #386760;
+        }
+        
+        /* --- Quiz Specific Styling --- */
+        .quiz-section {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+
+        .question {
+            margin-bottom: 30px;
+            border-bottom: 1px dashed #e0f2f1; /* Light divider */
+            padding-bottom: 20px;
+        }
+
+        .question-text {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #00897b; /* Teal accent for Unit 2 question text */
+            margin-bottom: 15px;
+        }
+        
+        /* Option Styling (Mobile optimized radio buttons) */
+        .option-group label {
+            display: flex;
+            align-items: center;
+            background-color: #fcfcfc;
+            padding: 12px 15px;
+            margin: 8px 0;
+            border-radius: 10px;
+            border: 1px solid #b2dfdb; /* Light teal border */
+            cursor: pointer;
+            transition: background-color 0.15s ease;
+            font-size: 1rem;
+        }
+
+        .option-group label:hover {
+            background-color: #e0f2f1; /* Soft teal hover */
+        }
+        
+        .option-group input[type="radio"] {
+            margin-right: 10px;
+            /* Increase size of radio button for better tapping */
+            transform: scale(1.3); 
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #00acc1; /* Cyan/Teal border */
+            border-radius: 50%;
+            outline: none;
+            transition: all 0.2s;
+            position: relative;
+        }
+        
+        .option-group input[type="radio"]:checked {
+            background-color: #00897b; /* Darker teal fill */
+            border-color: #00acc1;
+        }
+
+        /* --- Result Feedback Styling (Hidden until submitted) --- */
+        .feedback {
+            margin-top: 10px;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            display: none; /* Initially hidden */
+        }
+
+        .correct-answer {
+            background-color: #e8f5e9; /* Light green for correct */
+            border: 1px solid #4caf50;
+            color: #1b5e20;
+        }
+        
+        .incorrect-answer {
+            background-color: #ffebee; /* Light red for incorrect */
+            border: 1px solid #f44336;
+            color: #c62828;
+        }
+
+        /* Ensure Bolding is strong and consistent */
+        strong {
+            font-weight: 700; 
+        }
+        
+        /* --- Submit Button (Reusing Practice Button Style) --- */
+        #submit-button {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 15px;
+            margin-top: 20px;
+            text-decoration: none;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            /* Button style matches Unit 2 theme */
+            background: linear-gradient(90deg, #80cbc4, #b2dfdb) !important;
+            border: 3px solid #00897b !important;
+            color: #004d40 !important;
+            border-radius: 20px; 
+            box-shadow: 0 6px 12px rgba(0, 137, 123, 0.25);
+            transition: all 0.2s;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        #submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 137, 123, 0.4);
+        }
+
+        #results {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #e0f2f1; /* Light background for results */
+            border: 2px dashed #00897b;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #004d40;
+            display: none;
+        }
+        
+        /* --- Footer (Reused from index.html) --- */
+        footer {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            margin-top: 2rem;
+            color: #386760; 
+            font-weight: 500;
+            font-size: 0.9rem;
+            border-top: 1px solid #b2dfdb; 
+            background-color: #ffffff;
+            border-radius: 30px 30px 0 0;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 class="main-title">Physics Essentials | Practice Quiz</h1>
+        <p class="cute-line">Unit 2: Second Law, Entropy, and Carnot's Cycle</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="quiz-section">
+            <form id="physics-quiz">
+                </form>
+
+            <button id="submit-button" onclick="submitQuiz()">✨ Submit Answers and See Results</button>
+            
+            <div id="results"></div>
+        </div>
+        
+    </div>
+
+    <footer id="dynamic-footer">
+        </footer>
+
+    <script>
+        // --- Motivational Quotes Logic ---
+        const quotes = [
+            "You've got this, cutiepie! <3",
+            "This is the easiest for my captain !!",
+            "One step closer to that A. You're doing amazing! ✨",
+            "Mastering Physics, one star at a time. 🌟",
+            "The entropy of the universe tends to a maximum. Keep up the momentum. 💫",
+            "You cannot un-boil an egg, but you can conquer this quiz! 🍳",
+            "Energy flows from high to low. Your grades are flowing to A+! 🚀"
+        ];
+        
+        function setRandomQuote() {
+            const footer = document.getElementById('dynamic-footer');
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            footer.innerHTML = quotes[randomIndex];
+        }
+
+        // --- Quiz Data (Expanded to 15 Questions, now using <strong> exclusively) ---
+        const quizData = {
+            questions: [
+                {
+                    questionNumber: 1,
+                    question: "The <strong>Clausius statement</strong> of the Second Law of Thermodynamics implies that:",
+                    answerOptions: [
+                        { text: "It is impossible to convert heat completely into work.", rationale: "This is the Kelvin-Planck statement, focusing on heat engines.", isCorrect: false },
+                        { text: "Heat cannot flow spontaneously from a colder body to a hotter body.", rationale: "This is the Clausius statement, focusing on the natural direction of heat flow.", isCorrect: true },
+                        { text: "The total energy of an isolated system remains constant.", rationale: "This is the First Law of Thermodynamics.", isCorrect: false },
+                        { text: "Entropy of the universe always increases.", rationale: "This is a consequence (or mathematical interpretation) of the Second Law, but not the primary Clausius statement.", isCorrect: false }
+                    ],
+                    hint: "Think about how heat naturally moves without any external intervention."
+                },
+                {
+                    questionNumber: 2,
+                    question: "The efficiency ($\\eta$) of a <strong>Carnot heat engine</strong> operating between a source temperature $T_1$ and a sink temperature $T_2$ is given by:",
+                    answerOptions: [
+                        { text: "$\\eta = 1 - \\frac{T_1}{T_2}$", rationale: "Incorrect; the ratio should be $T_2/T_1$ where $T_1$ is the higher temperature.", isCorrect: false },
+                        { text: "$\\eta = 1 - \\frac{Q_2}{Q_1}$", rationale: "Correct, but not the final formula using temperatures on the absolute scale.", isCorrect: false },
+                        { text: "$\\eta = 1 - \\frac{T_2}{T_1}$", rationale: "This is the correct formula for Carnot efficiency using absolute temperatures ($T_1 > T_2$).", isCorrect: true },
+                        { text: "$\\eta = \\frac{T_1 - T_2}{T_2}$", rationale: "This formula is incorrect; it should be divided by $T_1$.", isCorrect: false }
+                    ],
+                    hint: "The efficiency is always less than 1 (or 100%) and depends only on the temperature ratio."
+                },
+                {
+                    questionNumber: 3,
+                    question: "Which of the following processes results in a <strong>decrease</strong> in the entropy of the system?",
+                    answerOptions: [
+                        { text: "Melting of ice at $0^{\\circ}C$", rationale: "Phase transition from solid (ordered) to liquid (disordered) increases entropy.", isCorrect: false },
+                        { text: "Freezing of water at $-10^{\\circ}C$", rationale: "Phase transition from liquid (disordered) to solid (ordered) decreases entropy. This process must be coupled with the surroundings, but the system's entropy decreases.", isCorrect: true },
+                        { text: "Heating of an ideal gas at constant volume", rationale: "Adding heat increases the internal disorder (entropy).", isCorrect: false },
+                        { text: "Diffusion of perfume vapor across a room", rationale: "Diffusion increases the disorder and thus increases entropy.", isCorrect: false }
+                    ],
+                    hint: "Entropy is a measure of molecular disorder or randomness."
+                },
+                {
+                    questionNumber: 4,
+                    question: "The <strong>Thermodynamic Scale of Temperature</strong> (Absolute Scale) is independent of the nature of the working substance because it is based on:",
+                    answerOptions: [
+                        { text: "The change in internal energy ($\\Delta U$)", rationale: "Internal energy depends on the substance's specific heat capacity.", isCorrect: false },
+                        { text: "The concept of reversible cycles (Carnot's Theorem)", rationale: "Carnot's theorem proves that the efficiency depends only on the temperatures of the reservoirs, making the scale universal.", isCorrect: true },
+                        { text: "The properties of an ideal gas ($PV=nRT$)", rationale: "While it is *identical* to the ideal gas scale, the thermodynamic scale's definition doesn't rely on the ideal gas's properties.", isCorrect: false },
+                        { text: "The specific heat capacity ($C_p$)", rationale: "Specific heat capacity is substance-dependent.", isCorrect: false }
+                    ],
+                    hint: "This scale was established by Lord Kelvin based on a theoretical, perfectly efficient process."
+                },
+                {
+                    questionNumber: 5,
+                    question: "For a <strong>reversible process</strong>, the change in entropy of the universe ($\\Delta S_{universe}$) is always:",
+                    answerOptions: [
+                        { text: "Greater than zero ($\\Delta S_{universe} > 0$)", rationale: "This is the condition for an irreversible (spontaneous) process.", isCorrect: false },
+                        { text: "Less than zero ($\\Delta S_{universe} < 0$)", rationale: "This is an impossible process according to the Second Law.", isCorrect: false },
+                        { text: "Equal to zero ($\\Delta S_{universe} = 0$)", rationale: "A reversible process implies no net increase in the universe's entropy, as $\\Delta S_{system} + \\Delta S_{surroundings} = 0$.", isCorrect: true },
+                        { text: "Equal to the heat change ($\\Delta Q / T$)", rationale: "This is the definition of the *system's* entropy change, not the universe's.", isCorrect: false }
+                    ],
+                    hint: "A reversible process is also known as an <strong>isentropic</strong> process for the universe."
+                },
+                {
+                    questionNumber: 6,
+                    question: "The <strong>Third Law of Thermodynamics</strong> (Nernst's theorem) states that the entropy of a perfectly crystalline substance is zero at:",
+                    answerOptions: [
+                        { text: "Absolute zero temperature ($0~K$)", rationale: "At absolute zero, a perfect crystal has maximum order, defining its entropy as zero. This is the Third Law.", isCorrect: true },
+                        { text: "The critical temperature ($T_c$)", rationale: "This is the point where liquid and gas phases coexist.", isCorrect: false },
+                        { text: "Room temperature ($300~K$)", rationale: "Entropy is non-zero and significant at room temperature.", isCorrect: false },
+                        { text: "The boiling point", rationale: "Entropy increases significantly at the boiling point due to phase change.", isCorrect: false }
+                    ],
+                    hint: "Think about the lowest possible temperature where molecular motion ceases."
+                },
+                {
+                    questionNumber: 7,
+                    question: "A process that violates the <strong>Kelvin-Planck statement</strong> of the Second Law is called a:",
+                    answerOptions: [
+                        { text: "Perpetual motion machine of the first kind (PMM1)", rationale: "PMM1 violates the First Law (energy conservation).", isCorrect: false },
+                        { text: "Reversible engine", rationale: "A reversible engine (like Carnot) is perfectly compliant with the Second Law.", isCorrect: false },
+                        { text: "Perpetual motion machine of the second kind (PMM2)", rationale: "PMM2 is a machine that converts heat from a single reservoir completely into work, which violates the Kelvin-Planck statement.", isCorrect: true },
+                        { text: "Heat pump", rationale: "A heat pump is a real device that transfers heat but does not violate the law.", isCorrect: false }
+                    ],
+                    hint: "Which type of impossible machine would convert 100% of heat into work?"
+                },
+                {
+                    questionNumber: 8,
+                    question: "What is the <strong>maximum theoretical efficiency</strong> of a heat engine operating between a hot reservoir at $500~K$ and a cold reservoir at $300~K$?",
+                    answerOptions: [
+                        { text: "$40\\%$", rationale: "$\\eta = 1 - (300/500) = 1 - 0.6 = 0.4$ or $40\\%$.", isCorrect: true },
+                        { text: "$60\\%$", rationale: "This is $T_2/T_1$, the fraction of heat rejected.", isCorrect: false },
+                        { text: "$50\\%$", rationale: "Incorrect calculation.", isCorrect: false },
+                        { text: "$100\\%$", rationale: "Impossible according to the Second Law.", isCorrect: false }
+                    ],
+                    hint: "Use the Carnot efficiency formula $\\eta = 1 - T_2/T_1$ with temperatures in Kelvin."
+                },
+                {
+                    questionNumber: 9,
+                    question: "The mathematical definition of the change in <strong>entropy ($\\Delta S$)</strong> for a reversible process is:",
+                    answerOptions: [
+                        { text: "$\\Delta S = \\frac{Q}{T}$", rationale: "This is the definition, where $\\text{đ}Q_{rev}$ is the reversible heat transfer and $T$ is the absolute temperature.", isCorrect: true },
+                        { text: "$\\Delta S = Q - W$", rationale: "This is the change in Internal Energy ($\\Delta U$).", isCorrect: false },
+                        { text: "$\\Delta S = \\Delta H / T$", rationale: "This is only true for a phase change at constant temperature (like boiling).", isCorrect: false },
+                        { text: "$\\Delta S = C_p \\Delta T$", rationale: "This is proportional to the heat required to change temperature.", isCorrect: false }
+                    ],
+                    hint: "Entropy is fundamentally related to the heat flow divided by the absolute temperature."
+                },
+                {
+                    questionNumber: 10,
+                    question: "In the Carnot Cycle, the heat is rejected ($Q_2$) during which type of process?",
+                    answerOptions: [
+                        { text: "Isothermal expansion", rationale: "Heat is absorbed ($Q_1$) during the first isothermal process.", isCorrect: false },
+                        { text: "Adiabatic expansion", rationale: "No heat is transferred in an adiabatic process.", isCorrect: false },
+                        { text: "Isothermal compression", rationale: "Heat is rejected ($Q_2$) to the cold reservoir during the reversible isothermal compression.", isCorrect: true },
+                        { text: "Adiabatic compression", rationale: "No heat is transferred in an adiabatic process.", isCorrect: false }
+                    ],
+                    hint: "The Carnot cycle has two isothermal and two adiabatic stages. Heat transfer only occurs during the isothermal stages."
+                },
+                {
+                    questionNumber: 11,
+                    question: "The coefficient of performance (<strong>COP</strong>) for a refrigerator is defined as the ratio of:",
+                    answerOptions: [
+                        { text: "Work input to heat rejected", rationale: "This is $W/Q_2$, which is not the standard definition for COP of a refrigerator.", isCorrect: false },
+                        { text: "Heat absorbed from the cold reservoir ($Q_2$) to the work input ($W$)", rationale: "The goal of a refrigerator is $Q_2$ (cooling), and the cost is $W$. Thus, $COP = Q_2 / W$.", isCorrect: true },
+                        { text: "Heat rejected to the work input", rationale: "This is the definition of the COP for a heat pump/heater ($COP_{HP}$).", isCorrect: false },
+                        { text: "Work input to heat absorbed", rationale: "Incorrect definition.", isCorrect: false }
+                    ],
+                    hint: "COP is (Desired Effect) / (Required Input). What is the desired effect of a refrigerator?"
+                },
+                {
+                    questionNumber: 12,
+                    question: "According to the <strong>Principle of Increase of Entropy</strong>, for any real, irreversible process occurring in an isolated system, the entropy ($\\Delta S$) is:",
+                    answerOptions: [
+                        { text: "Zero", rationale: "Zero change is for reversible processes in an isolated system.", isCorrect: false },
+                        { text: "Negative", rationale: "A negative entropy change in the universe is impossible.", isCorrect: false },
+                        { text: "Positive", rationale: "Any irreversible (real) process increases the total entropy of the universe ($\\Delta S_{universe} > 0$).", isCorrect: true },
+                        { text: "Constant", rationale: "Constant entropy is for reversible processes.", isCorrect: false }
+                    ],
+                    hint: "All natural, spontaneous processes tend toward greater randomness."
+                },
+                {
+                    questionNumber: 13,
+                    question: "If a system absorbs $2000~J$ of heat reversibly at a constant temperature of $400~K$, what is the change in the system's entropy ($\\Delta S$)?",
+                    answerOptions: [
+                        { text: "$5~J/K$", rationale: "$\\Delta S = Q/T = 2000~J / 400~K = 5~J/K$.", isCorrect: true },
+                        { text: "$800,000~J/K$", rationale: "This is $Q \\times T$.", isCorrect: false },
+                        { text: "$0~J/K$", rationale: "Entropy change is zero for a reversible *adiabatic* process, not an isothermal one with heat transfer.", isCorrect: false },
+                        { text: "$-5~J/K$", rationale: "The system is absorbing heat, so the entropy increases (positive).", isCorrect: false }
+                    ],
+                    hint: "Use the formula $\\Delta S = Q / T$. Don't forget the units!"
+                },
+                {
+                    questionNumber: 14,
+                    question: "What is the primary function of a <strong>heat pump</strong> in relation to the Second Law?",
+                    answerOptions: [
+                        { text: "To convert heat entirely into mechanical work.", rationale: "This is what a PMM2 would do, violating the law.", isCorrect: false },
+                        { text: "To transfer heat from a low-temperature reservoir to a high-temperature reservoir.", rationale: "A heat pump/refrigerator uses external work to force heat flow against the natural gradient (Clausius statement).", isCorrect: true },
+                        { text: "To maintain constant temperature through an adiabatic process.", rationale: "This describes an isochoric/isobaric process with a cooling element, not the primary function.", isCorrect: false },
+                        { text: "To utilize chemical potential energy.", rationale: "This describes fuel combustion, not the operation of a heat pump cycle.", isCorrect: false }
+                    ],
+                    hint: "Think about the <strong>direction</strong> of heat flow that a heat pump or refrigerator achieves."
+                },
+                {
+                    questionNumber: 15,
+                    question: "The <strong>Carnot Cycle</strong> is considered the most efficient engine cycle because it consists entirely of:",
+                    answerOptions: [
+                        { text: "Adiabatic and isochoric processes.", rationale: "This is a Diesel cycle or similar, not Carnot.", isCorrect: false },
+                        { text: "Irreversible processes, minimizing entropy production.", rationale: "Irreversible processes *increase* entropy and *decrease* efficiency.", isCorrect: false },
+                        { text: "Reversible isothermal and reversible adiabatic processes.", rationale: "The Carnot cycle is defined by four reversible steps: 2 isothermal (heat transfer) and 2 adiabatic (work transfer).", isCorrect: true },
+                        { text: "Isobaric and isochoric processes.", rationale: "These processes are part of the Otto or Brayton cycles, not Carnot.", isCorrect: false }
+                    ],
+                    hint: "Maximum efficiency requires processes that create no entropy, which means they must be...?"
+                }
+            ]
+        };
+
+        // --- Core Quiz Logic (Same as mcq1.html) ---
+        function renderQuiz() {
+            const quizForm = document.getElementById('physics-quiz');
+            let quizHTML = '';
+
+            quizData.questions.forEach(q => {
+                let optionsHTML = '';
+                q.answerOptions.forEach((option, index) => {
+                    optionsHTML += `
+                        <div class="option-group">
+                            <label>
+                                <input type="radio" name="question-${q.questionNumber}" value="${index}">
+                                <span>${option.text}</span>
+                            </label>
+                        </div>
+                    `;
+                });
+
+                quizHTML += `
+                    <div class="question" id="q-${q.questionNumber}">
+                        <div class="question-text">${q.questionNumber}. ${q.question}</div>
+                        ${optionsHTML}
+                        <div class="feedback" id="feedback-${q.questionNumber}"></div>
+                        <p style="font-size:0.9rem; color:#888; margin-top:10px;">Hint: ${q.hint}</p>
+                    </div>
+                `;
+            });
+
+            quizForm.innerHTML = quizHTML;
+        }
+
+        function submitQuiz() {
+            let score = 0;
+            const totalQuestions = quizData.questions.length;
+
+            quizData.questions.forEach(q => {
+                const form = document.getElementById('physics-quiz');
+                const selectedOption = form.querySelector(`input[name="question-${q.questionNumber}"]:checked`);
+                const feedbackDiv = document.getElementById(`feedback-${q.questionNumber}`);
+                
+                // Find the correct option text and rationale
+                const correctOption = q.answerOptions.find(opt => opt.isCorrect);
+                let isCorrect = false;
+
+                if (selectedOption) {
+                    const selectedIndex = parseInt(selectedOption.value);
+                    const selectedAnswer = q.answerOptions[selectedIndex];
+                    
+                    if (selectedAnswer.isCorrect) {
+                        score++;
+                        isCorrect = true;
+                    }
+
+                    // Remove existing classes
+                    feedbackDiv.classList.remove('correct-answer', 'incorrect-answer');
+                    
+                    // Add result classes and show feedback
+                    if (isCorrect) {
+                        feedbackDiv.classList.add('correct-answer');
+                        // Ensure rationale uses <strong> for bolding
+                        feedbackDiv.innerHTML = `✅ <strong>Correct!</strong> ${correctOption.rationale.replace(/<strong>/g, '').replace(/<\/strong>/g, '')}`; 
+                    } else {
+                        feedbackDiv.classList.add('incorrect-answer');
+                        // Ensure rationale uses <strong> for bolding
+                        feedbackDiv.innerHTML = `❌ <strong>Incorrect.</strong> The correct answer is <strong>${correctOption.text}</strong>. ${correctOption.rationale.replace(/<strong>/g, '').replace(/<\/strong>/g, '')}`;
+                    }
+
+                } else {
+                    // User didn't select an answer
+                    feedbackDiv.classList.remove('correct-answer', 'incorrect-answer');
+                    feedbackDiv.classList.add('incorrect-answer');
+                    // Ensure rationale uses <strong> for bolding
+                    feedbackDiv.innerHTML = `❌ <strong>Unanswered.</strong> The correct answer is <strong>${correctOption.text}</strong>. ${correctOption.rationale.replace(/<strong>/g, '').replace(/<\/strong>/g, '')}`;
+                }
+
+                feedbackDiv.style.display = 'block';
+                
+                // --- Manually trigger KaTeX render on the newly injected content ---
+                if (window.renderMathInElement) {
+                    renderMathInElement(feedbackDiv, {
+                        delimiters: [
+                            { left: "$$", right: "$$", display: true },
+                            { left: "$", right: "$", display: false },
+                            { left: "\\(", right: "\\)", display: false },
+                            { left: "\\[", right: "\\]", display: true }
+                        ]
+                    });
+                }
+            });
+
+            // Display overall results
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = `Your Score: ${score} out of ${totalQuestions} (${((score / totalQuestions) * 100).toFixed(0)}%)! Review the explanations below.`;
+            resultsDiv.style.display = 'block';
+            
+            // Scroll to the top of the results
+            resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Initialize the quiz and the dynamic footer when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            renderQuiz();
+            setRandomQuote(); // Set the motivational quote
+            
+            // Initial render for question text and options on page load
+            if (window.renderMathInElement) {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ]
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>

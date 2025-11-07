@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Sample Paper 2: Thermodynamics & Statistical Mechanics (Quiz Mode)</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- General Styling (Matching Theme) --- */
+        html { font-size: 16px; }
+        body {
+            font-family: 'Quicksand', sans-serif; /* Consistent font */
+            margin: 0;
+            padding: 0;
+            background-color: #fff0f5; /* Light pink background */
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 100%; 
+            width: 900px; 
+            margin: auto;
+            padding: 1.5rem 1rem;
+            background-color: #ffffff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 15px; /* Softer edges */
+        }
+
+        /* --- Header/Title Styling --- */
+        header {
+            text-align: center;
+            padding: 1.5rem 0;
+            background: linear-gradient(135deg, #f8bbd0, #e1bee7); /* Consistent gradient */
+            color: #4a3858;
+            border-bottom: none;
+            margin-bottom: 2rem;
+            border-radius: 10px 10px 0 0; 
+        }
+
+        h1.exam-title {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 2.2rem; 
+            margin: 0;
+            color: #d81b60; /* Deep pink accent */
+            font-weight: 700;
+        }
+
+        p.exam-details {
+            font-size: 1rem;
+            margin: 0.5rem 0 0;
+            color: #6b5a83;
+        }
+        
+        /* --- Quiz Specific Styling --- */
+        .quiz-section {
+            background-color: #ffffff;
+            padding: 15px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+
+        .question {
+            margin-bottom: 20px;
+            border-bottom: 1px dashed #ffcdd2; /* Lighter dashed line */
+            padding-bottom: 15px;
+        }
+
+        .question-text {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #4a3858; /* Darker text */
+            margin-bottom: 10px;
+        }
+
+        /* Option Styling */
+        .option-group label {
+            display: flex;
+            align-items: center;
+            padding: 8px 10px;
+            margin: 5px 0;
+            border-radius: 6px;
+            border: 1px solid #ffcdd2; /* Soft border */
+            cursor: pointer;
+            transition: background-color 0.15s ease;
+            font-size: 0.95rem;
+        }
+
+        .option-group label:hover {
+            background-color: #fce4ec; /* Light pink hover */
+        }
+
+        .option-group input[type="radio"] {
+            margin-right: 10px;
+            transform: scale(1.1);
+            accent-color: #d81b60; /* Pink accent */
+        }
+
+        /* Feedback Styling */
+        .feedback {
+            margin-top: 10px;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .correct-answer {
+            background-color: #e8f5e9; 
+            border: 1px solid #4caf50;
+            color: #2e7d32;
+        }
+        
+        .incorrect-answer {
+            background-color: #ffcdd2; /* Pink/Red for error */
+            border: 1px solid #d32f2f;
+            color: #b71c1c;
+        }
+        
+        /* Ensures Bolding is strong and consistent */
+        strong {
+            font-weight: 700; 
+        }
+
+        /* Submit Button */
+        #submit-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-top: 30px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #d81b60, #e040fb); /* Pink/Purple gradient */
+            color: white;
+            border: none;
+            border-radius: 25px;
+            box-shadow: 0 6px 12px rgba(224, 64, 251, 0.3);
+            transition: all 0.2s;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+
+        #submit-button:hover {
+            background: linear-gradient(90deg, #b71c1c, #9c27b0);
+        }
+
+        #results {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #ffe082; /* Yellowish accent */
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #343a40;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <header>
+            <h1 class="exam-title">Physics (Semester X) Sample Paper 2</h1>
+            <p class="exam-details">Topics: Thermodynamics & Statistical Mechanics (30 Multiple Choice Questions)</p>
+            <p class="exam-details">This is a self-assessment quiz based on the structure of the Sample Paper.</p>
+        </header>
+
+        <div class="quiz-section">
+            <form id="physics-quiz">
+                </form>
+
+            <button id="submit-button" onclick="submitQuiz()">📈 Check Answers and Review Explanations</button>
+            
+            <div id="results"></div>
+        </div>
+        
+    </div>
+
+    <footer>
+        <p style="color: #6c757d; font-size: 0.85rem; text-align: center;">Study hard! You got this!</p>
+    </footer>
+
+    <script>
+        // --- Quiz Data Structure (Incorporating your questions and detailed rationales) ---
+        const quizData = {
+            questions: [
+                {
+                    questionNumber: 1,
+                    question: "Thermodynamics deals with:",
+                    answerOptions: [
+                        { text: "Motion of particles", isCorrect: false },
+                        { text: "Energy transformations", isCorrect: true },
+                        { text: "Electric fields", isCorrect: false },
+                        { text: "Magnetic effects", isCorrect: false }
+                    ],
+                    rationale: "<strong>Thermodynamics</strong> is fundamentally the study of **heat** and its relation to **energy** and work, focusing on how energy is converted from one form to another."
+                },
+                {
+                    questionNumber: 2,
+                    question: "The work done in an isothermal process is proportional to:",
+                    answerOptions: [
+                        { text: "Volume change (specifically $\\ln(V_2/V_1)$)", isCorrect: true },
+                        { text: "Temperature change", isCorrect: false },
+                        { text: "Pressure", isCorrect: false },
+                        { text: "Time", isCorrect: false }
+                    ],
+                    rationale: "For a reversible isothermal process, the work done is $W = nRT \\ln(V_2/V_1)$. Since $nRT$ is constant, the work done is proportional to the **logarithm of the volume ratio**, which represents the extent of the volume change."
+                },
+                {
+                    questionNumber: 3,
+                    question: "In adiabatic expansion of an ideal gas, temperature:",
+                    answerOptions: [
+                        { text: "Increases", isCorrect: false },
+                        { text: "Decreases", isCorrect: true },
+                        { text: "Remains constant", isCorrect: false },
+                        { text: "Becomes infinite", isCorrect: false }
+                    ],
+                    rationale: "In an **adiabatic expansion**, the system does work ($W>0$) on its surroundings, and since $Q=0$, the internal energy ($\Delta U$) must decrease, leading to a **decrease** in temperature."
+                },
+                {
+                    questionNumber: 4,
+                    question: "A perfect gas follows:",
+                    answerOptions: [
+                        { text: "$PV = RT$", isCorrect: false },
+                        { text: "$PV = nRT$", isCorrect: true },
+                        { text: "$P = RT$", isCorrect: false },
+                        { text: "$PV = \\text{constant}$", isCorrect: false }
+                    ],
+                    rationale: "The **Ideal Gas Law** or the equation of state for a perfect gas is $PV = nRT$, where $n$ is the number of moles."
+                },
+                {
+                    questionNumber: 5,
+                    question: "The internal energy of an ideal gas depends only on:",
+                    answerOptions: [
+                        { text: "Volume", isCorrect: false },
+                        { text: "Pressure", isCorrect: false },
+                        { text: "Temperature", isCorrect: true },
+                        { text: "Density", isCorrect: false }
+                    ],
+                    rationale: "The internal energy of an ideal gas is purely kinetic energy, and kinetic energy is proportional to the absolute **Temperature** ($U = \\frac{f}{2} nRT$). This is a consequence of Joule's law for ideal gases."
+                },
+                {
+                    questionNumber: 6,
+                    question: "A Carnot engine works between $600 \, \text{K}$ (source, $T_H$) and $300 \, \text{K}$ (sink, $T_C$). Its efficiency is:",
+                    answerOptions: [
+                        { text: "25%", isCorrect: false },
+                        { text: "33%", isCorrect: false },
+                        { text: "50%", isCorrect: true },
+                        { text: "100%", isCorrect: false }
+                    ],
+                    rationale: "Efficiency $\\eta = 1 - \\frac{T_C}{T_H} = 1 - \\frac{300}{600} = 1 - 0.5 = 0.5$, or **50%**."
+                },
+                {
+                    questionNumber: 7,
+                    question: "Reversible process means:",
+                    answerOptions: [
+                        { text: "No energy loss", isCorrect: false },
+                        { text: "Minimum work", isCorrect: false },
+                        { text: "Process can be reversed exactly", isCorrect: true },
+                        { text: "Adiabatic expansion", isCorrect: false }
+                    ],
+                    rationale: "A **reversible process** is one that can be retraced exactly to the initial state without leaving any change in the system or the surroundings."
+                },
+                {
+                    questionNumber: 8,
+                    question: "Entropy of the universe always:",
+                    answerOptions: [
+                        { text: "Increases", isCorrect: true },
+                        { text: "Decreases", isCorrect: false },
+                        { text: "Remains constant", isCorrect: false },
+                        { text: "Becomes zero", isCorrect: false }
+                    ],
+                    rationale: "The Second Law of Thermodynamics states that the total entropy of an isolated system (like the universe) can never decrease. For a spontaneous process, it **increases** ($\Delta S_{\\text{universe}} > 0$)."
+                },
+                {
+                    questionNumber: 9,
+                    question: "The unit of entropy is:",
+                    answerOptions: [
+                        { text: "J/K", isCorrect: true },
+                        { text: "J", isCorrect: false },
+                        { text: "K/J", isCorrect: false },
+                        { text: "W/m²K⁴", isCorrect: false }
+                    ],
+                    rationale: "Entropy is defined by the Clausius relation, $\\Delta S = \\frac{\\Delta Q}{T}$. The unit is **Energy per unit Temperature**, which is Joules per Kelvin (J/K)."
+                },
+                {
+                    questionNumber: 10,
+                    question: "The second law of thermodynamics introduces the concept of:",
+                    answerOptions: [
+                        { text: "Internal energy", isCorrect: false },
+                        { text: "Entropy", isCorrect: true },
+                        { text: "Work", isCorrect: false },
+                        { text: "Pressure", isCorrect: false }
+                    ],
+                    rationale: "While the First Law defines internal energy, the **Second Law** is necessary to define and establish the concept of **Entropy** ($S$)."
+                },
+                {
+                    questionNumber: 11,
+                    question: "The thermodynamic potential useful for constant temperature ($T$) and pressure ($P$) is:",
+                    answerOptions: [
+                        { text: "Internal energy", isCorrect: false },
+                        { text: "Helmholtz free energy", isCorrect: false },
+                        { text: "Gibbs free energy", isCorrect: true },
+                        { text: "Enthalpy", isCorrect: false }
+                    ],
+                    rationale: "The **Gibbs Free Energy** ($G$) is the natural state function for systems at constant **Temperature ($T$) and Pressure ($P$)** ($G = H - TS$)."
+                },
+                {
+                    questionNumber: 12,
+                    question: "Cooling due to adiabatic expansion occurs because:",
+                    answerOptions: [
+                        { text: "Work is done by the system", isCorrect: true },
+                        { text: "Work is done on the system", isCorrect: false },
+                        { text: "Pressure increases", isCorrect: false },
+                        { text: "Volume decreases", isCorrect: false }
+                    ],
+                    rationale: "In adiabatic expansion ($Q=0$), the system expands and pushes against its surroundings. This **work done by the system** comes directly from its internal energy ($\Delta U = -W$), causing the temperature to drop."
+                },
+                {
+                    questionNumber: 13,
+                    question: "Clausius-Clapeyron equation connects:",
+                    answerOptions: [
+                        { text: "P, T and L", isCorrect: true },
+                        { text: "P, V and T", isCorrect: false },
+                        { text: "E, V and T", isCorrect: false },
+                        { text: "S, P and V", isCorrect: false }
+                    ],
+                    rationale: "The Clausius-Clapeyron equation is $\\frac{dP}{dT} = \\frac{L}{T \\Delta V}$. It relates **Pressure ($P$)**, **Temperature ($T$)**, and **Latent Heat ($L$)** during a phase transition."
+                },
+                {
+                    questionNumber: 14,
+                    question: "The triple point of water is approximately:",
+                    answerOptions: [
+                        { text: "0°C and 760 mm", isCorrect: false },
+                        { text: "$273.16 \, \text{K}$ and $4.58 \, \text{mm}$ (of Hg)", isCorrect: true },
+                        { text: "100°C and 760 mm", isCorrect: false },
+                        { text: "373 K and 1 atm", isCorrect: false }
+                    ],
+                    rationale: "The **triple point** is the fixed point used to define the Kelvin scale, precisely $273.16 \, \text{K}$ at a pressure of $611.73 \, \text{Pa}$ ($4.58 \, \text{mm}$ Hg)."
+                },
+                {
+                    questionNumber: 15,
+                    question: "Kirchhoff’s law relates:",
+                    answerOptions: [
+                        { text: "Emissivity and absorptivity", isCorrect: true },
+                        { text: "Pressure and temperature", isCorrect: false },
+                        { text: "Volume and temperature", isCorrect: false },
+                        { text: "Entropy and energy", isCorrect: false }
+                    ],
+                    rationale: "**Kirchhoff’s law of thermal radiation** states that for an object in thermal equilibrium, its emissivity ($e$) is equal to its absorptivity ($a$). $e = a$."
+                },
+                {
+                    questionNumber: 16,
+                    question: "Planck’s radiation law explains:",
+                    answerOptions: [
+                        { text: "Ultraviolet catastrophe", isCorrect: true },
+                        { text: "Boyle’s law", isCorrect: false },
+                        { text: "Stefan’s law", isCorrect: false },
+                        { text: "Thermal equilibrium", isCorrect: false }
+                    ],
+                    rationale: "Classical theories (Rayleigh-Jeans) failed to explain the blackbody spectrum at short wavelengths, leading to the **Ultraviolet Catastrophe**. **Planck’s law** successfully resolved this by quantizing energy."
+                },
+                {
+                    questionNumber: 17,
+                    question: "Stefan’s constant ($\\sigma$) has unit:",
+                    answerOptions: [
+                        { text: "$W/m^2K$", isCorrect: false },
+                        { text: "$W/m^2K^4$", isCorrect: true },
+                        { text: "$J/m^3K$", isCorrect: false },
+                        { text: "$J/mol$", isCorrect: false }
+                    ],
+                    rationale: "From Stefan-Boltzmann law ($E = \\sigma T^4$), the unit of $\\sigma$ must be $\\frac{\\text{Power}}{\\text{Area} \\cdot \\text{Temperature}^4}$, or **$W/m^2K^4$**."
+                },
+                {
+                    questionNumber: 18,
+                    question: "Wien’s constant ($b$) has dimension of:",
+                    answerOptions: [
+                        { text: "Length $\\times$ Temperature", isCorrect: true },
+                        { text: "Pressure $\\times$ Volume", isCorrect: false },
+                        { text: "Energy / Temperature", isCorrect: false },
+                        { text: "Work / Area", isCorrect: false }
+                    ],
+                    rationale: "Wien's displacement law is $\\lambda_m T = b$. The unit of $b$ is the unit of wavelength (Length, $\\text{m}$) multiplied by the unit of temperature ($\text{K}$), giving **Length $\\times$ Temperature** ($\text{m} \\cdot \text{K}$)."
+                },
+                {
+                    questionNumber: 19,
+                    question: "The average speed of a gas molecule is proportional to:",
+                    answerOptions: [
+                        { text: "$\\sqrt{T}$", isCorrect: true },
+                        { text: "$T$", isCorrect: false },
+                        { text: "$1/T$", isCorrect: false },
+                        { text: "$T^2$", isCorrect: false }
+                    ],
+                    rationale: "The average speed is $v_{\\text{avg}} = \\sqrt{\\frac{8RT}{\\pi M}}$. Therefore, $v_{\\text{avg}}$ is proportional to the **square root of the absolute temperature** ($\\sqrt{T}$)."
+                },
+                {
+                    questionNumber: 20,
+                    question: "Root mean square speed is related to kinetic energy as:",
+                    answerOptions: [
+                        { text: "$(\\frac{1}{2})m \\bar{v^2} = \\frac{3}{2} k_B T$", isCorrect: true },
+                        { text: "$(\\frac{1}{2})m \\bar{v^2} = k_B T$", isCorrect: false },
+                        { text: "$(\\frac{1}{2})m \\bar{v^2} = RT$", isCorrect: false },
+                        { text: "$(\\frac{1}{2})m \\bar{v^2} = 2 k_B T$", isCorrect: false }
+                    ],
+                    rationale: "The average translational kinetic energy of a molecule is $\\bar{K} = \\frac{1}{2} m v_{\\text{rms}}^2$, and from the kinetic theory, $\\bar{K}$ is also equal to **$\\frac{3}{2} k_B T$**."
+                },
+                {
+                    questionNumber: 21,
+                    question: "The equipartition theorem is not valid for:",
+                    answerOptions: [
+                        { text: "High temperatures", isCorrect: false },
+                        { text: "Quantum systems at low temperature", isCorrect: true },
+                        { text: "Classical gases", isCorrect: false },
+                        { text: "Ideal gas", isCorrect: false }
+                    ],
+                    rationale: "The equipartition theorem is a classical result. At **low temperatures**, quantum effects dominate, and degrees of freedom (especially vibrational ones) become 'frozen out,' meaning the theorem is no longer valid."
+                },
+                {
+                    questionNumber: 22,
+                    question: "The probability of a macrostate is proportional to:",
+                    answerOptions: [
+                        { text: "Its microstates", isCorrect: true },
+                        { text: "Its energy", isCorrect: false },
+                        { text: "Its entropy", isCorrect: false },
+                        { text: "Its volume", isCorrect: false }
+                    ],
+                    rationale: "The thermodynamic probability ($W$) of a macrostate is the number of **microstates** corresponding to that macrostate. The larger the $W$, the higher the probability."
+                },
+                {
+                    questionNumber: 23,
+                    question: "Ensemble means:",
+                    answerOptions: [
+                        { text: "A single system", isCorrect: false },
+                        { text: "A collection of similar systems", isCorrect: true },
+                        { text: "Random experiment", isCorrect: false },
+                        { text: "Macroscopic state", isCorrect: false }
+                    ],
+                    rationale: "In statistical mechanics, an **ensemble** is a hypothetical, infinite **collection of independent systems** that are all prepared in the same way and possess the same macroscopic properties."
+                },
+                {
+                    questionNumber: 24,
+                    question: "Canonical ensemble corresponds to constant:",
+                    answerOptions: [
+                        { text: "E, V, N", isCorrect: false },
+                        { text: "T, V, N", isCorrect: true },
+                        { text: "P, T, N", isCorrect: false },
+                        { text: "V, N, P", isCorrect: false }
+                    ],
+                    rationale: "The **Canonical Ensemble** models a system in thermal contact with a large heat reservoir, fixing **Temperature ($T$), Volume ($V$), and Number of particles ($N$)**."
+                },
+                {
+                    questionNumber: 25,
+                    question: "Boltzmann’s relation connects entropy and:",
+                    answerOptions: [
+                        { text: "Volume", isCorrect: false },
+                        { text: "Probability (Thermodynamic)", isCorrect: true },
+                        { text: "Energy", isCorrect: false },
+                        { text: "Temperature", isCorrect: false }
+                    ],
+                    rationale: "Boltzmann's relation is $S = k_B \\ln W$, where $S$ is entropy and $W$ is the thermodynamic **Probability** (number of microstates)."
+                },
+                {
+                    questionNumber: 26,
+                    question: "In Fermi-Dirac statistics, no two particles can:",
+                    answerOptions: [
+                        { text: "Have same momentum", isCorrect: false },
+                        { text: "Occupy same quantum state", isCorrect: true },
+                        { text: "Have same velocity", isCorrect: false },
+                        { text: "Have different spins", isCorrect: false }
+                    ],
+                    rationale: "This is the **Pauli Exclusion Principle**, which applies to fermions (particles obeying Fermi-Dirac statistics): **no two particles** can simultaneously **occupy the same quantum state**."
+                },
+                {
+                    questionNumber: 27,
+                    question: "Bose-Einstein statistics applies to:",
+                    answerOptions: [
+                        { text: "Photons", isCorrect: true },
+                        { text: "Electrons", isCorrect: false },
+                        { text: "Protons", isCorrect: false },
+                        { text: "Neutrons", isCorrect: false }
+                    ],
+                    rationale: "**Bose-Einstein statistics** apply to particles with integer spin (bosons), which include **Photons** and phonons. Electrons, protons, and neutrons are fermions."
+                },
+                {
+                    questionNumber: 28,
+                    question: "The Maxwell-Boltzmann distribution fails at:",
+                    answerOptions: [
+                        { text: "High pressure", isCorrect: false },
+                        { text: "Low temperature", isCorrect: true },
+                        { text: "High temperature", isCorrect: false },
+                        { text: "Large volume", isCorrect: false }
+                    ],
+                    rationale: "Maxwell-Boltzmann statistics applies to classical, distinguishable particles. It fails for quantum systems at **low temperatures** and high densities where particles become indistinguishable, requiring Bose-Einstein or Fermi-Dirac statistics."
+                },
+                {
+                    questionNumber: 29,
+                    question: "The entropy of mixing two ideal gases is:",
+                    answerOptions: [
+                        { text: "Zero", isCorrect: false },
+                        { text: "Positive", isCorrect: true },
+                        { text: "Negative", isCorrect: false },
+                        { text: "Infinite", isCorrect: false }
+                    ],
+                    rationale: "The mixing of two different ideal gases is an irreversible process that increases the disorder of the system. Therefore, the change in entropy ($\Delta S_{\\text{mix}}$) is always **positive**."
+                },
+                {
+                    questionNumber: 30,
+                    question: "The second law of thermodynamics can be expressed as:",
+                    answerOptions: [
+                        { text: "$\\Delta S_{\\text{universe}} \\ge 0$", isCorrect: true },
+                        { text: "$\\Delta S = 0$", isCorrect: false },
+                        { text: "$\\Delta S < 0$", isCorrect: false },
+                        { text: "$\\Delta S \\to \\infty$", isCorrect: false }
+                    ],
+                    rationale: "The most general statement of the Second Law is that the total entropy of the universe (system + surroundings) must be greater than or equal to zero for any process: **$\\Delta S_{\\text{universe}} \\ge 0$**."
+                }
+            ]
+        };
+
+        // --- Core Quiz Logic ---
+        function renderQuiz() {
+            const quizForm = document.getElementById('physics-quiz');
+            let quizHTML = '';
+
+            quizData.questions.forEach(q => {
+                let optionsHTML = '';
+                q.answerOptions.forEach((option, index) => {
+                    optionsHTML += 
+                        '<div class="option-group">' +
+                            '<label>' +
+                                '<input type="radio" name="question-' + q.questionNumber + '" value="' + index + '">' +
+                                '<span>' + option.text + '</span>' +
+                            '</label>' +
+                        '</div>';
+                });
+
+                quizHTML += 
+                    '<div class="question" id="q-' + q.questionNumber + '">' +
+                        '<div class="question-text">' + q.questionNumber + '. ' + q.question + '</div>' +
+                        optionsHTML +
+                        '<div class="feedback" id="feedback-' + q.questionNumber + '"></div>' +
+                    '</div>';
+            });
+
+            quizForm.innerHTML = quizHTML;
+        }
+
+        function submitQuiz() {
+            let score = 0;
+            const totalQuestions = quizData.questions.length;
+
+            quizData.questions.forEach(q => {
+                const form = document.getElementById('physics-quiz');
+                const selectedOption = form.querySelector('input[name="question-' + q.questionNumber + '"]:checked');
+                const feedbackDiv = document.getElementById('feedback-' + q.questionNumber);
+                
+                const correctOption = q.answerOptions.find(opt => opt.isCorrect);
+                let isCorrect = false;
+
+                if (selectedOption) {
+                    const selectedIndex = parseInt(selectedOption.value);
+                    const selectedAnswer = q.answerOptions[selectedIndex];
+                    
+                    if (selectedAnswer.isCorrect) {
+                        score++;
+                        isCorrect = true;
+                    }
+
+                    feedbackDiv.classList.remove('correct-answer', 'incorrect-answer');
+                    
+                    // Generate feedback with rationale using <strong> and standard string concat
+                    const answerText = '<strong>Correct Answer:</strong> ' + correctOption.text + '.';
+                    const rationaleText = '<strong>Explanation/Steps:</strong> ' + q.rationale;
+
+                    if (isCorrect) {
+                        feedbackDiv.classList.add('correct-answer');
+                        feedbackDiv.innerHTML = '✅ <strong>Correct!</strong> ' + answerText + ' ' + rationaleText;
+                    } else {
+                        feedbackDiv.classList.add('incorrect-answer');
+                        feedbackDiv.innerHTML = '❌ <strong>Incorrect.</strong> ' + answerText + ' ' + rationaleText;
+                    }
+
+                } else {
+                    feedbackDiv.classList.remove('correct-answer', 'incorrect-answer');
+                    feedbackDiv.classList.add('incorrect-answer');
+                    feedbackDiv.innerHTML = '❌ <strong>Unanswered.</strong> The correct answer is <strong>' + correctOption.text + '</strong>. <strong>Explanation/Steps:</strong> ' + q.rationale;
+                }
+
+                feedbackDiv.style.display = 'block';
+                
+                // --- Manually trigger KaTeX render on the newly injected content ---
+                if (window.renderMathInElement) {
+                    renderMathInElement(feedbackDiv, {
+                        delimiters: [
+                            { left: "$$", right: "$$", display: true },
+                            { left: "$", right: "$", display: false },
+                            { left: "\\(", right: "\\)", display: false },
+                            { left: "\\[", right: "\\]", display: true }
+                        ]
+                    });
+                }
+            });
+
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = 'Your Score: ' + score + ' out of ' + totalQuestions + ' (' + ((score / totalQuestions) * 100).toFixed(0) + '%)! Review the explanations below.';
+            resultsDiv.style.display = 'block';
+            
+            resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Initialize the quiz when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            renderQuiz();
+        });
+    </script>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Initial render for question text and options
+      renderMathInElement(document.body, {
+        delimiters: [
+          { left: "$$", right: "$$", display: true },
+          { left: "$", right: "$", display: false },
+          { left: "\\(", right: "\\)", display: false },
+          { left: "\\[", right: "\\]", display: true }
+        ]
+      });
+    });
+    </script>
+
+</body>
+</html>

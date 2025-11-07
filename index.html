@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Stellar Physics Notes for My Captain</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- Base & Global Styling (Optimized for Mobile) --- */
+        html {
+            /* Sets a scalable base font size */
+            font-size: 16px; 
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff0f5; 
+            color: #333;
+            min-height: 100vh;
+            text-rendering: optimizeLegibility;
+            /* Ensures smooth scrolling on iOS */
+            -webkit-overflow-scrolling: touch; 
+        }
+
+        .container {
+            /* Increased max-width for better use of large screens */
+            max-width: 100%; 
+            width: 900px; 
+            margin: auto;
+            padding: 1.25rem 1rem; /* Use rem for scalability */
+        }
+
+        /* --- Header/Title Styling (Subtle Refinement) --- */
+        header {
+            text-align: center;
+            padding: 2.5rem 0;
+            background: linear-gradient(135deg, #f8bbd0, #e1bee7); 
+            color: #4a3858;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+            border-radius: 0 0 30px 30px; 
+        }
+
+        h1.main-title {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.75rem; /* Scaled font size */
+            margin: 0;
+            font-weight: 700;
+        }
+
+        p.cute-line {
+            font-size: 1rem;
+            margin-top: 0.3rem;
+            font-style: italic;
+            font-weight: 400;
+            color: #6b5a83;
+        }
+        
+        /* --- Unit Button Styling (Improved Touch Targets) --- */
+        .unit-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: 1fr; 
+            gap: 1rem; /* Use rem for consistent spacing */
+        }
+        
+        .unit-list li a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-color: #ffffff;
+            padding: 1rem;
+            /* Increased height for a better touch target (recommended 44px+) */
+            min-height: 70px; 
+            text-decoration: none;
+            color: #d81b60;
+            border-radius: 20px; 
+            border: 3px solid #ff80ab;
+            box-shadow: 0 4px 8px rgba(255, 64, 129, 0.2); /* Softer shadow for mobile */
+            /* Faster transition for mobile quick taps */
+            transition: all 0.15s ease-out; 
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .unit-list li a:hover, .unit-list li a:focus {
+            /* :focus is important for accessibility/keyboard users */
+            background-color: #fce4ec; 
+            transform: translateY(-2px); 
+            box-shadow: 0 6px 12px rgba(255, 64, 129, 0.3);
+        }
+
+        /* Specific mobile-friendly active state */
+        .unit-list li a:active {
+            transform: translateY(0); /* Quick press down effect */
+            box-shadow: 0 2px 4px rgba(255, 64, 129, 0.4);
+            background-color: #ffcdd2;
+        }
+        
+        /* Custom color tweaks for the 5 unit buttons */
+        .unit-list li:nth-child(1) a { border-color: #ff9800; color: #ff9800; } /* Orange */
+        .unit-list li:nth-child(2) a { border-color: #8bc34a; color: #689f38; } /* Green */
+        .unit-list li:nth-child(3) a { border-color: #4dd0e1; color: #00838f; } /* Cyan */
+        .unit-list li:nth-child(4) a { border-color: #d32f2f; color: #d32f2f; } /* Red */
+        .unit-list li:nth-child(5) a { border-color: #ab47bc; color: #8e24aa; } /* Purple */
+        
+        /* Practice Paper Button (Stands out) */
+        .practice-button a {
+            background: linear-gradient(90deg, #ffcdd2, #f3e5f5) !important;
+            border-color: #e040fb !important;
+            color: #e040fb !important;
+            font-size: 1.2rem !important; /* Scaled font size */
+        }
+
+        /* --- Responsive Grid for Wider Screens (Tablets/Desktop) --- */
+        @media (min-width: 600px) {
+            .container {
+                max-width: 90%;
+            }
+            .unit-list {
+                /* Two columns on wider screens */
+                grid-template-columns: 1fr 1fr; 
+                gap: 20px;
+            }
+            .practice-button {
+                /* Make the practice button span both columns */
+                grid-column: 1 / -1; 
+            }
+        }
+        
+        /* --- Footer (Motivation) --- */
+        footer {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            margin-top: 2rem;
+            color: #6b5a83; 
+            font-weight: 500;
+            font-size: 0.9rem; /* Slightly smaller for footer */
+            border-top: 1px solid #ffcdd2; 
+            background-color: #ffffff;
+            border-radius: 30px 30px 0 0;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 class="main-title">Physics Essentials | Fall 2025</h1>
+        <p class="cute-line">Prepared for my favorite scientist. </p>
+    </header>
+
+    <div class="container">
+        
+        <ul class="unit-list">
+            <li><a href="unit1.html">Unit 1: Basic Concepts & First Law of Thermodynamics</a></li>
+            <li><a href="unit2.html">Unit 2: Second Law, Entropy, and Carnot's Cycle</a></li>
+            <li><a href="unit3.html">Unit 3: Thermodynamic Potentials & Maxwell's Relations</a></li>
+            <li><a href="unit4.html">Unit 4: Transport of Heat & Kinetic Theory of Gases</a></li>
+            <li><a href="unit5.html">Unit 5: Fundamentals of Statistical Mechanics</a></li>
+            
+            <li class="practice-button"><a href="practice_papers.html">🚀 Practice Papers & Cosmic Extras!</a></li>
+        </ul>
+        
+    </div>
+
+    <footer>
+        "Remember, success is defined by the effort. Keep up the momentum. 💫" 
+    </footer>
+
+</body>
+</html>

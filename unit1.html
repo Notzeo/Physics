@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 1: Basic Concepts and First Law of Thermodynamics</title>
+    
+    
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrF9T5D/38yF182X+8S8v82z2pE91XFwB1G+5Xf/A1P8A6K6Z8xY/5lH5Ff7bJ/..." crossorigin="anonymous">
+    
+    <style>
+        /* --- Base & Global Styling (Matching Aesthetic) --- */
+        body {
+            font-family: 'Quicksand', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff0f5; /* Lavender Blush */
+            color: #333;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 95%; 
+            width: 800px;
+            margin: auto;
+            padding: 20px 15px;
+        }
+
+        /* --- Header/Navigation --- */
+        header {
+            text-align: center;
+            padding: 25px 0;
+            background: linear-gradient(135deg, #f8bbd0, #e1bee7); 
+            color: #4a3858;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 30px 30px;
+        }
+
+        h1 {
+            font-size: 1.8em;
+            margin: 0 0 5px 0;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 1.4em;
+            color: #8e24aa; /* Purple accent for main sections */
+            border-bottom: 2px solid #ffcdd2;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        h3 {
+            font-size: 1.1em;
+            color: #d81b60; /* Deep pink accent for subsections */
+            margin-top: 20px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        /* --- Content Styling (Cards for Clarity) --- */
+        p, ul, ol, table {
+            margin-bottom: 15px;
+            padding-left: 5px;
+        }
+        
+        ul, ol {
+            padding-left: 25px;
+        }
+
+        .section-card {
+            background-color: #ffffff;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid #ff80ab; /* Cute side stripe */
+        }
+        
+        .section-card h2, .section-card h3 {
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        /* --- Table Styling --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95em;
+        }
+
+        th, td {
+            border: 1px solid #ffcdd2; /* Soft pink border */
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #fce4ec; /* Lighter pink header */
+            color: #8e24aa;
+            font-weight: 700;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+
+        /* --- Math Rendering Area --- */
+        .katex-display {
+            margin: 15px 0 !important;
+            padding: 10px;
+            background-color: #f3e5f5; /* Light purple background for equations */
+            border-radius: 10px;
+            overflow-x: auto; /* Ensure equations fit on mobile */
+        }
+        
+        /* --- Back Button --- */
+        .back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 15px;
+            background-color: #ab47bc; /* Purple button */
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 700;
+            transition: background-color 0.2s;
+        }
+
+        .back-button:hover {
+            background-color: #8e24aa;
+        }
+        
+        /* --- Solved Examples and Notes --- */
+        .example-box {
+            border: 2px dashed #ff80ab;
+            padding: 15px;
+            margin: 15px 0;
+            background-color: #fffafc;
+            border-radius: 10px;
+        }
+        .example-box strong { color: #d81b60; }
+        
+        .note {
+            font-style: italic;
+            color: #6b5a83;
+            margin-top: 10px;
+        }
+        
+        /* --- NEW: Answer Box Styling (Copied from Unit 2) --- */
+        .answer-box {
+            border: 1px solid #ffcdd2; /* Soft pink border */
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #fce4ec; /* Lighter pink background for answers */
+            border-radius: 8px;
+        }
+        .answer-box strong { color: #8e24aa; }
+
+        /* Style the 'See Answer' link */
+        summary {
+            cursor: pointer;
+            color: #ab47bc; /* Purple color for visibility */
+            font-weight: 700;
+            padding: 5px 0;
+            outline: none;
+            transition: color 0.2s;
+        }
+        summary:hover {
+            color: #d81b60;
+        }
+
+        /* Question list styling */
+        .quick-check {
+            border-top: 2px dashed #ffcdd2;
+            margin-top: 20px;
+            padding-top: 15px;
+        }
+        .quick-check ol {
+            padding-left: 20px;
+        }
+        .quick-check h3 {
+            color: #8e24aa;
+            margin-bottom: 10px;
+        }
+        .quick-check li {
+            margin-bottom: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <a href="index.html" class="back-button">← Back to Units</a>
+            <h1>Unit 1: Basic Concepts and First Law of Thermodynamics</h1>
+            <p style="margin-top: 10px;">B.Sc. Physics Essentials</p>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <div class="section-card">
+            <h2>1. Thermodynamic Systems 🧪</h2>
+            
+            <h3>1.1 Definition of System, Surroundings, and Boundary</h3>
+            <ul>
+                <li><strong>Thermodynamic System:</strong> A defined quantity of matter or a region of space upon which attention is concentrated for thermodynamic analysis. It is the object of study.</li>
+                <li><strong>Surroundings:</strong> Everything external to the system that can interact with the system (exchange energy or matter).</li>
+                <li><strong>Boundary:</strong> The real or imaginary surface separating the system from its surroundings.
+                    <ul>
+                        <li>Fixed Boundary (e.g., rigid container walls).</li>
+                        <li>Moving Boundary (e.g., piston in a cylinder).</li>
+                        <li>Diathermal Boundary (Allows heat transfer).</li>
+                        <li>Adiabatic Boundary (Does not allow heat transfer - insulated).</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>1.2 Types of Systems</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>System Type</th>
+                        <th>Exchange of Matter</th>
+                        <th>Exchange of Energy (Heat/Work)</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Open System</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                        <td>Water boiling in an open pot.</td>
+                    </tr>
+                    <tr>
+                        <td>Closed System</td>
+                        <td>No</td>
+                        <td>Yes</td>
+                        <td>Gas sealed in a cylinder with a movable piston.</td>
+                    </tr>
+                    <tr>
+                        <td>Isolated System</td>
+                        <td>No</td>
+                        <td>No</td>
+                        <td>A perfectly insulated thermos flask (ideal case).</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><strong>Control Volume:</strong> A fixed region in space where matter flows in and out (used for open systems).</p>
+            <p><strong>Control Mass:</strong> A specific, fixed quantity of matter (used for closed systems).</p>
+
+            <h3>1.3 Properties of a System</h3>
+            <ul>
+                <li><strong>Intensive Properties:</strong> Independent of the mass or size of the system.
+                    <br>Examples: Temperature ($\text{T}$), Pressure ($\text{P}$), Density ($\rho$), Viscosity.</li>
+                <li><strong>Extensive Properties:</strong> Dependent on the mass or size of the system.
+                    <br>Examples: Volume ($\text{V}$), Internal Energy ($\text{U}$), Mass ($\text{m}$), Enthalpy ($\text{H}$).</li>
+                <li><strong>Specific Properties:</strong> Extensive properties per unit mass, making them **intensive**.
+                    <br>Examples: Specific Volume ($\text{v} = \text{V}/\text{m}$), Specific Internal Energy ($\text{u} = \text{U}/\text{m}$).</li>
+            </ul>
+            
+            <div class="quick-check">
+                <h3>Quick Check Questions (1)</h3>
+                <ol>
+                    <li>A well-sealed, rigid (fixed volume) container of gas is heated. What type of thermodynamic system is this?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> A **Closed System**. It can exchange energy (heat) but not matter.
+                            </div>
+                        </details>
+                    </li>
+                    <li>Is **Specific Internal Energy** an extensive or intensive property? Why?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> **Intensive**. Although Internal Energy (U) is extensive, dividing it by mass (making it "specific") removes the dependence on the size of the system.
+                            </div>
+                        </details>
+                    </li>
+                    <li>If the boundary of a system is adiabatic, what type of exchange is prevented between the system and surroundings?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> **Heat exchange** ($\Delta Q=0$) is prevented.
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        ---
+
+        <div class="section-card">
+            <h2>2. Thermal Equilibrium and Zeroth Law of Thermodynamics 🌡️</h2>
+            
+            <h3>2.2 Zeroth Law of Thermodynamics</h3>
+            <p><strong>Statement:</strong> "If two thermodynamic systems, $\text{A}$ and $\text{B}$, are separately in thermal equilibrium with a third thermodynamic system, $\text{C}$, then $\text{A}$ and $\text{B}$ are also in thermal equilibrium with each other."</p>
+            <p><strong>Role in Defining Temperature:</strong> It provides the logical basis for the concept of **Temperature** ($\text{T}$) as a measurable property ($\text{C}$ acts as a thermometer).</p>
+            
+            <h3>2.3 Temperature Scales</h3>
+            <ul>
+                <li>Absolute (Kelvin) Scale ($\text{K}$): $\text{0 K}$ is absolute zero.</li>
+                <li>Conversion: $$\text{T}(\text{K}) = \text{T}(^\circ \text{C}) + 273.15$$</li>
+            </ul>
+            
+            <div class="example-box">
+                <strong>Example Question:</strong> System $\text{A}$ and $\text{B}$ both reach the same final temperature as a table ($\text{C}$). What is the conclusion?
+                <p><strong>Answer:</strong> The Zeroth Law concludes that $\text{A}$ and $\text{B}$ are in thermal equilibrium with each other.</p>
+            </div>
+            
+            <div class="quick-check">
+                <h3>Quick Check Questions (2)</h3>
+                <ol>
+                    <li>What must be equal between two systems for them to be in **thermal equilibrium**?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> Their **temperatures** must be equal.
+                            </div>
+                        </details>
+                    </li>
+                    <li>If System A has a higher temperature than System B, which way will heat naturally flow when they are placed in contact?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> From **System A to System B** (from higher temperature to lower temperature).
+                            </div>
+                        </details>
+                    </li>
+                    <li>The Zeroth Law allows us to use what common device?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> A **thermometer**. The thermometer ($\text{C}$) is in equilibrium with the object ($\text{A}$) and establishes a common property (temperature) that can be compared to other objects ($\text{B}$).
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        ---
+
+        <div class="section-card">
+            <h2>3. Equation of State 🔢</h2>
+            
+            <h3>3.1 Definition and Examples</h3>
+            <p><strong>Definition:</strong> An equation relating the state variables ($\text{P, V, T}$) of a system: $f(\text{P}, \text{V}, \text{T}) = 0$</p>
+            <ul>
+                <li>Ideal Gas Equation: $$\text{PV} = \text{nRT}$$</li>
+                <li>Van der Waals Equation (Real Gas): $$(\text{P} + \text{a}/\text{V}^2)(\text{V} - \text{b}) = \text{RT} \quad \text{(per mole)}$$</li>
+            </ul>
+
+            <h3>3.4 Compressibility Factor ($\text{Z}$)</h3>
+            <p>Quantifies the deviation from ideal behavior:</p>
+            $$Z = \frac{\text{PV}}{\text{nRT}}$$
+            <ul>
+                <li>Ideal Gas: $\text{Z} = 1$.</li>
+                <li>Real Gas: $\text{Z} < 1$ (attractive forces dominate), $\text{Z} > 1$ (repulsive forces/volume dominate).</li>
+            </ul>
+            
+            <div class="quick-check">
+                <h3>Quick Check Questions (3)</h3>
+                <ol>
+                    <li>$1 \text{ mole}$ of an ideal gas is at $1 \text{ atm}$ and $273.15 \text{ K}$. What is the value of its Compressibility Factor ($\text{Z}$)?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> **$\text{Z} = 1$**. By definition, the compressibility factor for an ideal gas is always 1.
+                            </div>
+                        </details>
+                    </li>
+                    <li>Under what two conditions do real gases typically behave most like an ideal gas?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> At **high temperatures** (reducing attractive forces) and **low pressures** (increasing distance between molecules).
+                            </div>
+                        </details>
+                    </li>
+                    <li>If a real gas has a compressibility factor $\text{Z} < 1$, what does this suggest about the intermolecular forces?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> **Attractive forces** between the molecules are dominant, making the gas more compressible than an ideal gas.
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        ---
+
+        <div class="section-card">
+            <h2>4. First Law of Thermodynamics ⚖️</h2>
+            
+            <h3>4.1 Conservation of Energy</h3>
+            <p>The First Law states that energy cannot be created or destroyed, only transformed (**conservation of energy**).</p>
+
+            <h3>4.2 Mathematical Statement</h3>
+            <p>Differential Form:</p>
+            $$dQ = dU + dW$$
+            <p>Integrated Form:</p>
+            $$\Delta Q = \Delta U + \Delta W$$
+            
+            <p class="note">We use the convention where $\Delta\text{W}$ is **work done by the system**.</p>
+            
+            <h3>4.4 Physical Meaning of Internal Energy ($\text{U}$)</h3>
+            <ul>
+                <li>$\text{U}$ is the total energy within the system (molecular $\text{KE} + \text{PE}$).</li>
+                <li>$\text{U}$ is a **State Function**: $\Delta\text{U}$ depends only on the initial and final states, not the path.</li>
+                <li>For an Ideal Gas: $\Delta\text{U} \propto \Delta\text{T}$.</li>
+            </ul>
+            
+            <div class="quick-check">
+                <h3>Quick Check Questions (4)</h3>
+                <ol>
+                    <li>A system absorbs $100 \text{ J}$ of heat and performs $30 \text{ J}$ of work on the surroundings. What is the change in its internal energy ($\Delta U$)?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Calculation:</strong> $\Delta U = \Delta Q - \Delta W = 100 \text{ J} - 30 \text{ J} = 70 \text{ J}$.
+                                <p><strong>Answer:</strong> **$70 \text{ J}$**.</p>
+                            </div>
+                        </details>
+                    </li>
+                    <li>What is the change in internal energy ($\Delta U$) for a gas undergoing a complete thermodynamic cycle (returning to its initial state)?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> **Zero** ($\Delta U = 0$). Since internal energy (U) is a state function, its change is zero when the initial and final states are the same.
+                            </div>
+                        </details>
+                    </li>
+                    <li>According to the First Law, what must be true about the net heat absorbed ($\Delta Q$) and the net work done ($\Delta W$) during a cycle?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> They must be equal: **$\Delta Q = \Delta W$** (since $\Delta U = 0$).
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        ---
+
+        <div class="section-card">
+            <h2>5. Heat and Work ⚙️</h2>
+            
+            <h3>5.1 Nature of Heat and Work as Path Functions</h3>
+            <p>Work ($\text{W}$) and Heat ($\text{Q}$) are **Path Functions**. Their values depend on the specific path taken between states. Mathematically, $\text{dQ}$ and $\text{dW}$ are inexact differentials.</p>
+            
+            <h3>5.3 Work Done in Different Processes (Reversible)</h3>
+            <ul>
+                <li>Isothermal Expansion: $$\Delta W = \text{nRT} \ln\left(\frac{\text{V}_2}{\text{V}_1}\right)$$</li>
+                <li>Isobaric Process: $$\Delta W = \text{P}(\text{V}_2 - \text{V}_1)$$</li>
+                <li>Isochoric Process: $$\Delta W = 0$$</li>
+            </ul>
+            
+            <div class="example-box">
+                <strong>Graphical Representation:</strong>
+                <p>The work done ($\Delta \text{W}$) in any process is equal to the **area under the curve** on a $\text{P–V}$ diagram, visually illustrating path dependence.</p>
+            </div>
+            
+            <div class="quick-check">
+                <h3>Quick Check Questions (5)</h3>
+                <ol>
+                    <li>A gas expands from $V_1$ to $V_2$ at constant pressure $P$. Calculate the work done by the system.
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> **$\Delta W = P(V_2 - V_1)$** (Isobaric work formula).
+                            </div>
+                        </details>
+                    </li>
+                    <li>If a gas is heated in a rigid container, how much work does it do on the surroundings?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> **Zero** ($\Delta W = 0$). This is an isochoric (constant volume) process, meaning no volume change occurs against the external pressure.
+                            </div>
+                        </details>
+                    </li>
+                    <li>Why are heat ($\Delta Q$) and work ($\Delta W$) considered path functions, while internal energy ($\Delta U$) is a state function?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> The amount of heat exchanged and work done **depends on the sequence of steps** (the path) taken between two states. $\Delta U$ only depends on the **initial and final values** of the system's properties.
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        ---
+
+        <div class="section-card">
+            <h2>6. Quasi-static, Reversible, and Irreversible Processes 🔄</h2>
+            
+            <h3>6.2 Reversible Process</h3>
+            <p>Can be reversed by an infinitesimal change, restoring both system and surroundings to original states.</p>
+            <p><strong>Conditions:</strong> Must be **quasi-static** (near equilibrium) and have **no dissipative forces** (friction, resistance).</p>
+            
+            <h3>6.3 Irreversible Process</h3>
+            <p>All real-world processes are irreversible, caused by factors like **friction, free expansion,** or **heat transfer through finite $\Delta\text{T}$**.</p>
+            <p class="note">Work is maximized in a reversible expansion ($\text{W}_{\text{irr}} < \text{W}_{\text{rev}}$).</p>
+            
+            <div class="quick-check">
+                <h3>Quick Check Questions (6)</h3>
+                <ol>
+                    <li>What is a **quasi-static** process?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> A process that occurs **infinitesimally slowly** such that the system is always very close to an equilibrium state throughout the entire process.
+                            </div>
+                        </details>
+                    </li>
+                    <li>Name one factor that makes an otherwise ideal thermodynamic process irreversible in the real world.
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> **Friction** (or viscosity, electrical resistance, heat transfer across a finite temperature difference).
+                            </div>
+                        </details>
+                    </li>
+                    <li>Compare the work output of a reversible expansion versus an irreversible expansion between the same two states.
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> The **reversible expansion does the maximum possible work** ($\text{W}_{\text{rev}} > \text{W}_{\text{irr}}$).
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        ---
+
+        <div class="section-card">
+            <h2>8. Heat Capacities 🔥</h2>
+            
+            <h3>8.2 Heat Capacities at Constant Volume ($\text{C}_{\text{V}}$) and Constant Pressure ($\text{C}_{\text{P}}$)</h3>
+            <ul>
+                <li>$\text{C}_{\text{V}}$ (Isochoric, $\Delta\text{W}=0$): Heat supplied goes only to internal energy.
+                    $$C_V = \left(\frac{\partial U}{\partial T}\right)_V$$</li>
+                <li>$\text{C}_{\text{P}}$ (Isobaric): Heat supplied increases $\text{U}$ AND does work ($\Delta\text{W} \ne 0$).
+                    $$C_P = \left(\frac{\partial H}{\partial T}\right)_P$$</li>
+            </ul>
+            
+            <h3>8.3 Relationship between $\text{C}_{\text{P}}$ and $\text{C}_{\text{V}}$ (Mayer's Relation)</h3>
+            $$\mathbf{C}_{\mathbf{P}} - \mathbf{C}_{\mathbf{V}} = \mathbf{R} \quad \text{(For } 1 \text{ mole of ideal gas)}$$
+            
+            <div class="quick-check">
+                <h3>Quick Check Questions (8)</h3>
+                <ol>
+                    <li>Why is the molar heat capacity at constant pressure ($\text{C}_{\text{P}}$) always greater than the molar heat capacity at constant volume ($\text{C}_{\text{V}}$) for an ideal gas?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> At constant pressure, the system does **work ($\Delta W$)** against the surroundings as it expands. This external work requires extra energy (heat) beyond the energy needed just to raise the internal energy ($\Delta U$).
+                            </div>
+                        </details>
+                    </li>
+                    <li>If the difference $C_P - C_V$ is found to be $8.314 \text{ J/(mol}\cdot\text{K)}$, what is this difference numerically equal to?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> It is equal to the **Universal Gas Constant ($\text{R}$)**, as stated by Mayer's Relation.
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        ---
+
+        <div class="section-card">
+            <h2>9. Adiabatic Processes 💨</h2>
+            
+            <h3>9.1 Definition and Condition</h3>
+            <p><strong>Condition:</strong> No heat exchange ($\Delta\text{Q} = 0$).</p>
+            <p>First Law: $\Delta\text{Q} = \Delta\text{U} + \Delta\text{W} \implies \mathbf{\Delta\mathbf{U} = -\Delta\mathbf{W}}$.</p>
+            <p>Work is done at the expense of internal energy, leading to a temperature change.</p>
+            
+            <h3>9.2 Adiabatic Relation (Reversible)</h3>
+            $$\mathbf{\text{PV}^\gamma = \text{constant}}$$
+            <p>Where $\gamma = \text{C}_{\text{P}}/\text{C}_{\text{V}}$ (Adiabatic index).</p>
+            
+            <h3>9.3 Other Relations</h3>
+            $$\text{T}\text{V}^{\gamma-1} = \text{constant}$$
+            $$\text{T}^\gamma \text{P}^{1-\gamma} = \text{constant}$$
+            
+            <h3>9.4 Comparison: Isothermal vs. Adiabatic</h3>
+            <ul>
+                <li>The adiabatic curve is always **steeper** than the isothermal curve passing through the same point, since $\gamma > 1$.</li>
+            </ul>
+            
+            <div class="quick-check">
+                <h3>Quick Check Questions (9)</h3>
+                <ol>
+                    <li>During a reversible adiabatic expansion, what happens to the temperature of the gas and why?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> The temperature **decreases**. Since $\Delta Q=0$, the gas does work ($\Delta W > 0$) at the expense of its internal energy ($\Delta U = -\Delta W < 0$), causing the temperature to drop.
+                            </div>
+                        </details>
+                    </li>
+                    <li>What is the significance of the **adiabatic index ($\gamma$)** in the equation $\text{PV}^\gamma = \text{constant}$?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> $\gamma$ is the ratio of heat capacities, $\mathbf{C_P / C_V}$. Its value determines the slope of the adiabatic curve on a P-V diagram.
+                            </div>
+                        </details>
+                    </li>
+                    <li>In a P-V diagram, why is the adiabatic curve steeper than the isothermal curve?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> Because the temperature changes (drops in expansion) during an adiabatic process, the pressure drops faster than in an isothermal process ($\text{P} \propto \text{V}^{-\gamma}$ with $\gamma > 1$, versus $\text{P} \propto \text{V}^{-1}$ for isothermal).
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        ---
+
+        <div class="section-card">
+            <h2>10. Van der Waals Equation (Real Gas) 🤯</h2>
+            
+            <h3>10.2 Derivation and Corrections</h3>
+            $$(\mathbf{P} + \mathbf{a}/\mathbf{V}^{\mathbf{2}})(\mathbf{V} - \mathbf{b}) = \mathbf{RT} \quad \text{(per mole)}$$
+            <ul>
+                <li>**Pressure Correction ($\mathbf{a}/\mathbf{V}^{\mathbf{2}}$):** Accounts for intermolecular **attractive forces**.</li>
+                <li>**Volume Correction ($\mathbf{b}$):** Accounts for the **finite volume** occupied by the gas molecules.</li>
+            </ul>
+            
+            <h3>10.4 Critical Constants</h3>
+            <p>The critical point ($\text{P}_{\text{c}}, \text{V}_{\text{c}}, \text{T}_{\text{c}}$) marks where liquid and gas phases are indistinguishable.</p>
+            $$V_{c} = 3b \quad P_{c} = \frac{a}{27b^{2}} \quad T_{c} = \frac{8a}{27Rb}$$
+            
+            <div class="quick-check">
+                <h3>Quick Check Questions (10)</h3>
+                <ol>
+                    <li>Which term in the Van der Waals equation corrects the pressure term for attractive forces between gas molecules?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> The term **$a/V^2$**.
+                            </div>
+                        </details>
+                    </li>
+                    <li>The constant **$b$** in the Van der Waals equation is related to what physical property of the gas molecules?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> The **finite volume** (or size) of the molecules themselves.
+                            </div>
+                        </details>
+                    </li>
+                    <li>What happens to a gas when its temperature and pressure are at the critical point ($\text{T}_{\text{c}}, \text{P}_{\text{c}}$)?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> The liquid and gas phases become **indistinguishable**; it is impossible to liquefy the gas by pressure alone above $\text{T}_{\text{c}}$.
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        ---
+
+        <div class="section-card">
+            <h2>11. Joule, Joule–Thomson, and Adiabatic Expansions 🥶</h2>
+            
+            <h3>11.1 Joule’s Experiment (Free Expansion)</h3>
+            <p>Conditions: $\mathbf{\Delta\mathbf{W} = 0}$ ($\text{P}_{\text{ext}} = 0$) and $\mathbf{\Delta\mathbf{Q} = 0}$.</p>
+            <p>Conclusion (Ideal Gas): $\mathbf{\Delta\mathbf{U} = 0}$ and thus $\mathbf{\Delta\mathbf{T} = 0}$.</p>
+            
+            <h3>11.2 Joule–Thomson Effect (Throttling Process)</h3>
+            <p><strong>Condition:</strong> Isenthalpic process ($\mathbf{\Delta\mathbf{H} = 0}$).</p>
+            <p><strong>Coefficient:</strong> $$\mu_{\text{JT}} = \left(\frac{\partial T}{\partial P}\right)_H$$</p>
+            <ul>
+                <li>$\mu_{\text{JT}} > 0$: **Cooling** (attractive forces dominate).</li>
+                <li>$\mu_{\text{JT}} < 0$: **Heating** (repulsive forces dominate).</li>
+            </ul>
+            
+            <div class="quick-check">
+                <h3>Quick Check Questions (11)</h3>
+                <ol>
+                    <li>What is the key result regarding temperature change for an **ideal gas** during a free expansion (Joule's experiment)?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> The temperature change is **zero** ($\Delta T = 0$), because $\Delta U=0$ and the internal energy of an ideal gas depends only on temperature.
+                            </div>
+                        </details>
+                    </li>
+                    <li>The Joule–Thomson effect involves what constant thermodynamic quantity?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> The process is **Isenthalpic**, meaning the enthalpy ($\text{H}$) remains constant ($\Delta H = 0$).
+                            </div>
+                        </details>
+                    </li>
+                    <li>If a gas experiences cooling upon Joule–Thomson expansion, what does this imply about its $\mu_{\text{JT}}$ coefficient?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> $\mu_{\text{JT}}$ must be **positive** ($\mu_{\text{JT}} > 0$), as a drop in pressure ($\Delta P < 0$) resulted in a drop in temperature ($\Delta T < 0$).
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        ---
+
+        <div class="section-card">
+            <h2>12. Summary & Practice 📝</h2>
+            
+            <h3>12.1 Key Equations</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Concept</th>
+                        <th>Equation</th>
+                        <th>Relation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>First Law</td>
+                        <td>$$\Delta\text{Q} = \Delta\text{U} + \Delta\text{W}$$</td>
+                        <td>Conservation of Energy</td>
+                    </tr>
+                    <tr>
+                        <td>Ideal Gas</td>
+                        <td>$$\text{PV} = \text{nRT}$$</td>
+                        <td>Equation of State</td>
+                    </tr>
+                    <tr>
+                        <td>Mayer's Relation</td>
+                        <td>$$\text{C}_{\text{P}} - \text{C}_{\text{V}} = \text{R}$$</td>
+                        <td>Heat Capacities</td>
+                    </tr>
+                    <tr>
+                        <td>Adiabatic</td>
+                        <td>$$\text{PV}^\gamma = \text{constant}$$</td>
+                        <td>$\text{Q}=0$</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>12.3 Practice Numerical Problems (with Answers)</h3>
+            <ol>
+                <li>$5 \text{ moles}$ of an ideal monatomic gas ($\text{C}_{\text{V}} = 3\text{R}/2$) are heated from $300 \text{ K}$ to $400 \text{ K}$ at constant pressure. Calculate $\Delta\text{Q}, \Delta\text{W}$, and $\Delta\text{U}$. ($\text{R} = 8.314 \text{ J K}^{-1} \text{ mol}^{-1}$)
+                    <details>
+                        <summary>See Answer</summary>
+                        <div class="answer-box">
+                            <strong>Step-by-step Solution:</strong>
+                            <p>Given: $n=5$, $\Delta T = 100 \text{ K}$. Constant pressure (Isobaric).</p>
+                            <p>1. **Calculate $\Delta U$**: $\Delta U = n C_V \Delta T$ (Always true for ideal gas).</p>
+                            $$\Delta U = 5 \times (3/2 \times 8.314) \times 100 \approx \mathbf{6235.5 \text{ J}}$$
+                            <p>2. **Calculate $\Delta Q$**: $\Delta Q = n C_P \Delta T$. Since $C_P = C_V + R = 5R/2$.</p>
+                            $$\Delta Q = 5 \times (5/2 \times 8.314) \times 100 \approx \mathbf{10392.5 \text{ J}}$$
+                            <p>3. **Calculate $\Delta W$**: Using the First Law, $\Delta W = \Delta Q - \Delta U$.</p>
+                            $$\Delta W = 10392.5 \text{ J} - 6235.5 \text{ J} \approx \mathbf{4157.0 \text{ J}}$$
+                        </div>
+                    </details>
+                </li>
+                <li>$1 \text{ mole}$ of an ideal gas expands adiabatically from $2 \text{ atm}$ and $25 \text{ L}$ to $1 \text{ atm}$. If $\gamma = 1.4$, find the final volume and the work done. ($\text{R} = 8.314 \text{ J K}^{-1} \text{ mol}^{-1} \approx 0.082 \text{ L atm K}^{-1} \text{ mol}^{-1}$)
+                    <details>
+                        <summary>See Answer</summary>
+                        <div class="answer-box">
+                            <strong>Step-by-step Solution:</strong>
+                            <p>1. **Find $V_2$** (Final Volume): Use $P_1 V_1^\gamma = P_2 V_2^\gamma$.</p>
+                            $$V_2 = V_1 \left(\frac{P_1}{P_2}\right)^{1/\gamma} = 25 \text{ L} \left(\frac{2 \text{ atm}}{1 \text{ atm}}\right)^{1/1.4} \approx 25 \text{ L} \times (2)^{0.714}$$
+                            $$V_2 \approx 25 \text{ L} \times 1.65 \approx \mathbf{41.25 \text{ L}}$$
+                            <p>2. **Find Work Done** ($\Delta W$): For adiabatic process, $\Delta W = -\Delta U = -n C_V \Delta T$. First, find $T_1$ and $T_2$ using $PV=nRT$. ($T_1 \approx 304.88 \text{ K}, T_2 \approx 251.52 \text{ K}$)</p>
+                            <p>Need $C_V$: $C_V = R/(\gamma-1) = 8.314 / 0.4 \approx 20.785 \text{ J/(mol}\cdot\text{K})$.</p>
+                            $$\Delta W = -1 \times 20.785 \times (251.52 - 304.88) \approx \mathbf{1109.8 \text{ J}}$$
+                            <p class="note">Work done by the system is positive (expansion).</p>
+                        </div>
+                    </details>
+                </li>
+                <li>$2 \text{ moles}$ of an ideal gas are compressed from $10 \text{ L}$ to $5 \text{ L}$ at a constant external pressure of $5 \text{ atm}$. Calculate the work done on the system in Joules. ($1 \text{ L}\cdot\text{atm} \approx 101.3 \text{ J}$)
+                    <details>
+                        <summary>See Answer</summary>
+                        <div class="answer-box">
+                            <strong>Step-by-step Solution:</strong>
+                            <p>1. **Work Done BY the system** (Irreversible, constant $P_{\text{ext}}$): $\Delta W_{\text{by}} = P_{\text{ext}} (V_2 - V_1)$</p>
+                            $$\Delta W_{\text{by}} = 5 \text{ atm} \times (5 \text{ L} - 10 \text{ L}) = -25 \text{ L}\cdot\text{atm}$$
+                            <p>2. **Work Done ON the system**:</p>
+                            $$\Delta W_{\text{on}} = -\Delta W_{\text{by}} = +25 \text{ L}\cdot\text{atm}$$
+                            <p>3. **Convert to Joules**:</p>
+                            $$\Delta W_{\text{on}} = 25 \text{ L}\cdot\text{atm} \times 101.3 \text{ J/(L}\cdot\text{atm)} \approx \mathbf{2532.5 \text{ J}}$$
+                        </div>
+                    </details>
+                </li>
+            </ol>
+        </div>
+        
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" integrity="sha384-F8XF/t3Q3gE+M2X+h5h2W5d9t5c8v82z2pE91XFwB1G+5Xf/A1P8A6K6Z8xY/5lH5Ff7bJ/..." crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+            // delimiters to recognize
+            delimiters: [
+                {left: "$$", right: "$$", display: true},
+                {left: "$",  right: "$",  display: false},
+                {left: "\\(", right: "\\)", display: false},
+                {left: "\\[", right: "\\]", display: true}
+            ],
+            // allow LaTeX macros like \text{}
+            macros: {
+                "\\RR": "\\mathbb{R}",
+                "\\bold": ["{\\bf #1}", 1]
+            }
+        });
+    });
+</script>
+
+        
+    </body>
+</html>

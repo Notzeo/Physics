@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 3: Thermodynamic Relations</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrF9T5D/38yF182X+8S8v82z2pE91XFwB1G+5Xf/A1P8A6K6Z8xY/5lH5Ff7bJ/..." crossorigin="anonymous">
+    
+    <style>
+        /* --- Base & Global Styling (Matching Aesthetic) --- */
+        body {
+            font-family: 'Quicksand', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff0f5; /* Lavender Blush */
+            color: #333;
+            min-height: 100vh;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column; /* Allows footer to stick to bottom */
+        }
+
+        .container {
+            max-width: 95%; 
+            width: 800px;
+            margin: auto;
+            padding: 20px 15px;
+            flex-grow: 1; /* Allows content area to expand */
+        }
+
+        /* --- Header/Navigation --- */
+        header {
+            text-align: center;
+            padding: 25px 0;
+            background: linear-gradient(135deg, #f8bbd0, #e1bee7); 
+            color: #4a3858;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 30px 30px;
+        }
+
+        h1 {
+            font-size: 1.8em;
+            margin: 0 0 5px 0;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 1.4em;
+            color: #8e24aa; /* Purple accent for main sections */
+            border-bottom: 2px solid #ffcdd2;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        h3 {
+            font-size: 1.1em;
+            color: #d81b60; /* Deep pink accent for subsections */
+            margin-top: 20px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        /* --- Content Styling (Cards for Clarity) --- */
+        p, ul, ol, table {
+            margin-bottom: 15px;
+            padding-left: 5px;
+        }
+        
+        ul, ol {
+            padding-left: 25px;
+        }
+
+        .section-card {
+            background-color: #ffffff;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid #ff80ab; /* Cute side stripe */
+        }
+        
+        .section-card h2, .section-card h3 {
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        /* --- Table Styling --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95em;
+        }
+
+        th, td {
+            border: 1px solid #ffcdd2; /* Soft pink border */
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #fce4ec; /* Lighter pink header */
+            color: #8e24aa;
+            font-weight: 700;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+
+        /* --- Math Rendering Area --- */
+        .katex-display {
+            margin: 15px 0 !important;
+            padding: 10px;
+            background-color: #f3e5f5; /* Light purple background for equations */
+            border-radius: 10px;
+            overflow-x: auto; /* Ensure equations fit on mobile */
+        }
+        
+        /* --- Back Button --- */
+        .back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 15px;
+            background-color: #ab47bc; /* Purple button */
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 700;
+            transition: background-color 0.2s;
+        }
+
+        .back-button:hover {
+            background-color: #8e24aa;
+        }
+        
+        /* --- Solved Examples and Notes --- */
+        .example-box {
+            border: 2px dashed #ff80ab;
+            padding: 15px;
+            margin: 15px 0;
+            background-color: #fffafc;
+            border-radius: 10px;
+        }
+        .example-box strong { color: #d81b60; }
+        
+        .note {
+            font-style: italic;
+            color: #6b5a83;
+            margin-top: 10px;
+        }
+
+        /* --- Answer Box Styling (For Quick Check) --- */
+        .answer-box {
+            border: 1px solid #ffcdd2; /* Soft pink border */
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #fce4ec; /* Lighter pink background for answers */
+            border-radius: 8px;
+        }
+        .answer-box strong { color: #8e24aa; }
+
+        /* Style the 'See Answer' link */
+        summary {
+            cursor: pointer;
+            color: #ab47bc; /* Purple color for visibility */
+            font-weight: 700;
+            padding: 5px 0;
+            outline: none;
+            transition: color 0.2s;
+        }
+        summary:hover {
+            color: #d81b60;
+        }
+
+        /* Question list styling */
+        .quick-check {
+            border-top: 2px dashed #ffcdd2;
+            margin-top: 20px;
+            padding-top: 15px;
+        }
+        .quick-check ol {
+            padding-left: 20px;
+        }
+        .quick-check h3 {
+            color: #8e24aa;
+            margin-bottom: 10px;
+        }
+        .quick-check li {
+            margin-bottom: 10px;
+        }
+
+        /* --- Assessment Button --- */
+        .assessment-button {
+            display: block;
+            width: 80%;
+            max-width: 400px;
+            margin: 40px auto;
+            padding: 15px 20px;
+            background-color: #ff80ab; /* Deep pink/Rose */
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: 700;
+            border-radius: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, transform 0.2s;
+        }
+        .assessment-button:hover {
+            background-color: #e91e63; /* Darker pink on hover */
+            transform: translateY(-2px);
+        }
+        
+        /* --- Cute Footer --- */
+        footer {
+            margin-top: 40px;
+            padding: 20px 0;
+            text-align: center;
+            background-color: #f8bbd0; /* Light pink background */
+            color: #d81b60; /* Deep pink text */
+            font-style: italic;
+            border-top: 3px double #ff80ab;
+            font-weight: 700;
+        }
+        footer span {
+            font-size: 1.1em;
+            color: #8e24aa; /* Purple heart/sparkle */
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <a href="index.html" class="back-button">← Back to Units</a>
+            <h1>Unit 3: Thermodynamic Relations</h1>
+            <p style="margin-top: 10px;">B.Sc. Physics Essentials</p>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <div class="section-card">
+            <h2>1. Thermodynamic Potentials 💡</h2>
+            <p>Thermodynamic potentials are energy-like state functions that provide a concise summary of all the thermodynamic information about a system. They act as criteria for spontaneous change and equilibrium under different sets of boundary conditions.</p>
+
+            <h3>1.1 Definitions and Physical Significance</h3>
+            <p>The four potentials are defined using the fundamental equation (Combined First and Second Laws for a reversible process):</p>
+            $$dU = TdS - PdV$$
+            <table>
+                <thead>
+                    <tr>
+                        <th>Potential</th>
+                        <th>Definition (via State Functions)</th>
+                        <th>Natural Variables</th>
+                        <th>Meaning of Spontaneity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Internal Energy ($\mathbf{U}$)</td>
+                        <td>$U$</td>
+                        <td>$S, V$</td>
+                        <td>$dU \le 0$ at constant $S, V$</td>
+                    </tr>
+                    <tr>
+                        <td>Enthalpy ($\mathbf{H}$)</td>
+                        <td>$H = U + PV$</td>
+                        <td>$S, P$</td>
+                        <td>$dH \le 0$ at constant $S, P$</td>
+                    </tr>
+                    <tr>
+                        <td>Helmholtz Free Energy ($\mathbf{A}$)</td>
+                        <td>$A = U - TS$</td>
+                        <td>$T, V$</td>
+                        <td>$dA \le 0$ at constant $T, V$ (Max Work)</td>
+                    </tr>
+                    <tr>
+                        <td>Gibbs Free Energy ($\mathbf{G}$)</td>
+                        <td>$G = H - TS$</td>
+                        <td>$T, P$</td>
+                        <td>$dG \le 0$ at constant $T, P$ (Max Non-PV Work)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>1.2 Differential Forms and Derivations</h3>
+            <p>The differential forms establish the fundamental relationships for each potential, derived from $dU = TdS - PdV$.</p>
+            <ul>
+                <li>**Internal Energy ($\mathbf{U}$):** $$\mathbf{dU = TdS - PdV}$$</li>
+                <li>**Enthalpy ($\mathbf{H}$):** (Derived from $dH = dU + PdV + VdP$) $$\mathbf{dH = TdS + VdP}$$</li>
+                <li>**Helmholtz Free Energy ($\mathbf{A}$):** (Derived from $dA = dU - TdS - SdT$) $$\mathbf{dA = -PdV - SdT}$$</li>
+                <li>**Gibbs Free Energy ($\mathbf{G}$):** (Derived from $dG = dH - TdS - SdT$) $$\mathbf{dG = VdP - SdT}$$</li>
+            </ul>
+            
+            <h3>1.3 Natural Variables and Thermodynamic Meaning</h3>
+            <p>By comparing the differential forms to $dZ = M dX + N dY$, we obtain coefficients (e.g., $(\partial G/\partial P)_T = V$).</p>
+            <div class="note">
+                **Key Coefficients:**
+                <p>From $dG = VdP - SdT$: $\left(\frac{\partial G}{\partial P}\right)_T = V$ and $\left(\frac{\partial G}{\partial T}\right)_P = -S$</p>
+            </div>
+            
+            <div class="quick-check">
+                <h3>Quick Check Questions (1)</h3>
+                <ol>
+                    <li>Which thermodynamic potential is the criterion for spontaneity in an **isothermal** and **isochoric** process?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> **Helmholtz Free Energy ($\mathbf{A}$)**. At constant $T$ and $V$, $dA \le 0$ for spontaneity.
+                            </div>
+                        </details>
+                    </li>
+                    <li>What are the **natural variables** for the **Enthalpy** ($\mathbf{H}$)?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> **Entropy ($\mathbf{S}$) and Pressure ($\mathbf{P}$)**. (Since $dH = TdS + VdP$).
+                            </div>
+                        </details>
+                    </li>
+                    <li>The change in **Gibbs Free Energy** ($\Delta G$) represents the maximum amount of what type of work?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> The maximum **useful non-PV work** (or electrical work, chemical work, etc.).
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        ---
+        
+        <div class="section-card">
+            <h2>2. Maxwell’s Equations from Potentials 🔄</h2>
+            <p>Maxwell's relations are derived by applying the exactness condition ($\frac{\partial^2 Z}{\partial X \partial Y} = \frac{\partial^2 Z}{\partial Y \partial X}$) to the four differential potentials.</p>
+
+            <h3>2.2 Derivation of the Four Maxwell Relations</h3>
+            <p>Applying the condition $\left(\frac{\partial M}{\partial Y}\right)_X = \left(\frac{\partial N}{\partial X}\right)_Y$ to the differential forms:</p>
+            <ol>
+                <li>**From $dU = TdS - PdV$ (Variables $S, V$):** $$\mathbf{\left(\frac{\partial T}{\partial V}\right)_S = -\left(\frac{\partial P}{\partial S}\right)_V}$$</li>
+                <li>**From $dH = TdS + VdP$ (Variables $S, P$):** $$\mathbf{\left(\frac{\partial T}{\partial P}\right)_S = \left(\frac{\partial V}{\partial S}\right)_P}$$</li>
+                <li>**From $dA = -SdT - PdV$ (Variables $T, V$):** $$\mathbf{\left(\frac{\partial S}{\partial V}\right)_T = \left(\frac{\partial P}{\partial T}\right)_V}$$</li>
+                <li>**From $dG = VdP - SdT$ (Variables $P, T$):** $$\mathbf{\left(\frac{\partial V}{\partial T}\right)_P = -\left(\frac{\partial S}{\partial P}\right)_T}$$</li>
+            </ol>
+            
+            <h3>2.3 Physical Interpretation</h3>
+            <p>Maxwell's relations are crucial as they allow us to calculate changes in hard-to-measure properties like **Entropy ($\mathbf{S}$)** from easily measurable laboratory data ($\mathbf{P, V, T}$).</p>
+            
+            <div class="quick-check">
+                <h3>Quick Check Questions (2)</h3>
+                <ol>
+                    <li>Which Maxwell relation allows you to calculate the change in entropy with respect to volume at constant temperature?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> The **3rd Maxwell Relation**: $\left(\frac{\partial S}{\partial V}\right)_T = \left(\frac{\partial P}{\partial T}\right)_V$.
+                            </div>
+                        </details>
+                    </li>
+                    <li>What mathematical property of the thermodynamic potentials (state functions) makes the derivation of Maxwell's relations possible?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> They are **exact differentials** (i.e., their mixed second-order partial derivatives are equal, by Clairaut's theorem).
+                            </div>
+                        </details>
+                    </li>
+                    <li>Rewrite the **4th Maxwell relation** so that the entropy term is on the right-hand side.
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> $\left(\frac{\partial S}{\partial P}\right)_T = -\left(\frac{\partial V}{\partial T}\right)_P$. (This is the form derived from $dG$).
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        ---
+
+        <div class="section-card">
+            <h2>3. Useful Manipulations with Partial Derivatives 📐</h2>
+            
+            <h3>3.1 Cyclic and Reciprocal Relations</h3>
+            <p>These identities are necessary for transforming thermodynamic derivatives into measurable coefficients.</p>
+            <ul>
+                <li>**Reciprocal Relation:** $$\left(\frac{\partial x}{\partial y}\right)_z = \frac{1}{\left(\frac{\partial y}{\partial x}\right)_z}$$</li>
+                <li>**Cyclic Relation (Triple Product Rule):** $$\left(\frac{\partial x}{\partial y}\right)_z \left(\frac{\partial y}{\partial z}\right)_x \left(\frac{\partial z}{\partial x}\right)_y = -1$$</li>
+            </ul>
+
+            <h3>3.2 Applications: Joule-Thomson Coefficient</h3>
+            <p>Using the cyclic rule and the 4th Maxwell relation, the Joule-Thomson coefficient ($\mu_{JT}$) is related to measurable quantities:</p>
+            $$\mathbf{\mu_{JT} = \left(\frac{\partial T}{\partial P}\right)_H = \frac{1}{C_P} \left[ T\left(\frac{\partial V}{\partial T}\right)_P - V \right]}$$
+            
+            <h3>3.3 Application: Adiabatic Stretching of a Wire</h3>
+            <p>The combined law for a wire is $dU = TdS + FdL$ ($F$ is tension, $L$ is length). The resulting Maxwell relation is used to find temperature change during adiabatic stretching:</p>
+            $$\left(\frac{\partial T}{\partial L}\right)_S = \left(\frac{\partial F}{\partial S}\right)_L$$
+            
+            <div class="quick-check">
+                <h3>Quick Check Questions (3)</h3>
+                <ol>
+                    <li>If you know the coefficient of thermal expansion $\alpha = \frac{1}{V}\left(\frac{\partial V}{\partial T}\right)_P$, how can you relate this to $\left(\frac{\partial T}{\partial V}\right)_P$?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> Using the **Reciprocal Relation**: $\left(\frac{\partial T}{\partial V}\right)_P = \frac{1}{\left(\frac{\partial V}{\partial T}\right)_P} = \frac{1}{\alpha V}$.
+                            </div>
+                        </details>
+                    </li>
+                    <li>If $\mu_{JT}$ is positive for a gas, will the gas heat up or cool down upon expansion?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> The gas will **cool down**. Positive $\mu_{JT} = (\partial T/\partial P)_H$ means that a drop in pressure ($\Delta P < 0$) results in a drop in temperature ($\Delta T < 0$).
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        ---
+
+        <div class="section-card">
+            <h2>4. The Clausius–Clapeyron Equation 💧🧊</h2>
+            <p>The Clausius–Clapeyron equation describes the slope of the phase boundary line on a P–T diagram.</p>
+
+            <h3>4.1 Derivation from Gibbs Free Energy</h3>
+            <p>Starting from the equilibrium condition $\bar{G}_1 = \bar{G}_2$ and $d\bar{G} = \bar{V}dP - \bar{S}dT$, the equation is derived:</p>
+            $$\mathbf{\frac{dP}{dT} = \frac{\Delta \bar{H}}{T \Delta \bar{V}}}$$
+            <p>Where $\Delta \bar{H}$ is the molar latent heat of the phase transition and $\Delta \bar{V}$ is the molar volume change.</p>
+
+            <h3>4.3 P–T Diagram and Phase Boundaries</h3>
+            <ul>
+                <li>**Vaporization/Sublimation:** $\Delta \bar{H} > 0$ and $\Delta \bar{V} > 0 \implies \mathbf{dP/dT > 0}$ (Positive slope).</li>
+                <li>**Fusion (Water Anomalous):** $\Delta \bar{H} > 0$ but $\Delta \bar{V} < 0$ (Liquid water is denser than ice) $\implies \mathbf{dP/dT < 0}$ (**Negative slope**).</li>
+            </ul>
+            
+            <h3>4.4 Integrated Form (Approximate)</h3>
+            <p>Assuming $\Delta \bar{H}_{\text{vap}}$ is constant and $\Delta \bar{V} \approx \bar{V}_{\text{gas}} = RT/P$, the integrated form for the Liquid $\rightleftharpoons$ Vapor transition is:</p>
+            $$\mathbf{\ln\left(\frac{P_2}{P_1}\right) = - \frac{\Delta \bar{H}_{\text{vap}}}{R} \left( \frac{1}{T_2} - \frac{1}{T_1} \right)}$$
+            
+            <div class="quick-check">
+                <h3>Quick Check Questions (4)</h3>
+                <ol>
+                    <li>Why does increasing pressure **lower** the melting point of ice, whereas increasing pressure raises the boiling point of water?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> The **fusion curve of water** has a **negative slope** ($dP/dT < 0$) because water is one of the few substances where the liquid phase is denser than the solid phase ($\Delta V < 0$). The boiling curve always has a positive slope.
+                            </div>
+                        </details>
+                    </li>
+                    <li>What key thermodynamic condition must be true for two phases of a substance to coexist in equilibrium at the same $T$ and $P$?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> Their molar **Gibbs Free Energies** must be equal: $\bar{G}_1 = \bar{G}_2$.
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        ---
+
+        <div class="section-card">
+            <h2>5. Triple Point 🎯</h2>
+            
+            <h3>5.1 Definition and Position</h3>
+            <p>The **Triple Point** is the unique $T$ and $P$ at which the three phases (solid, liquid, and gas) coexist in stable thermodynamic equilibrium.</p>
+            
+            <h3>5.2 Uniqueness and Significance</h3>
+            <ul>
+                <li><strong>Gibbs Phase Rule:</strong> $F = C - P + 2 \implies F = 1 - 3 + 2 = 0$. This zero degree of freedom means the state is **invariant** (fixed $T$ and $P$).</li>
+                <li><strong>Kelvin Scale:</strong> The triple point of water ($T_t = 273.16 \text{ K}$) defines the fundamental fixed point for the Kelvin scale.</li>
+            </ul>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Substance</th>
+                        <th>Triple Point Temperature (K)</th>
+                        <th>Triple Point Pressure (Pa)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Water</td>
+                        <td>$273.16$</td>
+                        <td>$611.7$</td>
+                    </tr>
+                    <tr>
+                        <td>Carbon Dioxide</td>
+                        <td>$216.55$</td>
+                        <td>$518,000$</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="quick-check">
+                <h3>Quick Check Questions (5)</h3>
+                <ol>
+                    <li>Explain why the triple point of a pure substance is called an **invariant point**.
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> By the Gibbs Phase Rule, the number of degrees of freedom is $F=0$. This means neither the temperature nor the pressure can be independently varied without one of the three phases disappearing.
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        ---
+
+        <div class="section-card">
+            <h2>6. Applications of Maxwell’s Thermodynamic Relations 🛠️</h2>
+            <p>Maxwell's relations are the bridge between theoretical concepts and practical measurements.</p>
+
+            <h3>6.1 Variation of Entropy with $P$ and $V$</h3>
+            <ul>
+                <li>**Entropy with Volume (Constant $\text{T}$):** Using the 3rd Relation, for ideal gas $\Delta S = R \ln(V_2/V_1)$.</li>
+                <li>**Entropy with Pressure (Constant $\text{T}$):** Using the 4th Relation, for ideal gas $\Delta S = -R \ln(P_2/P_1)$.</li>
+            </ul>
+
+            <h3>6.2 Calculating Heat Capacities ($C_P$ and $C_V$)</h3>
+            <p>The general relation for the difference between heat capacities, applicable to **any substance**:</p>
+            $$\mathbf{C_P - C_V = T \left(\frac{\partial P}{\partial T}\right)_V \left(\frac{\partial V}{\partial T}\right)_P}$$
+            <p>In terms of measurable coefficients (Thermal Expansivity $\alpha$ and Isothermal Compressibility $\beta_T$):</p>
+            $$\mathbf{C_P - C_V = \frac{T V \alpha^2}{\beta_T}}$$
+            <p class="note">Substituting ideal gas relations into the general formula proves $\mathbf{C_P - C_V = R}$ (Mayer's Relation).</p>
+            
+            <div class="quick-check">
+                <h3>Quick Check Questions (6)</h3>
+                <ol>
+                    <li>The general expression for $C_P - C_V$ shows that $C_P$ must always be greater than $C_V$ (except possibly at $T=0$). What is the reasoning for this based on the formula?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> The term $\mathbf{\alpha^2}$ is always positive (or zero), $T$ and $V$ are positive, and the isothermal compressibility $\mathbf{\beta_T}$ must also be positive (since a system's volume must decrease when pressure increases). Thus, $\mathbf{C_P - C_V \ge 0}$.
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        ---
+
+        <div class="section-card">
+            <h2>7. Solved Numerical Examples 💻</h2>
+            
+            <h3>Example 1: Using the Clausius–Clapeyron Equation</h3>
+            <p><strong>Problem:</strong> Water boils at $100 \text{^\circ}\text{C}$ under $1 \text{ atm}$ pressure. Calculate the boiling point of water at a mountain where the pressure is $0.5 \text{ atm}$. Given: $\Delta H_{\text{vap}} = 40.7 \text{ kJ/mol}$ and $R = 8.314 \text{ J mol}^{-1} \text{K}^{-1}$.</p>
+            <div class="example-box">
+                <p>Use: $\ln\left(\frac{P_2}{P_1}\right) = - \frac{\Delta \bar{H}_{\text{vap}}}{R} \left( \frac{1}{T_2} - \frac{1}{T_1} \right)$</p>
+                <p>Substituting values ($T_1 = 373.15 \text{ K}$):</p>
+                $$\ln\left(0.5\right) = - \frac{40700}{8.314} \left( \frac{1}{T_2} - \frac{1}{373.15} \right)$$
+                <p>Solving for $T_2$ yields $T_2 \approx 354.4 \text{ K}$.</p>
+                <p>Final Answer: $T_2 \approx \mathbf{81.25 \text{^\circ}\text{C}}$.</p>
+            </div>
+
+            <h3>Example 2: Checking the 3rd Maxwell Relation for an Ideal Gas</h3>
+            <p><strong>Problem:</strong> Verify the 3rd Maxwell relation, $(\partial S/\partial V)_T = (\partial P/\partial T)_V$, for an an ideal gas.</p>
+            <div class="example-box">
+                <p><strong>Solution:</strong></p>
+                <p><strong>LHS:</strong> $\left(\frac{\partial S}{\partial V}\right)_T = \frac{1}{T} \left(\frac{\partial U}{\partial V}\right)_T + \frac{P}{T}$</p>
+                <p>For ideal gas, $\left(\frac{\partial U}{\partial V}\right)_T = 0$. So, $\mathbf{LHS = \frac{P}{T}}$.</p>
+                <p><strong>RHS:</strong> From $P = RT/V$, $\left(\frac{\partial P}{\partial T}\right)_V = \frac{R}{V}$.</p>
+                <p>From the ideal gas law, $R/V = P/T$. So, $\mathbf{RHS = \frac{P}{T}}$.</p>
+                <p><strong>Conclusion:</strong> LHS = RHS. The relation is verified.</p>
+            </div>
+
+            <a href="mcq3.html" class="assessment-button">Start the Assessment for Unit 3!</a>
+
+        </div>
+        
+    </div>
+
+    <footer>
+        "You've crushed Unit 3 Captain! Keep shining! ✨❤️"
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" integrity="sha384-F8XF/t3Q3gE+M2X+h5h2W5d9t5c8v82z2pE91XFwB1G+5Xf/A1P8A6K6Z8xY/5lH5Ff7bJ/..." crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+            // delimiters to recognize
+            delimiters: [
+                {left: "$$", right: "$$", display: true},
+                {left: "$",  right: "$",  display: false},
+                {left: "\\(", right: "\\)", display: false},
+                {left: "\\[", right: "\\]", display: true}
+            ],
+            // allow LaTeX macros like \text{}
+            macros: {
+                "\\RR": "\\mathbb{R}",
+                "\\bold": ["{\\bf #1}", 1]
+            }
+        });
+    });
+</script>
+
+        
+</body>
+</html>

@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Unit 5 Quiz: Statistical Mechanics Fundamentals</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- Base & Global Styling --- */
+        html { font-size: 16px; }
+        body {
+            font-family: 'Quicksand', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff0f5; 
+            color: #333;
+            min-height: 100vh;
+            text-rendering: optimizeLegibility;
+            -webkit-overflow-scrolling: touch; 
+        }
+
+        .container {
+            max-width: 100%; 
+            width: 900px; 
+            margin: auto;
+            padding: 1.25rem 1rem;
+        }
+
+        /* --- Header/Title Styling --- */
+        header {
+            text-align: center;
+            padding: 2.5rem 0;
+            background: linear-gradient(135deg, #f8bbd0, #e1bee7); 
+            color: #4a3858;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+            border-radius: 0 0 30px 30px; 
+        }
+
+        h1.main-title {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.75rem; 
+            margin: 0;
+            font-weight: 700;
+        }
+
+        p.cute-line {
+            font-size: 1rem;
+            margin-top: 0.3rem;
+            font-style: italic;
+            font-weight: 400;
+            color: #6b5a83;
+        }
+        
+        /* --- Quiz Specific Styling --- */
+        .quiz-section {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+
+        .question {
+            margin-bottom: 30px;
+            border-bottom: 1px dashed #f0e6f2; /* Light divider */
+            padding-bottom: 20px;
+        }
+
+        .question-text {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #1e88e5; /* Blue/Cosmic accent for Unit 5 */
+            margin-bottom: 15px;
+        }
+        
+        /* Option Styling (Mobile optimized radio buttons) */
+        .option-group label {
+            display: flex;
+            align-items: center;
+            background-color: #fcfcfc;
+            padding: 12px 15px;
+            margin: 8px 0;
+            border-radius: 10px;
+            border: 1px solid #ffcdd2; 
+            cursor: pointer;
+            transition: background-color 0.15s ease;
+            font-size: 1rem;
+        }
+
+        .option-group label:hover {
+            background-color: #fce4ec;
+        }
+        
+        .option-group input[type="radio"] {
+            margin-right: 10px;
+            transform: scale(1.3); 
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #ff80ab;
+            border-radius: 50%;
+            outline: none;
+            transition: all 0.2s;
+            position: relative;
+        }
+        
+        .option-group input[type="radio"]:checked {
+            background-color: #ff80ab;
+            border-color: #d81b60;
+        }
+
+        /* --- Result Feedback Styling (Hidden until submitted) --- */
+        .feedback {
+            margin-top: 10px;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            display: none; 
+        }
+
+        .correct-answer {
+            background-color: #e8f5e9; 
+            border: 1px solid #4caf50;
+            color: #1b5e20;
+        }
+        
+        .incorrect-answer {
+            background-color: #ffebee; 
+            border: 1px solid #f44336;
+            color: #c62828;
+        }
+
+        /* --- Submit Button (Reusing Practice Button Style) --- */
+        #submit-button {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 15px;
+            margin-top: 20px;
+            text-decoration: none;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            background: linear-gradient(90deg, #ffcdd2, #f3e5f5) !important;
+            border: 3px solid #e040fb !important;
+            color: #e040fb !important;
+            border-radius: 20px; 
+            box-shadow: 0 6px 12px rgba(224, 64, 251, 0.25);
+            transition: all 0.2s;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        #submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(224, 64, 251, 0.4);
+        }
+
+        #results {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #fff0f5;
+            border: 2px dashed #f8bbd0;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #d81b60;
+            display: none;
+        }
+        
+        /* --- Footer (Reused from index.html) --- */
+        footer {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            margin-top: 2rem;
+            color: #6b5a83; 
+            font-weight: 500;
+            font-size: 0.9rem;
+            border-top: 1px solid #ffcdd2; 
+            background-color: #ffffff;
+            border-radius: 30px 30px 0 0;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 class="main-title">Physics Essentials | Practice Quiz</h1>
+        <p class="cute-line">Unit 5: Fundamentals of Statistical Mechanics</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="quiz-section">
+            <form id="physics-quiz">
+                </form>
+
+            <button id="submit-button" onclick="submitQuiz()">✨ Submit Answers and See Results</button>
+            
+            <div id="results"></div>
+        </div>
+        
+    </div>
+
+    <footer id="dynamic-footer">
+        </footer>
+
+    <script>
+        // --- Motivational Quotes Logic (Expanded List) ---
+        const quotes = [
+            "You've got this, cutiepie! <3",
+            "This is the easiest for my captain !!",
+            "One step closer to that A. You're doing amazing! ✨",
+            "Mastering Physics, one star at a time. 🌟",
+            "Keep up the momentum. 💫",
+            "You were born to shine, Captain! Conquer this unit! 💖",
+            "No stress, just success. I believe in you! ✨",
+            "Just like Maxwell's Equations, you are a fundamental truth! 👑"
+        ];
+        
+        function setRandomQuote() {
+            const footer = document.getElementById('dynamic-footer');
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            footer.innerHTML = quotes[randomIndex];
+        }
+
+        // --- Quiz Data for Unit 5 (15 Questions) ---
+        const quizData = {
+            questions: [
+                {
+                    questionNumber: 1,
+                    question: "In statistical mechanics, a <strong>microstate</strong> of a system is defined by:",
+                    answerOptions: [
+                        { text: "The macroscopic variables (P, V, T).", rationale: "These define the macrostate.", isCorrect: false },
+                        { text: "The energy, volume, and number of particles.", rationale: "These are variables for the microcanonical ensemble.", isCorrect: false },
+                        { text: "The quantum state or precise position and momentum of every single particle.", rationale: "A microstate gives the maximum microscopic detail of the system.", isCorrect: true },
+                        { text: "The ensemble to which the system belongs.", isCorrect: false }
+                    ],
+                    hint: "A microstate provides the most detailed possible description of the system."
+                },
+                {
+                    questionNumber: 2,
+                    question: "A <strong>macrostate</strong> is specified by:",
+                    answerOptions: [
+                        { text: "The total number of accessible microstates.", rationale: "This is the thermodynamic probability ($\\Omega$).", isCorrect: false },
+                        { text: "The set of allowed individual particle energies.", isCorrect: false },
+                        { text: "Macroscopic properties like pressure ($P$), volume ($V$), and temperature ($T$).", rationale: "The macrostate describes the system as a whole, ignoring microscopic details.", isCorrect: true },
+                        { text: "The precise position of all particles in the system.", rationale: "This is a microstate definition.", isCorrect: false }
+                    ],
+                    hint: "This description is what a typical thermodynamic experiment measures."
+                },
+                {
+                    questionNumber: 3,
+                    question: "The <strong>fundamental postulate of statistical mechanics</strong> states that:",
+                    answerOptions: [
+                        { text: "Entropy is proportional to the logarithm of thermodynamic probability ($S = k_B \\ln \\Omega$).", rationale: "This is the Boltzmann relation, not the postulate itself.", isCorrect: false },
+                        { text: "All microstates corresponding to a given macrostate are equally probable.", rationale: "This is the 'postulate of equal a priori probabilities,' central to the microcanonical ensemble.", isCorrect: true },
+                        { text: "The average energy of a system is $\\frac{1}{2} k_B T$ per degree of freedom.", rationale: "This is the Equipartition Theorem.", isCorrect: false },
+                        { text: "The total energy and particle number must be conserved.", isCorrect: false }
+                    ],
+                    hint: "This postulate is the basis for calculating average properties in the microcanonical ensemble."
+                },
+                {
+                    questionNumber: 4,
+                    question: "The <strong>thermodynamic probability</strong> ($\\Omega$) is defined as:",
+                    answerOptions: [
+                        { text: "The probability of finding a particle in a specific energy state.", isCorrect: false },
+                        { text: "The probability of a given macrostate occurring.", isCorrect: false },
+                        { text: "The number of microstates corresponding to a given macrostate.", rationale: "$\\Omega$ (or $W$) is the measure of the 'multiplicity' of a macrostate.", isCorrect: true },
+                        { text: "The ratio of favorable outcomes to total outcomes.", rationale: "This is a simple mathematical probability.", isCorrect: false }
+                    ],
+                    hint: "It represents how many different microscopic ways a system can achieve a particular macroscopic state."
+                },
+                {
+                    questionNumber: 5,
+                    question: "The <strong>Microcanonical Ensemble</strong> is used to describe a system where the following quantities are held constant:",
+                    answerOptions: [
+                        { text: "Temperature ($T$), Volume ($V$), and Number of particles ($N$).", rationale: "This is the Canonical Ensemble.", isCorrect: false },
+                        { text: "Energy ($E$), Volume ($V$), and Number of particles ($N$).", rationale: "This describes an isolated system, the conditions for the Microcanonical Ensemble.", isCorrect: true },
+                        { text: "Temperature ($T$), Volume ($V$), and Chemical Potential ($\mu$).", rationale: "This is the Grand Canonical Ensemble.", isCorrect: false },
+                        { text: "Pressure ($P$), Temperature ($T$), and Number of particles ($N$).", rationale: "This is the Isothermal-Isobaric Ensemble (or Gibbs Ensemble).", isCorrect: false }
+                    ],
+                    hint: "Think of an isolated box—what variables must be fixed?"
+                },
+                {
+                    questionNumber: 6,
+                    question: "The <strong>Canonical Ensemble</strong> is defined by constant values of:",
+                    answerOptions: [
+                        { text: "$E, V, N$", rationale: "Microcanonical Ensemble.", isCorrect: false },
+                        { text: "$T, V, N$", rationale: "The system is in thermal contact with a heat bath, fixing $T$.", isCorrect: true },
+                        { text: "$T, V, \\mu$", rationale: "Grand Canonical Ensemble.", isCorrect: false },
+                        { text: "$P, V, T$", isCorrect: false }
+                    ],
+                    hint: "The system is typically imagined to be in contact with a large heat reservoir."
+                },
+                {
+                    questionNumber: 7,
+                    question: "The <strong>Grand Canonical Ensemble</strong> allows the exchange of:",
+                    answerOptions: [
+                        { text: "Only energy (heat).", rationale: "Canonical Ensemble.", isCorrect: false },
+                        { text: "Only volume.", isCorrect: false },
+                        { text: "Energy and particles.", rationale: "The system is in contact with a heat and particle reservoir, fixing $T, V, \\mu$.", isCorrect: true },
+                        { text: "Energy and volume.", rationale: "Isothermal-Isobaric Ensemble.", isCorrect: false }
+                    ],
+                    hint: "This ensemble fixes the chemical potential ($\\mu$) instead of the number of particles ($N$)."
+                },
+                {
+                    questionNumber: 8,
+                    question: "The thermodynamic quantity directly related to the <strong>thermodynamic probability</strong> ($\\Omega$) by $S = k_B \\ln \\Omega$ is:",
+                    answerOptions: [
+                        { text: "Internal Energy ($U$)", isCorrect: false },
+                        { text: "Helmholtz Free Energy ($F$)", isCorrect: false },
+                        { text: "Entropy ($S$)", rationale: "This is the famous Boltzmann formula, linking the macroscopic state variable $S$ to the microscopic measure $\\Omega$.", isCorrect: true },
+                        { text: "Enthalpy ($H$)", isCorrect: false }
+                    ],
+                    hint: "This equation provides the statistical interpretation of the Second Law of Thermodynamics."
+                },
+                {
+                    questionNumber: 9,
+                    question: "In statistical mechanics, the most probable macrostate is the one with the:",
+                    answerOptions: [
+                        { text: "Lowest internal energy.", isCorrect: false },
+                        { text: "Largest volume.", isCorrect: false },
+                        { text: "Highest number of corresponding microstates ($\\Omega_{max}$).", rationale: "The fundamental postulate implies the most likely macrostate is the one with the greatest multiplicity.", isCorrect: true },
+                        { text: "Lowest temperature.", isCorrect: false }
+                    ],
+                    hint: "Probability is proportional to the number of ways the state can occur."
+                },
+                {
+                    questionNumber: 10,
+                    question: "The Second Law of Thermodynamics (entropy increases) is interpreted in statistical mechanics as the tendency of a system to evolve towards:",
+                    answerOptions: [
+                        { text: "Lower energy states.", isCorrect: false },
+                        { text: "The state of maximum thermodynamic probability.", rationale: "Since $S = k_B \\ln \\Omega$, maximizing $\\Omega$ maximizes $S$.", isCorrect: true },
+                        { text: "States with constant $P, V, T$.", isCorrect: false },
+                        { text: "States where all microstates have zero probability.", isCorrect: false }
+                    ],
+                    hint: "Systems naturally move toward the state with the greatest disorder/multiplicity."
+                },
+                {
+                    questionNumber: 11,
+                    question: "The <strong>phase space</strong> for a single particle in 3D classical mechanics has how many dimensions?",
+                    answerOptions: [
+                        { text: "3", rationale: "This is configuration space ($\\mu$-space).", isCorrect: false },
+                        { text: "6", rationale: "3 position coordinates ($x, y, z$) and 3 momentum coordinates ($p_x, p_y, p_z$) give $2f$ dimensions, where $f=3$.", isCorrect: true },
+                        { text: "N", rationale: "N is the number of particles.", isCorrect: false },
+                        { text: "6N", rationale: "This is the $\\Gamma$-space for $N$ particles.", isCorrect: false }
+                    ],
+                    // CORRECTED RATIONALE: Replaced raw text with $...$ for better KaTeX handling.
+                    hint: "Phase space includes all independent coordinates needed to fully specify the system's state."
+                },
+                {
+                    questionNumber: 12,
+                    question: "The <strong>Boltzmann canonical distribution law</strong> gives the probability of a system being in an energy state $E_i$ as proportional to:",
+                    answerOptions: [
+                        { text: "$E_i$", isCorrect: false },
+                        { text: "$e^{-E_i / k_B T}$", rationale: "This is the Boltzmann factor $P(E_i) \\propto e^{-E_i / k_B T}$.", isCorrect: true },
+                        { text: "$e^{E_i / k_B T}$", isCorrect: false },
+                        { text: "$1 / E_i$", isCorrect: false }
+                    ],
+                    hint: "This factor is key to the Canonical Ensemble and describes how probability decreases exponentially with energy."
+                },
+                {
+                    questionNumber: 13,
+                    question: "Which type of statistics applies to <strong>indistinguishable particles</strong> with <strong>integer spin</strong> (bosons)?",
+                    answerOptions: [
+                        { text: "Maxwell-Boltzmann Statistics", rationale: "Applies to distinguishable classical particles.", isCorrect: false },
+                        { text: "Fermi-Dirac Statistics", rationale: "Applies to indistinguishable particles with half-integer spin (fermions).", isCorrect: false },
+                        { text: "Bose-Einstein Statistics", rationale: "Applies to indistinguishable particles with integer spin (bosons).", isCorrect: true },
+                        { text: "Quantum-Classical Statistics", isCorrect: false }
+                    ],
+                    hint: "Think about the particles that follow the Pauli Exclusion Principle versus those that do not."
+                },
+                {
+                    questionNumber: 14,
+                    question: "A key difference between <strong>Classical Statistics (Maxwell-Boltzmann)</strong> and <strong>Quantum Statistics (Bose-Einstein/Fermi-Dirac)</strong> is the assumption of:",
+                    answerOptions: [
+                        { text: "The size of the particles.", isCorrect: false },
+                        { text: "The interaction force between particles.", isCorrect: false },
+                        { text: "The distinguishability of the particles.", rationale: "MB assumes distinguishable particles, while BE and FD assume indistinguishable particles.", isCorrect: true },
+                        { text: "The volume of the phase space.", isCorrect: false }
+                    ],
+                    hint: "This difference stems from the wave function symmetry requirement in quantum mechanics."
+                },
+                {
+                    questionNumber: 15,
+                    question: "The <strong>Pauli Exclusion Principle</strong> is inherently incorporated in which type of statistics?",
+                    answerOptions: [
+                        { text: "Maxwell-Boltzmann Statistics", isCorrect: false },
+                        { text: "Bose-Einstein Statistics", rationale: "BE allows multiple particles in the same state.", isCorrect: false },
+                        { text: "Fermi-Dirac Statistics", rationale: "FD statistics applies to fermions (half-integer spin) which obey the Pauli Exclusion Principle.", isCorrect: true },
+                        { text: "All three statistics.", isCorrect: false }
+                    ],
+                    hint: "This principle prevents two identical particles from occupying the exact same quantum state."
+                }
+            ]
+        };
+
+        // --- Core Quiz Logic (With KaTeX Fix) ---
+        function renderQuiz() {
+            const quizForm = document.getElementById('physics-quiz');
+            let quizHTML = '';
+
+            quizData.questions.forEach(q => {
+                let optionsHTML = '';
+                q.answerOptions.forEach((option, index) => {
+                    optionsHTML += `
+                        <div class="option-group">
+                            <label>
+                                <input type="radio" name="question-${q.questionNumber}" value="${index}">
+                                <span>${option.text}</span>
+                            </label>
+                        </div>
+                    `;
+                });
+
+                quizHTML += `
+                    <div class="question" id="q-${q.questionNumber}">
+                        <div class="question-text">${q.questionNumber}. ${q.question}</div>
+                        ${optionsHTML}
+                        <div class="feedback" id="feedback-${q.questionNumber}"></div>
+                        <p style="font-size:0.9rem; color:#888; margin-top:10px;">Hint: ${q.hint}</p>
+                    </div>
+                `;
+            });
+
+            quizForm.innerHTML = quizHTML;
+        }
+
+        function submitQuiz() {
+            let score = 0;
+            const totalQuestions = quizData.questions.length;
+
+            quizData.questions.forEach(q => {
+                const form = document.getElementById('physics-quiz');
+                const selectedOption = form.querySelector(`input[name="question-${q.questionNumber}"]:checked`);
+                const feedbackDiv = document.getElementById(`feedback-${q.questionNumber}`);
+                
+                const correctOption = q.answerOptions.find(opt => opt.isCorrect);
+                let isCorrect = false;
+
+                if (selectedOption) {
+                    const selectedIndex = parseInt(selectedOption.value);
+                    const selectedAnswer = q.answerOptions[selectedIndex];
+                    
+                    if (selectedAnswer.isCorrect) {
+                        score++;
+                        isCorrect = true;
+                    }
+
+                    feedbackDiv.classList.remove('correct-answer', 'incorrect-answer');
+                    
+                    if (isCorrect) {
+                        feedbackDiv.classList.add('correct-answer');
+                        feedbackDiv.innerHTML = `✅ <strong>Correct!</strong> ${correctOption.rationale}`;
+                    } else {
+                        feedbackDiv.classList.add('incorrect-answer');
+                        feedbackDiv.innerHTML = `❌ <strong>Incorrect.</strong> The correct answer is <strong>${correctOption.text}</strong>. ${correctOption.rationale}`;
+                    }
+
+                } else {
+                    feedbackDiv.classList.remove('correct-answer', 'incorrect-answer');
+                    feedbackDiv.classList.add('incorrect-answer');
+                    feedbackDiv.innerHTML = `❌ <strong>Unanswered.</strong> The correct answer is <strong>${correctOption.text}</strong>. ${correctOption.rationale}`;
+                }
+
+                feedbackDiv.style.display = 'block';
+                
+                // --- FIX: Manually trigger KaTeX render on the newly injected content ---
+                if (window.renderMathInElement) {
+                    renderMathInElement(feedbackDiv, {
+                        delimiters: [
+                            { left: "$$", right: "$$", display: true },
+                            { left: "$", right: "$", display: false },
+                            { left: "\\(", right: "\\)", display: false },
+                            { left: "\\[", right: "\\]", display: true }
+                        ]
+                    });
+                }
+                // ---------------------------------------------------------------------
+
+            });
+
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = `Your Score: ${score} out of ${totalQuestions} (${((score / totalQuestions) * 100).toFixed(0)}%)!`;
+            resultsDiv.style.display = 'block';
+            
+            resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Initialize the quiz and the dynamic footer when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            renderQuiz();
+            setRandomQuote(); // Set the motivational quote
+        });
+    </script>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          { left: "$$", right: "$$", display: true },
+          { left: "$", right: "$", display: false },
+          { left: "\\(", right: "\\)", display: false },
+          { left: "\\[", right: "\\]", display: true }
+        ]
+      });
+    });
+    </script>
+
+</body>
+</html>

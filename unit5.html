@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 5: Advanced Statistical Mechanics Notes</title>
+    
+    <!-- Load custom fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Load MathJax for LaTeX rendering -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        /* General Styling for Clean Notes */
+        body { 
+            font-family: 'Roboto', sans-serif; 
+            line-height: 1.7; 
+            margin: 0; 
+            padding: 20px;
+            background-color: #f8f9fa; /* Light background */
+            color: #343a40;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 0 15px;
+        }
+        h1, h2, h3 { 
+            font-family: 'Playfair Display', serif;
+            color: #495057; 
+            margin-top: 30px;
+            border-bottom: 1px solid #dee2e6;
+            padding-bottom: 5px;
+        }
+        h1 { 
+            border-bottom: 3px solid #6f42c1; /* Purple accent */
+            padding-bottom: 10px; 
+            font-size: 2.5em;
+            color: #6f42c1;
+            text-align: center;
+        }
+        h2 { 
+            color: #007bff; 
+            font-size: 1.8em;
+            margin-top: 40px;
+        }
+        h3 { 
+            color: #28a745; 
+            font-size: 1.4em;
+            margin-top: 25px;
+            border-bottom: none;
+        }
+        .equation { 
+            text-align: center; 
+            font-size: 1.3em; 
+            margin: 25px 0; 
+            padding: 15px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            border-left: 5px solid #6f42c1; /* Purple accent */
+        }
+        .table-container { 
+            overflow-x: auto; 
+            margin: 20px 0;
+        }
+        table { 
+            min-width: 600px;
+            border-collapse: collapse; 
+        }
+        th, td { 
+            border: 1px solid #ced4da; 
+            padding: 12px; 
+            text-align: left;
+            vertical-align: top;
+        }
+        th { 
+            background-color: #f0e9f7;
+            color: #343a40;
+            font-weight: 700;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #dc3545; /* Red accent for key terms */
+        }
+        strong { /* Ensure strong tags are respected */
+            font-weight: bold;
+        }
+        hr {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #ced4da, rgba(0, 0, 0, 0));
+            margin: 40px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <h1>🌌 Unit 5: Detailed Statistical Mechanics Notes</h1>
+
+    <hr>
+
+    <h2>1. Microscopic Foundations and Probability</h2>
+    
+    <p>Statistical Mechanics connects the laws governing the behavior of \(10^{23}\) particles (microphysics) to the observed properties of macroscopic matter (thermodynamics).</p>
+
+    <h3>1.1 Microstate vs. Macrostate</h3>
+    <ul>
+        <li><strong>Microstate:</strong> A complete specification of the system, defined by the exact location \((q_i)\) and momentum \((p_i)\) of every single particle, or by the exact quantum state of every particle.</li>
+        <li><strong>Macrostate:</strong> A state defined by a few measurable variables (e.g., \(N, V, T\)). A single macrostate corresponds to a <strong>vast number of microstates</strong>.</li>
+    </ul>
+
+    <h4>Example: Two-Level Spin System</h4>
+    <p>Consider $N=4$ distinguishable spins, each either Up (\(\uparrow\), energy 0) or Down (\(\downarrow\), energy \(\epsilon\)).</p>
+    <ul>
+        <li><strong>Macrostate:</strong> 2 Up, 2 Down. Total Energy $E = 2\epsilon$.</li>
+        <li><strong>Microstates (Multiplicity $W$):</strong> The possible arrangements are \(\uparrow\uparrow\downarrow\downarrow\), \(\uparrow\downarrow\uparrow\downarrow\), \(\uparrow\downarrow\downarrow\uparrow\), \(\downarrow\uparrow\uparrow\downarrow\), \(\downarrow\uparrow\downarrow\uparrow\), \(\downarrow\downarrow\uparrow\uparrow\). The multiplicity is \(W=6\).</li>
+    </ul>
+
+    <h3>1.2 Thermodynamic Probability (Multiplicity)</h3>
+    <p>The thermodynamic probability (\(W\)) or multiplicity is the number of accessible microstates corresponding to a given macrostate. The equilibrium state is the macrostate that possesses the maximum value of \(W\), designated \(W_{\text{max}}\).</p>
+    
+    <p><strong>Boltzmann's Relation (Fundamental Formula):</strong> This equation is the formal bridge between statistics and thermodynamics, linking microscopic multiplicity to macroscopic entropy.</p>
+    <div class="equation">
+        $$S = k \ln W$$
+    </div>
+    <ul>
+        <li>\(S\): Entropy (J/K).</li>
+        <li>\(W\): Thermodynamic Probability (unitless).</li>
+        <li>\(k\): Boltzmann Constant (\(k = 1.3806 \times 10^{-23} \text{ J/K}\)).</li>
+    </ul>
+    
+    <h3>1.3 Counting Microstates (Distinguishable Particles)</h3>
+    <p>For a system of \(N\) total <strong>distinguishable</strong> particles where \(n_i\) particles are in the state/level \(i\):</p>
+    <div class="equation">
+        $$W = \frac{N!}{n_1! n_2! n_3! \cdots} = \frac{N!}{\prod_{i} n_i!}$$
+    </div>
+    <p>The equilibrium distribution \((n_i^*)\) is found by maximizing \(W\) (or \(\ln W\)) subject to constraints on total particle number (\(\sum n_i = N\)) and total energy (\(\sum n_i \epsilon_i = E\)). This optimization is typically solved using the method of **Lagrange Multipliers**.</p>
+
+    <hr>
+
+    <h2>2. Statistical Ensembles and Their Partition Functions</h2>
+
+    <p>An <strong>Ensemble</strong> is a theoretical collection of a large number of independent systems, all constructed to satisfy the same macroscopic boundary conditions. Using an ensemble allows us to replace the time average (hard to calculate) with the ensemble average (easier to calculate).</p>
+
+    <h3>2.1 The Three Principal Ensembles</h3>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Ensemble</th>
+                    <th>Fixed Variables (Constants)</th>
+                    <th>Physical System</th>
+                    <th>Partition Function / Potential</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Microcanonical (MCE)</strong></td>
+                    <td>$E, V, N$ (Energy, Volume, Particle Number)</td>
+                    <td><strong>Isolated System</strong> (No exchange of energy or matter)</td>
+                    <td>Multiplicity \(W\) / Entropy \(S\)</td>
+                </tr>
+                <tr>
+                    <td><strong>Canonical (CE)</strong></td>
+                    <td>$T, V, N$ (Temperature, Volume, Particle Number)</td>
+                    <td>System in contact with a <strong>Heat Reservoir</strong> (Exchanges Energy \(E\))</td>
+                    <td>Partition Function \(Z\) / Helmholtz Free Energy \(A\)</td>
+                </tr>
+                <tr>
+                    <td><strong>Grand Canonical (GCE)</strong></td>
+                    <td>$T, V, \mu$ (Temperature, Volume, Chemical Potential)</td>
+                    <td>System in contact with a <strong>Particle/Heat Reservoir</strong> (Exchanges Energy \(E\) and Particles \(N\))</td>
+                    <td>Grand Partition Function \(\mathcal{Z}\) / Grand Potential \(\Phi\)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>2.2 The Canonical Ensemble and Partition Function (\(Z\))</h3>
+    
+    <p>The probability \(P_i\) of finding the system in a microstate \(i\) with energy \(E_i\) is given by the <strong>Boltzmann Factor</strong>, where \(\beta = 1/k T\):</p>
+    <div class="equation">
+        $$P_i = \frac{e^{-E_i/k T}}{Z} = \frac{e^{-\beta E_i}}{Z}$$
+    </div>
+    
+    <p>The <strong>Canonical Partition Function (\(Z\))</strong> is the sum over all possible microstates \(i\). It "partitions" the energy over the possible states.</p>
+    <div class="equation">
+        $$Z = \sum_{i} e^{-\beta E_i}$$
+    </div>
+    
+    <h4>Deriving Thermodynamic Variables from $Z$</h4>
+    <p>All macroscopic properties are derivatives of the Helmholtz Free Energy, which is directly linked to $Z$.</p>
+    <ul>
+        <li><strong>Helmholtz Free Energy (\(A\)):</strong> The starting point for all derivations.
+            $$A = - k T \ln Z$$
+        </li>
+        <li><strong>Internal Energy (\(\langle E \rangle\)):</strong> Derived using the inverse temperature \(\beta\).
+            $$\langle E \rangle = - \left( \frac{\partial \ln Z}{\partial \beta} \right)_{V, N} = k T^2 \left( \frac{\partial \ln Z}{\partial T} \right)_{V, N}$$
+        </li>
+        <li><strong>Pressure (\(P\)):</strong> Derived from the Free Energy's volume dependence.
+            $$P = - \left( \frac{\partial A}{\partial V} \right)_{T, N} = k T \left( \frac{\partial \ln Z}{\partial V} \right)_{T, N}$$
+        </li>
+        <li><strong>Entropy (\(S\)):</strong> Derived from the Free Energy's temperature dependence.
+            $$S = - \left( \frac{\partial A}{\partial T} \right)_{V, N}$$
+        </li>
+        <li><strong>Heat Capacity ($C_V$):</strong> The key fluctuation quantity related to energy variance.
+            $$C_V = \left( \frac{\partial \langle E \rangle}{\partial T} \right)_{V, N}$$
+        </li>
+    </ul>
+
+    <hr>
+
+    <h2>3. Phase Space, Indistinguishability, and Fluctuations</h2>
+
+    <h3>3.1 Phase Space and Indistinguishability</h3>
+    <p>For a system of \(N\) particles, the <strong>$\Gamma$-Space</strong> is \(6N\)-dimensional (3 spatial coordinates and 3 momentum coordinates for each particle). A single point in this space represents one microstate.</p>
+    
+    <p>In classical mechanics, the number of microstates (\(W\)) accessible to a system with total phase space volume \(\tau\) is determined by dividing the phase space volume by the minimum quantum volume \(h^{3N}\). For identical particles (like an ideal gas), we must include the **Gibbs Correction** to avoid the Gibbs Paradox (an entropy mixing problem):</p>
+    <div class="equation">
+        $$W_{\text{corrected}} \approx \frac{1}{N!} \frac{\tau}{h^{3N}}$$
+    </div>
+    <p>The factor \(1/N!\) ensures that the resulting entropy $S$ is an **extensive property** (proportional to \(N\)), meaning it scales correctly with the size of the system.</p>
+
+    <h3>3.2 Fluctuations in the Canonical Ensemble</h3>
+    <p>The canonical ensemble allows the energy $E$ to fluctuate around its mean value \(\langle E \rangle\). For macroscopic systems, the relative fluctuation (\(\delta\)) of any thermodynamic quantity (\(X\)) is extremely small because it scales inversely with the square root of the number of particles \(N\):</p>
+    <div class="equation">
+        $$\delta = \frac{\sqrt{\langle (\Delta E)^2 \rangle}}{\langle E \rangle} = \frac{\sqrt{k T^2 C_V}}{\langle E \rangle} \propto \frac{1}{\sqrt{N}}$$
+    </div>
+    <p>Since $N \approx 10^{23}$, the fluctuations are negligible, and the ensemble average is practically identical to the thermodynamic mean.</p>
+
+    <hr>
+
+    <h2>4. Quantum Distribution Laws: MB, BE, and FD Statistics</h2>
+    
+    <p>The distribution laws describe the average number of particles \(\langle n_i \rangle\) that occupy an energy level \(\epsilon_i\) with degeneracy \(g_i\).</p>
+
+    <h4>General Distribution Function (Occupation Number)</h4>
+    <div class="equation">
+        $$\langle n_i \rangle = \frac{g_i}{e^{\beta(\epsilon_i - \mu)} + \alpha}$$
+    </div>
+    <p>Where \(\beta = 1/k T\), \(\mu\) is the chemical potential, and \(\alpha\) defines the type of statistics.</p>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Statistics</th>
+                    <th>$\alpha$ Value</th>
+                    <th>Particles</th>
+                    <th>Multiplicity $W$ Formula</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Maxwell-Boltzmann (MB)</strong></td>
+                    <td>$\alpha = 0$</td>
+                    <td>**Distinguishable** (Classical Limit)</td>
+                    <td>$$W_{\text{MB}} = \prod_{i} \frac{g_i^{n_i}}{n_i!}$$</td>
+                </tr>
+                <tr>
+                    <td><strong>Bose-Einstein (BE)</strong></td>
+                    <td>$\alpha = -1$</td>
+                    <td>**Bosons** (Integer Spin, Indistinguishable)</td>
+                    <td>$$W_{\text{BE}} = \prod_{i} \frac{(n_i + g_i - 1)!}{n_i! (g_i - 1)!}$$</td>
+                </tr>
+                <tr>
+                    <td><strong>Fermi-Dirac (FD)</strong></td>
+                    <td>$\alpha = +1$</td>
+                    <td>**Fermions** (Half-Integer Spin, Indistinguishable)</td>
+                    <td>$$W_{\text{FD}} = \prod_{i} \frac{g_i!}{n_i! (g_i - n_i)!}$$</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <hr>
+    
+    <h2>5. The Grand Canonical Ensemble (GCE) and Ideal Gas</h2>
+    
+    <p>The GCE is defined by fixed **$T, V,$ and $\mu$**. The Grand Partition Function ($\mathcal{Z}$) is useful because it is directly related to the average particle number $\langle N \rangle$ and the pressure $P$.</p>
+    
+    <h3>5.1 Grand Canonical Partition Function (\(\mathcal{Z}\))</h3>
+    <div class="equation">
+        $$\mathcal{Z} = \sum_{N=0}^{\infty} Z_N e^{\beta \mu N}$$
+    </div>
+    <p>Where $Z_N$ is the Canonical Partition Function for a system with exactly $N$ particles. The quantity $e^{\beta \mu}$ is the **Fugacity** or **Absolute Activity** $z$.</p>
+    
+    <h4>Relationship to Grand Potential and Pressure</h4>
+    <p>The potential associated with the GCE is the **Grand Potential** (\(\Phi\) or \(\Omega\)):</p>
+    <div class="equation">
+        $$\Phi = - k T \ln \mathcal{Z}$$
+    </div>
+    <p>The thermodynamic relation $\Phi = U - T S - \mu N$ (where $\Phi$ is the Grand Potential) and the fundamental thermodynamic relation $\text{d}U = T \text{d}S - P \text{d}V + \mu \text{d}N$ imply a direct link to pressure:</p>
+    <div class="equation">
+        $$\Phi = - P V$$
+    </div>
+    <p>This means that $\ln \mathcal{Z}$ is simply proportional to the macroscopic pressure $P$ and volume $V$: $P V = k T \ln \mathcal{Z}$.</p>
+    
+    <h3>5.2 Classical Ideal Monatomic Gas (Derivation Example)</h3>
+    <p>The key to deriving the ideal gas law is the relationship between the system partition function ($Z$) and the single-particle partition function ($z$).</p>
+    
+    <p>For $N$ identical, non-interacting particles (Ideal Gas):</p>
+    <div class="equation">
+        $$Z = \frac{z^N}{N!}$$
+    </div>
+    
+    <p>Where $z$ (the single-particle partition function) is calculated using the phase space volume accessible to one particle:</p>
+    <div class="equation">
+        $$z = V \left(\frac{2 \pi m k T}{h^2}\right)^{3/2} = \frac{V}{\lambda^3}$$
+    </div>
+    <p>Here, \(\lambda\) is the **thermal de Broglie wavelength**, $\lambda = h / \sqrt{2 \pi m k T}$.</p>
+
+    <h4>Resulting Equations:</h4>
+    <ul>
+        <li><strong>Equation of State:</strong> $P = k T \left( \frac{\partial \ln Z}{\partial V} \right)_{T, N}$. Substituting $Z = z^N/N!$ yields the ideal gas law:
+            $$P V = N k T$$
+        </li>
+        <li><strong>Entropy (Sackur-Tetrode Equation):</strong> Derived from $A = -kT \ln Z$, the entropy is calculated as:
+            $$S = N k \left[ \ln \left( \frac{V}{N \lambda^3} \right) + \frac{5}{2} \right]$$
+        </li>
+    </ul>
+
+</div>
+</body>
+</html>

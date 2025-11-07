@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Unit 3 Quiz: Thermodynamic Relations</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    
+    <style>
+        /* --- Base & Global Styling (Reused for consistency) --- */
+        html { font-size: 16px; }
+        body {
+            font-family: 'Quicksand', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff0f5; 
+            color: #333;
+            min-height: 100vh;
+            text-rendering: optimizeLegibility;
+            -webkit-overflow-scrolling: touch; 
+        }
+
+        .container {
+            max-width: 100%; 
+            width: 900px; 
+            margin: auto;
+            padding: 1.25rem 1rem;
+        }
+
+        /* --- Header/Title Styling --- */
+        header {
+            text-align: center;
+            padding: 2.5rem 0;
+            /* Unit 3 Theme: Light Pink/Purple */
+            background: linear-gradient(135deg, #f8bbd0, #e1bee7); 
+            color: #4a3858;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+            border-radius: 0 0 30px 30px; 
+        }
+
+        h1.main-title {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.75rem; 
+            margin: 0;
+            font-weight: 700;
+        }
+
+        p.cute-line {
+            font-size: 1rem;
+            margin-top: 0.3rem;
+            font-style: italic;
+            font-weight: 400;
+            color: #6b5a83;
+        }
+        
+        /* --- Quiz Specific Styling --- */
+        .quiz-section {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+
+        .question {
+            margin-bottom: 30px;
+            border-bottom: 1px dashed #f0e6f2; /* Light divider */
+            padding-bottom: 20px;
+        }
+
+        .question-text {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #00838f; /* Cyan accent for Unit 3 */
+            margin-bottom: 15px;
+        }
+        
+        /* Option Styling (Mobile optimized radio buttons) */
+        .option-group label {
+            display: flex;
+            align-items: center;
+            background-color: #fcfcfc;
+            padding: 12px 15px;
+            margin: 8px 0;
+            border-radius: 10px;
+            border: 1px solid #ffcdd2; /* Light pink border */
+            cursor: pointer;
+            transition: background-color 0.15s ease;
+            font-size: 1rem;
+        }
+
+        .option-group label:hover {
+            background-color: #fce4ec; /* Soft pink hover */
+        }
+        
+        .option-group input[type="radio"] {
+            margin-right: 10px;
+            /* Increase size of radio button for better tapping */
+            transform: scale(1.3); 
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #ff80ab; /* Accent pink border */
+            border-radius: 50%;
+            outline: none;
+            transition: all 0.2s;
+            position: relative;
+        }
+        
+        .option-group input[type="radio"]:checked {
+            background-color: #ff80ab; /* Accent pink fill */
+            border-color: #d81b60;
+        }
+
+        /* Ensure Bolding is strong and consistent */
+        strong {
+            font-weight: 700; 
+        }
+
+        /* --- Result Feedback Styling (Hidden until submitted) --- */
+        .feedback {
+            margin-top: 10px;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            display: none; 
+        }
+
+        .correct-answer {
+            background-color: #e8f5e9; /* Light green for correct */
+            border: 1px solid #4caf50;
+            color: #1b5e20;
+        }
+        
+        .incorrect-answer {
+            background-color: #ffebee; /* Light red for incorrect */
+            border: 1px solid #f44336;
+            color: #c62828;
+        }
+
+        /* --- Submit Button (Reusing Practice Button Style) --- */
+        #submit-button {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 15px;
+            margin-top: 20px;
+            text-decoration: none;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            /* Button style matches Unit 3 theme */
+            background: linear-gradient(90deg, #ffcdd2, #f3e5f5) !important;
+            border: 3px solid #e040fb !important;
+            color: #e040fb !important;
+            border-radius: 20px; 
+            box-shadow: 0 6px 12px rgba(224, 64, 251, 0.25);
+            transition: all 0.2s;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        #submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(224, 64, 251, 0.4);
+        }
+
+        #results {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #fff0f5;
+            border: 2px dashed #f8bbd0;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #d81b60;
+            display: none;
+        }
+        
+        /* --- Footer (Reused from index.html) --- */
+        footer {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            margin-top: 2rem;
+            color: #6b5a83; 
+            font-weight: 500;
+            font-size: 0.9rem;
+            border-top: 1px solid #ffcdd2; 
+            background-color: #ffffff;
+            border-radius: 30px 30px 0 0;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 class="main-title">Physics Essentials | Practice Quiz</h1>
+        <p class="cute-line">Unit 3: Thermodynamic Potentials & Maxwell's Relations</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="quiz-section">
+            <form id="physics-quiz">
+                </form>
+
+            <button id="submit-button" onclick="submitQuiz()">✨ Submit Answers and See Results</button>
+            
+            <div id="results"></div>
+        </div>
+        
+    </div>
+
+    <footer id="dynamic-footer">
+        </footer>
+
+    <script>
+        // --- Motivational Quotes Logic (Expanded List) ---
+        const quotes = [
+            "You've got this, cutiepie! <3",
+            "This is the easiest for my captain!!",
+            "One step closer to that A+. You're doing amazing! ✨",
+            "Mastering Physics, one star at a time. 🌟",
+            "Keep up the momentum.💫",
+            "You are always the best, Captain! Conquer this unit! 💖",
+            "Just like Maxwell's Equations, you are a fundamental truth of a living flower.🌸"
+        ];
+        
+        function setRandomQuote() {
+            const footer = document.getElementById('dynamic-footer');
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            footer.innerHTML = quotes[randomIndex];
+        }
+
+        // --- Quiz Data for Unit 3 (10 Questions - Bolds corrected to <strong>) ---
+        const quizData = {
+            questions: [
+                {
+                    questionNumber: 1,
+                    question: "Which thermodynamic potential remains constant during a reversible <strong>adiabatic</strong> process?",
+                    answerOptions: [
+                        { text: "Internal Energy ($U$)", rationale: "U changes in an adiabatic process unless $W=0$.", isCorrect: false },
+                        { text: "Helmholtz Free Energy ($F$)", rationale: "F changes as $T$ usually changes.", isCorrect: false },
+                        { text: "Enthalpy ($H$)", rationale: "H changes as $P$ usually changes.", isCorrect: false },
+                        { text: "<strong>None of the above</strong>", rationale: "A reversible adiabatic process is <strong>isentropic</strong> ($dS=0$) and generally not iso-anything else. $U$, $H$, $F$, $G$ all change.", isCorrect: true }
+                    ],
+                    hint: "Think about the state variables held constant for $U$, $H$, $F$, $G$ and what happens in a reversible adiabatic process."
+                },
+                {
+                    questionNumber: 2,
+                    question: "The <strong>Maxwell relation</strong> derived from the fundamental equation $dU = TdS - PdV$ is:",
+                    answerOptions: [
+                        { text: "$(\\frac{\\partial T}{\\partial V})_S = - (\\frac{\\partial P}{\\partial S})_V$", rationale: "This is the <strong>first Maxwell relation</strong>, derived from $U$.", isCorrect: true },
+                        { text: "$(\\frac{\\partial S}{\\partial V})_T = (\\frac{\\partial P}{\\partial T})_V$", rationale: "Derived from Helmholtz free energy ($F$).", isCorrect: false },
+                        { text: "$(\\frac{\\partial T}{\\partial P})_S = (\\frac{\\partial V}{\\partial S})_P$", rationale: "Derived from Enthalpy ($H$).", isCorrect: false },
+                        { text: "$(\\frac{\\partial S}{\\partial P})_T = - (\\frac{\\partial V}{\\partial T})_P$", rationale: "Derived from Gibbs free energy ($G$).", isCorrect: false }
+                    ],
+                    hint: "Remember the natural variables for $U$ are $S$ and $V$. The derivatives relate the cross-terms."
+                },
+                {
+                    questionNumber: 3,
+                    question: "The <strong>Clausius-Clapeyron equation</strong> $\\frac{dP}{dT} = \\frac{L}{T(V_2 - V_1)}$ is used to study phase changes. $L$ in this equation represents:",
+                    answerOptions: [
+                        { text: "Specific Heat Capacity", isCorrect: false },
+                        { text: "<strong>Latent Heat of Transformation</strong>", rationale: "$L$ is the <strong>latent heat</strong> (or molar heat) absorbed or released during the phase transition.", isCorrect: true },
+                        { text: "Coefficient of Volume Expansion", isCorrect: false },
+                        { text: "Internal Energy Change", isCorrect: false }
+                    ],
+                    hint: "This quantity is the energy required to change the state of a substance at a constant temperature."
+                },
+                {
+                    questionNumber: 4,
+                    question: "For a process occurring at <strong>constant temperature and constant volume</strong>, the spontaneity criterion is given by the change in:",
+                    answerOptions: [
+                        { text: "Enthalpy ($\Delta H$)", rationale: "H is used for constant $P$ processes.", isCorrect: false },
+                        { text: "Gibbs Free Energy ($\Delta G$)", rationale: "G is used for constant $T$ and $P$ processes.", isCorrect: false },
+                        { text: "<strong>Helmholtz Free Energy</strong> ($\Delta F$)", rationale: "$\Delta F < 0$ is the criterion for <strong>spontaneity</strong> at constant $T$ and $V$.", isCorrect: true },
+                        { text: "Internal Energy ($\Delta U$)", rationale: "U is used for adiabatic processes.", isCorrect: false }
+                    ],
+                    hint: "The natural variables for this potential are $T$ and $V$."
+                },
+                {
+                    questionNumber: 5,
+                    question: "The quantity $(\\frac{\\partial T}{\\partial P})_H$ is known as the <strong>Joule-Kelvin coefficient</strong> ($\mu_{JK}$). When $\mu_{JK}$ is positive, the gas upon expansion will:",
+                    answerOptions: [
+                        { text: "Heat up", rationale: "Positive $\mu_{JK}$ means $dT/dP$ is positive. Since pressure $P$ decreases during expansion ($dP<0$), the temperature $T$ must decrease ($dT<0$).", isCorrect: false },
+                        { text: "<strong>Cool down</strong>", rationale: "If $\mu_{JK} > 0$ and $dP < 0$ (expansion), then $dT$ must be negative, leading to <strong>cooling</strong>.", isCorrect: true },
+                        { text: "Remain at the same temperature", rationale: "This happens when $\mu_{JK} = 0$ (at the inversion temperature).", isCorrect: false },
+                        { text: "Undergo a phase change", isCorrect: false }
+                    ],
+                    hint: "The Joule-Kelvin effect is a process at constant enthalpy, often used for liquefaction."
+                },
+                {
+                    questionNumber: 6,
+                    question: "The Maxwell relation derived from <strong>Gibbs Free Energy</strong> ($G$) is:",
+                    answerOptions: [
+                        { text: "$(\\frac{\\partial T}{\\partial V})_S = - (\\frac{\\partial P}{\\partial S})_V$", isCorrect: false },
+                        { text: "$(\\frac{\\partial S}{\\partial P})_T = - (\\frac{\\partial V}{\\partial T})_P$", rationale: "This is the <strong>fourth Maxwell relation</strong>, derived from $dG = -SdT + VdP$.", isCorrect: true },
+                        { text: "$(\\frac{\\partial S}{\\partial V})_T = (\\frac{\\partial P}{\\partial T})_V$", isCorrect: false },
+                        { text: "$(\\frac{\\partial T}{\\partial P})_S = (\\frac{\\partial V}{\\partial S})_P$", isCorrect: false }
+                    ],
+                    hint: "The natural variables for $G$ are $T$ and $P$. Note the negative sign on the left side due to $-SdT$ in the differential $dG$."
+                },
+                {
+                    questionNumber: 7,
+                    question: "The change in <strong>Internal Energy</strong> ($dU$) is a perfect differential. This means that:",
+                    answerOptions: [
+                        { text: "$dU$ depends on the path taken.", isCorrect: false },
+                        { text: "$dU$ is always zero.", isCorrect: false },
+                        { text: "<strong>$dU$ is independent of the path taken (a state function).</strong>", rationale: "A perfect (or exact) differential indicates a <strong>state function</strong>, meaning $\\oint dU = 0$ over a cycle.", isCorrect: true },
+                        { text: "The process must be reversible.", isCorrect: false }
+                    ],
+                    hint: "Perfect differentials are characteristic of <strong>state functions</strong>."
+                },
+                {
+                    questionNumber: 8,
+                    question: "The total change in a thermodynamic potential like <strong>Enthalpy</strong> ($H$) can be written using its natural variables as:",
+                    answerOptions: [
+                        { text: "$dU = TdS - PdV$", isCorrect: false },
+                        { text: "$dF = -SdT - PdV$", isCorrect: false },
+                        { text: "<strong>$dH = TdS + VdP$</strong>", rationale: "The natural variables for $H$ are $S$ and $P$, making the differential form $dH = TdS + VdP$.", isCorrect: true },
+                        { text: "$dG = VdP - SdT$", isCorrect: false }
+                    ],
+                    hint: "Enthalpy ($H = U + PV$) is used to describe processes at <strong>constant pressure</strong>."
+                },
+                {
+                    questionNumber: 9,
+                    question: "Which of the following conditions must be met for a system to achieve the <strong>Triple Point</strong>?",
+                    answerOptions: [
+                        { text: "The temperature is equal to the critical temperature.", isCorrect: false },
+                        { text: "The pressure is 1 atmosphere.", isCorrect: false },
+                        { text: "The slope of the vaporization curve is zero.", isCorrect: false },
+                        { text: "<strong>The chemical potential ($\mu$) of the solid, liquid, and gas phases are equal.</strong>", rationale: "The triple point is a point of three-phase equilibrium, which requires the <strong>chemical potentials</strong> of all three phases to be equal ($\mu_{solid} = \mu_{liquid} = \mu_{gas}$).", isCorrect: true }
+                    ],
+                    hint: "Equilibrium in thermodynamics is fundamentally governed by the equality of this potential."
+                },
+                {
+                    questionNumber: 10,
+                    question: "The Maxwell relation $\\left(\\frac{\\partial S}{\\partial V}\\right)_T = \\left(\\frac{\\partial P}{\\partial T}\\right)_V$ is used in thermodynamics to calculate:",
+                    answerOptions: [
+                        { text: "<strong>The difference between $C_P$ and $C_V$.</strong>", rationale: "This relation is key in deriving the equation $C_P - C_V = T V \\alpha^2 / \\kappa_T$, linking thermal expansion $\\alpha$ and compressibility $\\kappa_T$.", isCorrect: true },
+                        { text: "The efficiency of a Carnot engine.", isCorrect: false },
+                        { text: "The Internal Energy of an ideal gas.", isCorrect: false },
+                        { text: "The triple point coordinates.", isCorrect: false }
+                    ],
+                    hint: "This relation connects measurable thermal properties ($P, V, T$) to entropy, which leads to the $C_P - C_V$ difference equation."
+                }
+            ]
+        };
+
+        // --- Core Quiz Logic (Corrected Template Literals & KaTeX Rendering) ---
+        function renderQuiz() {
+            const quizForm = document.getElementById('physics-quiz');
+            let quizHTML = '';
+
+            quizData.questions.forEach(q => {
+                let optionsHTML = '';
+                q.answerOptions.forEach((option, index) => {
+                    optionsHTML += `
+                        <div class="option-group">
+                            <label>
+                                <input type="radio" name="question-${q.questionNumber}" value="${index}">
+                                <span>${option.text}</span>
+                            </label>
+                        </div>
+                    `;
+                });
+
+                quizHTML += `
+                    <div class="question" id="q-${q.questionNumber}">
+                        <div class="question-text">${q.questionNumber}. ${q.question}</div>
+                        ${optionsHTML}
+                        <div class="feedback" id="feedback-${q.questionNumber}"></div>
+                        <p style="font-size:0.9rem; color:#888; margin-top:10px;">Hint: ${q.hint}</p>
+                    </div>
+                `;
+            });
+
+            quizForm.innerHTML = quizHTML;
+        }
+
+        function submitQuiz() {
+            let score = 0;
+            const totalQuestions = quizData.questions.length;
+            const delimiters = [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ];
+
+            quizData.questions.forEach(q => {
+                const form = document.getElementById('physics-quiz');
+                const selectedOption = form.querySelector(`input[name="question-${q.questionNumber}"]:checked`);
+                const feedbackDiv = document.getElementById(`feedback-${q.questionNumber}`);
+                
+                const correctOption = q.answerOptions.find(opt => opt.isCorrect);
+                let isCorrect = false;
+
+                if (selectedOption) {
+                    const selectedIndex = parseInt(selectedOption.value);
+                    const selectedAnswer = q.answerOptions[selectedIndex];
+                    
+                    if (selectedAnswer.isCorrect) {
+                        score++;
+                        isCorrect = true;
+                    }
+
+                    feedbackDiv.classList.remove('correct-answer', 'incorrect-answer');
+                    
+                    if (isCorrect) {
+                        feedbackDiv.classList.add('correct-answer');
+                        // Use <strong> for bolding feedback
+                        feedbackDiv.innerHTML = `✅ <strong>Correct!</strong> ${correctOption.rationale}`;
+                    } else {
+                        feedbackDiv.classList.add('incorrect-answer');
+                        // Use <strong> for bolding feedback
+                        feedbackDiv.innerHTML = `❌ <strong>Incorrect.</strong> The correct answer is <strong>${correctOption.text}</strong>. ${correctOption.rationale}`;
+                    }
+
+                } else {
+                    feedbackDiv.classList.remove('correct-answer', 'incorrect-answer');
+                    feedbackDiv.classList.add('incorrect-answer');
+                    // Use <strong> for bolding feedback
+                    feedbackDiv.innerHTML = `❌ <strong>Unanswered.</strong> The correct answer is <strong>${correctOption.text}</strong>. ${correctOption.rationale}`;
+                }
+
+                feedbackDiv.style.display = 'block';
+                
+                // --- Re-render KaTeX for the new feedback content ---
+                if (window.renderMathInElement) {
+                    renderMathInElement(feedbackDiv, { delimiters: delimiters });
+                }
+            });
+
+            // Display overall results
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = `Your Score: ${score} out of ${totalQuestions} (${((score / totalQuestions) * 100).toFixed(0)}%)! Review the explanations below.`;
+            resultsDiv.style.display = 'block';
+            
+            // Scroll to the top of the results
+            resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Initialize the quiz and the dynamic footer when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            renderQuiz();
+            setRandomQuote(); // Set the motivational quote
+            
+            // Initial render for question text and options on page load
+            const delimiters = [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ];
+            
+            if (window.renderMathInElement) {
+                renderMathInElement(document.body, { delimiters: delimiters });
+            }
+        });
+    </script>
+</body>
+</html>

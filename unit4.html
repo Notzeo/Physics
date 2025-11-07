@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 5: Thermodynamic Potentials and Phase Transitions</title>
+    
+    
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrF9T5D/38yF182X+8S8v82z2pE91XFwB1G+5Xf/A1P8A6K6Z8xY/5lH5Ff7bJ/..." crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" integrity="sha384-fVEd2c75L1f6SgoDEwCRHmLbTdaYRPXznhyD8p7jmQJzZ+SyEaGrgKMZAGkNkI/B" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" integrity="sha384-c5AtJtf8M8b8Q6E7y+zW4Rj7WjE0uB+rR+h5uS6s/5m8z+Nl8A5bE7J/O+JzX+D" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+    <style>
+        /* --- Base & Global Styling (Matching Aesthetic) --- */
+        body {
+            font-family: 'Quicksand', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff0f5; /* Lavender Blush */
+            color: #333;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 95%; 
+            width: 800px;
+            margin: auto;
+            padding: 20px 15px;
+        }
+
+        /* --- Header/Navigation --- */
+        header {
+            text-align: center;
+            padding: 25px 0;
+            background: linear-gradient(135deg, #f8bbd0, #e1bee7); 
+            color: #4a3858;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 30px 30px;
+        }
+
+        h1 {
+            font-size: 1.8em;
+            margin: 0 0 5px 0;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 1.4em;
+            color: #8e24aa; /* Purple accent for main sections */
+            border-bottom: 2px solid #ffcdd2;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        h3 {
+            font-size: 1.1em;
+            color: #d81b60; /* Deep pink accent for subsections */
+            margin-top: 20px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        /* --- Content Styling (Cards for Clarity) --- */
+        p, ul, ol, table {
+            margin-bottom: 15px;
+            padding-left: 5px;
+        }
+        
+        ul, ol {
+            padding-left: 25px;
+        }
+
+        .section-card {
+            background-color: #ffffff;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid #ff80ab; /* Cute side stripe */
+        }
+        
+        .section-card h2, .section-card h3 {
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        /* --- Table Styling --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95em;
+        }
+
+        th, td {
+            border: 1px solid #ffcdd2; /* Soft pink border */
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #fce4ec; /* Lighter pink header */
+            color: #8e24aa;
+            font-weight: 700;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+
+        /* --- Math Rendering Area --- */
+        .katex-display {
+            margin: 15px 0 !important;
+            padding: 10px;
+            background-color: #f3e5f5; /* Light purple background for equations */
+            border-radius: 10px;
+            overflow-x: auto; /* Ensure equations fit on mobile */
+        }
+        
+        /* --- Back Button (Placeholder) --- */
+        .back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 15px;
+            background-color: #ab47bc; /* Purple button */
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 700;
+            transition: background-color 0.2s;
+        }
+
+        .back-button:hover {
+            background-color: #8e24aa;
+        }
+        
+        /* --- Solved Examples and Notes --- */
+        .example-box {
+            border: 2px dashed #ff80ab;
+            padding: 15px;
+            margin: 15px 0;
+            background-color: #fffafc;
+            border-radius: 10px;
+        }
+        .example-box strong { color: #d81b60; }
+        
+        .note {
+            font-style: italic;
+            color: #6b5a83;
+            margin-top: 10px;
+        }
+        
+        /* --- Answer Box Styling --- */
+        .answer-box {
+            border: 1px solid #ffcdd2; /* Soft pink border */
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #fce4ec; /* Lighter pink background for answers */
+            border-radius: 8px;
+        }
+        .answer-box strong { color: #8e24aa; }
+
+        /* Style the 'See Answer' link */
+        summary {
+            cursor: pointer;
+            color: #ab47bc; /* Purple color for visibility */
+            font-weight: 700;
+            padding: 5px 0;
+            outline: none;
+            transition: color 0.2s;
+        }
+        summary:hover {
+            color: #d81b60;
+        }
+
+        /* Question list styling */
+        .quick-check {
+            border-top: 2px dashed #ffcdd2;
+            margin-top: 20px;
+            padding-top: 15px;
+        }
+        .quick-check ol {
+            padding-left: 20px;
+        }
+        .quick-check h3 {
+            color: #8e24aa;
+            margin-bottom: 10px;
+        }
+        .quick-check li {
+            margin-bottom: 10px;
+        }
+
+        /* --- Custom styling for images/diagrams --- */
+        .diagram-container {
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        .diagram-caption {
+            font-size: 0.9em;
+            color: #6b5a83;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <a href="index.html" class="back-button">← Back to Units</a>
+            <h1>Unit 5: Thermodynamic Potentials and Phase Transitions ⚛️</h1>
+            <p style="margin-top: 10px;">B.Sc. Physics Essentials</p>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <div class="section-card">
+            <h2>1. Thermodynamic Potentials 🌟</h2>
+            
+            <h3>Concept of Potentials</h3>
+            <p>Thermodynamic potentials are state functions that represent the **stored energy** in a system under specific constant constraints (T, V, P, or S). Their differentials (e.g., $dU, dH, dF, dG$) relate the First and Second Laws.</p>
+            
+            <h3>1.1 Internal Energy ($U$)</h3>
+            <p>Represents the total energy of a system. It is the natural potential for processes at **constant $\mathbf{S}$ and $\mathbf{V}$ (isentropic/isochoric)**.</p>
+            $$\mathbf{dU = T dS - P dV}$$
+
+            <h3>1.2 Enthalpy ($H$)</h3>
+            <p>Defined as $H = U + PV$. It is the natural potential for processes at **constant $\mathbf{S}$ and $\mathbf{P}$ (isentropic/isobaric)**.</p>
+            $$\mathbf{dH = T dS + V dP}$$
+            <div class="note">
+                <strong>Key Use:</strong> $\Delta H$ is the heat exchanged ($\Delta Q$) in an **isobaric** (constant pressure) process.
+            </div>
+
+            <h3>1.3 Helmholtz Free Energy ($F$)</h3>
+            <p>Defined as $F = U - TS$. It is the natural potential for processes at **constant $\mathbf{T}$ and $\mathbf{V}$ (isothermal/isochoric)**.</p>
+            $$\mathbf{dF = -S dT - P dV}$$
+            <div class="note">
+                <strong>Key Use:</strong> $-\Delta F$ represents the **maximum work** ($W_{\text{max}}$) a system can perform during an isothermal process.
+            </div>
+
+            <h3>1.4 Gibbs Free Energy ($G$)</h3>
+            <p>Defined as $G = H - TS = U + PV - TS$. It is the natural potential for processes at **constant $\mathbf{T}$ and $\mathbf{P}$ (isothermal/isobaric)**.</p>
+            $$\mathbf{dG = -S dT + V dP}$$
+            <div class="note">
+                <strong>Key Use:</strong> $\Delta G$ determines the **spontaneity** of a process at constant T and P. $\Delta G < 0$ means spontaneous.
+            </div>
+
+            <div class="quick-check">
+                <h3>Quick Check Questions (1)</h3>
+                <ol>
+                    <li>Which thermodynamic potential is the most useful criterion for spontaneity in a chemical reaction that occurs in an open beaker?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> **Gibbs Free Energy ($\mathbf{G}$)**. An open beaker is typically at constant temperature ($T$) and constant pressure ($P$).
+                            </div>
+                        </details>
+                    </li>
+                    <li>If an engine performs work at constant volume and temperature, which potential determines the maximum work done?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> **Helmholtz Free Energy ($\mathbf{F}$)**. $-\Delta F$ is the maximum work at constant $T$ and $V$.
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="section-card">
+            <h2>2. Maxwell’s Relations (From Potentials) 🔗</h2>
+            
+            <h3>Concept</h3>
+            <p>The four Maxwell relations are a set of equations derived from the fact that the potentials ($U, H, F, G$) are **exact differentials** (state functions). This means the order of mixed partial differentiation does not matter.</p>
+
+            <h3>Derivation Principle</h3>
+            <p>For a state function $Z(x, y)$, where $dZ = M dx + N dy$, we have $\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}$.</p>
+
+            <h3>The Four Relations</h3>
+            <ol>
+                <li>**From $U$ ($dU = T dS - P dV$):**
+                    $$\mathbf{\left(\frac{\partial T}{\partial V}\right)_S = -\left(\frac{\partial P}{\partial S}\right)_V}$$
+                </li>
+                <li>**From $H$ ($dH = T dS + V dP$):**
+                    $$\mathbf{\left(\frac{\partial T}{\partial P}\right)_S = \left(\frac{\partial V}{\partial S}\right)_P}$$
+                </li>
+                <li>**From $F$ ($dF = -S dT - P dV$):**
+                    $$\mathbf{\left(\frac{\partial S}{\partial V}\right)_T = \left(\frac{\partial P}{\partial T}\right)_V}$$
+                </li>
+                <li>**From $G$ ($dG = -S dT + V dP$):**
+                    $$\mathbf{-\left(\frac{\partial S}{\partial P}\right)_T = \left(\frac{\partial V}{\partial T}\right)_P}$$
+                </li>
+            </ol>
+            
+            <div class="note">
+                <strong>Significance:</strong> Maxwell's relations allow us to relate difficult-to-measure properties (like $\left(\frac{\partial P}{\partial T}\right)_V$) to easily measurable properties (like $\left(\frac{\partial S}{\partial V}\right)_T$).
+            </div>
+
+            <div class="quick-check">
+                <h3>Quick Check Questions (2)</h3>
+                <ol>
+                    <li>Which Maxwell relation connects the entropy and pressure changes with temperature and volume?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> The **4th relation (from G)**: $-\left(\frac{\partial S}{\partial P}\right)_T = \left(\frac{\partial V}{\partial T}\right)_P$.
+                            </div>
+                        </details>
+                    </li>
+                    <li>What is the mathematical condition that makes the Maxwell relations possible?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> The thermodynamic potentials ($U, H, F, G$) must be **exact differentials**, meaning their second-order mixed partial derivatives are equal.
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="section-card">
+            <h2>3. Phase Transitions and Clausius-Clapeyron Equation 💧</h2>
+            
+            <h3>3.1 Phase Equilibrium</h3>
+            <p>Two phases (e.g., liquid and vapor) are in equilibrium when they have the same **temperature, pressure, and Gibbs free energy per mole ($\mathbf{G_m}$)**.</p>
+            $$\mathbf{G_{\text{phase 1}} = G_{\text{phase 2}}}$$
+
+            <h3>3.2 Clausius-Clapeyron Equation</h3>
+            <p>This equation describes the slope of the phase boundary curve ($\frac{dP}{dT}$) on a P-T diagram.</p>
+            <p>It relates the latent heat of transition ($\mathbf{L}$), the temperature ($\mathbf{T}$), and the change in volume ($\mathbf{\Delta V}$) during the transition.</p>
+            $$\mathbf{\frac{dP}{dT} = \frac{L}{T \Delta V}}$$
+            <ul>
+                <li>$\mathbf{L}$: Latent heat (e.g., $L_{\text{fusion}}, L_{\text{vaporization}}$).</li>
+                <li>$\mathbf{\Delta V = V_2 - V_1}$: Change in volume between the two phases.</li>
+            </ul>
+
+            <h3>3.3 Application to Vaporization</h3>
+            <p>When liquid converts to vapor, $V_{\text{vapor}} \gg V_{\text{liquid}}$, so $\Delta V \approx V_{\text{vapor}}$. Also, $P V_{\text{vapor}} = R T$.</p>
+            <p>The **integrated form** (assuming $L$ is constant and applying the Ideal Gas Law) is:</p>
+            $$\mathbf{\ln P = -\frac{L}{R T} + C}$$
+            <div class="example-box">
+                <strong>Prediction:</strong> Since $L > 0$ and $\Delta V > 0$ (for vaporization), $\frac{dP}{dT} > 0$. **Boiling point increases with pressure.**
+            </div>
+
+            <h3>3.4 Application to Fusion (Melting)</h3>
+            <ul>
+                <li>**Most Substances ($\mathbf{V_{\text{liquid}} > V_{\text{solid}}}$):** $\Delta V > 0 \implies \frac{dP}{dT} > 0$. Melting point increases with pressure.</li>
+                <li>**Water ($\mathbf{V_{\text{liquid}} < V_{\text{solid}}}$):** $\Delta V < 0 \implies \frac{dP}{dT} < 0$. **Melting point decreases with pressure** (this is why ice skating works).</li>
+            </ul>
+
+            <div class="quick-check">
+                <h3>Quick Check Questions (3)</h3>
+                <ol>
+                    <li>What must be equal between two phases in equilibrium (besides $T$ and $P$)?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> The **Gibbs Free Energy per mole ($\mathbf{G_m}$)**.
+                            </div>
+                        </details>
+                    </li>
+                    <li>If the Clausius-Clapeyron equation gives a negative slope ($\frac{dP}{dT} < 0$), what does that tell you about the relative volumes of the two phases?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> It means the **volume of Phase 1 is greater than the volume of Phase 2 ($\mathbf{\Delta V < 0}$)**. For example, ice (Phase 1) melting into water (Phase 2).
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <h2>4. Joule-Thomson Effect (Porous Plug Experiment) ❄️</h2>
+            
+            <h3>Concept</h3>
+            <p>When a real gas is forced to flow steadily through a **porous plug** from a high-pressure region ($P_1$) to a low-pressure region ($P_2$) under **adiabatic** conditions, a temperature change is generally observed.</p>
+            <div class="note">
+                <strong>Key Property:</strong> This is an **Isenthalpic** process ($H = \text{constant}$), meaning the enthalpy does not change ($\Delta H = 0$).
+            </div>
+            
+            <h3>Joule-Thomson Coefficient ($\mu$)</h3>
+            <p>It is defined as the change in temperature with respect to pressure at constant enthalpy:</p>
+            $$\mathbf{\mu = \left(\frac{\partial T}{\partial P}\right)_H}$$
+            <ul>
+                <li>$\mathbf{\mu > 0}$: Cooling (Observed for most gases at room temperature).</li>
+                <li>$\mathbf{\mu < 0}$: Heating (Observed for $\text{H}_2$ and $\text{He}$ above their inversion temperature).</li>
+                <li>$\mathbf{\mu = 0}$: No change in temperature.</li>
+            </ul>
+
+            <h3>Inversion Temperature ($T_i$)</h3>
+            <p>The temperature at which $\mu$ changes sign ($\mu = 0$).</p>
+            <ul>
+                <li>Above $T_i$, the gas heats upon expansion ($\mu < 0$).</li>
+                <li>Below $T_i$, the gas cools upon expansion ($\mu > 0$).</li>
+            </ul>
+            <div class="example-box">
+                <strong>Liquefaction Principle:</strong> To liquefy a gas using the Joule-Thomson effect (e.g., in a Linde machine), the gas must first be cooled **below its inversion temperature ($T_i$)**. $\text{H}_2$ and $\text{He}$ require precooling because their $T_i$ is very low.
+            </div>
+
+            <div class="quick-check">
+                <h3>Quick Check Questions (4)</h3>
+                <ol>
+                    <li>If a gas experiences a cooling effect ($\Delta T < 0$) during Joule-Thomson expansion, what is the sign of the Joule-Thomson coefficient ($\mu$)?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> **Positive ($\mathbf{\mu > 0}$)**. A decrease in $P$ ($\Delta P < 0$) causes a decrease in $T$ ($\Delta T < 0$), making the ratio $\mu = \Delta T / \Delta P$ positive.
+                            </div>
+                        </details>
+                    </li>
+                    <li>What is the conserved quantity in a Joule-Thomson expansion?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> **Enthalpy ($\mathbf{H}$)**. The process is isenthalpic ($\Delta H = 0$).
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+    </div>
+
+</body>
+</html>

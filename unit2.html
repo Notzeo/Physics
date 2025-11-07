@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 2: Second Law of Thermodynamics and Entropy</title>
+    
+    
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrF9T5D/38yF182X+8S8v82z2pE91XFwB1G+5Xf/A1P8A6K6Z8xY/5lH5Ff7bJ/..." crossorigin="anonymous">
+    
+    <style>
+        /* --- Base & Global Styling (Matching Aesthetic) --- */
+        body {
+            font-family: 'Quicksand', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff0f5; /* Lavender Blush */
+            color: #333;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 95%; 
+            width: 800px;
+            margin: auto;
+            padding: 20px 15px;
+        }
+
+        /* --- Header/Navigation --- */
+        header {
+            text-align: center;
+            padding: 25px 0;
+            background: linear-gradient(135deg, #f8bbd0, #e1bee7); 
+            color: #4a3858;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 30px 30px;
+        }
+
+        h1 {
+            font-size: 1.8em;
+            margin: 0 0 5px 0;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 1.4em;
+            color: #8e24aa; /* Purple accent for main sections */
+            border-bottom: 2px solid #ffcdd2;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        h3 {
+            font-size: 1.1em;
+            color: #d81b60; /* Deep pink accent for subsections */
+            margin-top: 20px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        /* --- Content Styling (Cards for Clarity) --- */
+        p, ul, ol, table {
+            margin-bottom: 15px;
+            padding-left: 5px;
+        }
+        
+        ul, ol {
+            padding-left: 25px;
+        }
+
+        .section-card {
+            background-color: #ffffff;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid #ff80ab; /* Cute side stripe */
+        }
+        
+        .section-card h2, .section-card h3 {
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        /* --- Table Styling --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95em;
+        }
+
+        th, td {
+            border: 1px solid #ffcdd2; /* Soft pink border */
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #fce4ec; /* Lighter pink header */
+            color: #8e24aa;
+            font-weight: 700;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+
+        /* --- Math Rendering Area --- */
+        .katex-display {
+            margin: 15px 0 !important;
+            padding: 10px;
+            background-color: #f3e5f5; /* Light purple background for equations */
+            border-radius: 10px;
+            overflow-x: auto; /* Ensure equations fit on mobile */
+        }
+        
+        /* --- Back Button --- */
+        .back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 15px;
+            background-color: #ab47bc; /* Purple button */
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 700;
+            transition: background-color 0.2s;
+        }
+
+        .back-button:hover {
+            background-color: #8e24aa;
+        }
+        
+        /* --- Solved Examples and Notes --- */
+        .example-box {
+            border: 2px dashed #ff80ab;
+            padding: 15px;
+            margin: 15px 0;
+            background-color: #fffafc;
+            border-radius: 10px;
+        }
+        .example-box strong { color: #d81b60; }
+        
+        .note {
+            font-style: italic;
+            color: #6b5a83;
+            margin-top: 10px;
+        }
+        
+        /* --- Answer Box Styling --- */
+        .answer-box {
+            border: 1px solid #ffcdd2; /* Soft pink border */
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #fce4ec; /* Lighter pink background for answers */
+            border-radius: 8px;
+        }
+        .answer-box strong { color: #8e24aa; }
+
+        /* Style the 'See Answer' link */
+        summary {
+            cursor: pointer;
+            color: #ab47bc; /* Purple color for visibility */
+            font-weight: 700;
+            padding: 5px 0;
+            outline: none;
+            transition: color 0.2s;
+        }
+        summary:hover {
+            color: #d81b60;
+        }
+
+        /* Question list styling */
+        .quick-check {
+            border-top: 2px dashed #ffcdd2;
+            margin-top: 20px;
+            padding-top: 15px;
+        }
+        .quick-check ol {
+            padding-left: 20px;
+        }
+        .quick-check h3 {
+            color: #8e24aa;
+            margin-bottom: 10px;
+        }
+        .quick-check li {
+            margin-bottom: 10px;
+        }
+
+
+        /* --- Custom styling for images/diagrams --- */
+        .diagram-container {
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        .diagram-caption {
+            font-size: 0.9em;
+            color: #6b5a83;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <a href="index.html" class="back-button">← Back to Units</a>
+            <h1>Unit 2: Second Law of Thermodynamics and Entropy</h1>
+            <p style="margin-top: 10px;">B.Sc. Physics Essentials</p>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <div class="section-card">
+            <h2>1. Limitations of the First Law of Thermodynamics 🚫</h2>
+            
+            <h3>Recap of the First Law</h3>
+            <p>The First Law is the **Law of Conservation of Energy** for thermodynamic systems:</p>
+            $$\Delta Q = \Delta U + \Delta W$$
+            
+            <h3>Why the First Law is Insufficient</h3>
+            <p>The First Law only ensures **energy balance**; it cannot determine:</p>
+            <ul>
+                <li>The **direction of heat flow** (e.g., hot to cold).</li>
+                <li>Whether a process is **spontaneous** (naturally occurring) or non-spontaneous.</li>
+                <li>The **quality of energy**: It suggests $100\%$ heat-to-work conversion is possible, which is false in a cyclic process.</li>
+            </ul>
+
+            <div class="note">
+                <strong>Real-World Limitation:</strong> Heat always flows from higher temperature ($T_1$) to lower temperature ($T_2$). The reverse is forbidden by nature, though not by the First Law.
+            </div>
+
+            <div class="quick-check">
+                <h3>Quick Check Questions (1)</h3>
+                <ol>
+                    <li>If a process is allowed by the First Law ($\Delta Q = \Delta U + \Delta W$), does that mean it will occur spontaneously?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> **No.** The First Law only accounts for the **quantity** of energy transferred, not the **direction** or **feasibility** of the process (the domain of the Second Law).
+                            </div>
+                        </details>
+                    </li>
+                    <li>What key physical observation regarding heat flow is ignored by the First Law?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> The observation that **heat naturally flows only from a hotter body to a colder body** (not the reverse).
+                            </div>
+                        </details>
+                    </li>
+                    <li>The First Law permits an engine to convert $1000 \text{ J}$ of absorbed heat entirely into $1000 \text{ J}$ of work in a cycle. Why is this impossible in practice?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> This violates the **Second Law of Thermodynamics** (specifically, the Kelvin–Planck statement), which dictates that some heat must always be rejected to a cold reservoir.
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="section-card">
+            <h2>2. Reversible and Irreversible Processes 🔄</h2>
+            
+            <h3>Definition of Reversible Process</h3>
+            <p>A process where both the **system and the surroundings** can be restored exactly to their initial states without any net change in the universe.</p>
+            <p><strong>Ideal Conditions:</strong></p>
+            <ul>
+                <li>Must be performed **infinitesimally slowly** (quasi-statically).</li>
+                <li>Must be free from **dissipative effects** (friction, viscosity, electrical resistance).</li>
+            </ul>
+
+            <h3>Irreversible Processes</h3>
+            <p>Any real-world process that cannot be exactly reversed. **All natural processes are irreversible.**</p>
+            <p><strong>Examples:</strong> Heat flow due to finite $\Delta T$, free expansion of a gas, mixing of liquids, and all processes involving **friction**.</p>
+            
+            <h3>Comparison Table</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Reversible Process</th>
+                        <th>Irreversible Process</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Speed</td>
+                        <td>Infinitesimally slow (quasi-static)</td>
+                        <td>Proceeds at a finite rate</td>
+                    </tr>
+                    <tr>
+                        <td>Work Output</td>
+                        <td>Maximum work output</td>
+                        <td>Work output is less than maximum</td>
+                    </tr>
+                    <tr>
+                        <td>Entropy Change</td>
+                        <td>$\Delta S_{\text{universe}} = 0$</td>
+                        <td>$\Delta S_{\text{universe}} > 0$</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="quick-check">
+                <h3>Quick Check Questions (2)</h3>
+                <ol>
+                    <li>A gas expands rapidly into a vacuum. Is this process reversible or irreversible?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> **Irreversible.** The process (free expansion) occurs spontaneously and is non-quasi-static.
+                            </div>
+                        </details>
+                    </li>
+                    <li>If a process is truly reversible, what must be the change in entropy of the *universe*?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> **$\Delta S_{\text{universe}} = 0$**. Both the system and the surroundings must return to their exact initial states.
+                            </div>
+                        </details>
+                    </li>
+                    <li>Why does the presence of friction make any real-world machine irreversible?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> Friction converts mechanical work into **random, dissipated heat**. This random heat cannot be perfectly recovered into useful work, causing an irreversible increase in the entropy of the surroundings.
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="section-card">
+            <h2>3. Carnot’s Engine and Carnot’s Cycle ⚙️</h2>
+            
+            <h3>Carnot Engine</h3>
+            <p>A **hypothetical, ideal, reversible heat engine** operating between a Source ($T_1$) and a Sink ($T_2$). It defines the theoretical limit of efficiency.</p>
+
+            <h3>The Carnot Cycle (Four Reversible Steps)</h3>
+            <ol>
+                <li><strong>Isothermal Expansion (A $\to$ B):</strong> Gas absorbs heat $Q_1$ from Source ($T_1$). $W_{\text{done}} = Q_1$.</li>
+                <li><strong>Adiabatic Expansion (B $\to$ C):</strong> Gas expands, $T$ drops from $T_1$ to $T_2$. $Q=0$.</li>
+                <li><strong>Isothermal Compression (C $\to$ D):</strong> Gas rejects heat $Q_2$ to Sink ($T_2$). $|W_{\text{on}}| = Q_2$.</li>
+                <li><strong>Adiabatic Compression (D $\to$ A):</strong> Gas is compressed, $T$ rises from $T_2$ back to $T_1$. $Q=0$.</li>
+            </ol>
+            
+            <h3>Graphical Representation</h3>
+            <div class="diagram-container">
+                <div class="image-placeholder">
+
+[Image of the Carnot cycle PV diagram]
+</div>
+                <p class="diagram-caption">The Carnot cycle on a P-V diagram (closed loop). The area enclosed is the Net Work Done ($W$).</p>
+                <div class="image-placeholder"></div>
+                <p class="diagram-caption">The Carnot cycle on a T-S diagram is a **perfect rectangle**. Area enclosed is Net Work Done ($W$).</p>
+            </div>
+            
+            <h3>Derivation of Carnot Efficiency ($\eta$)</h3>
+            <p>Efficiency is Work Output divided by Heat Input:</p>
+            $$\eta = \frac{W}{Q_1} = \frac{Q_1 - Q_2}{Q_1} = 1 - \frac{Q_2}{Q_1}$$
+            <p>For a reversible cycle, the ratio of heat exchanged equals the ratio of absolute temperatures:</p>
+            $$\frac{Q_2}{Q_1} = \frac{T_2}{T_1}$$
+            <p>Therefore, the maximum theoretical efficiency is:</p>
+            $$\mathbf{\eta = 1 - \frac{T_2}{T_1}}$$
+            
+            <div class="example-box">
+                <strong>Example Problem:</strong>
+                <p>An engine operates between $T_1 = 500 \text{ K}$ and $T_2 = 300 \text{ K}$.</p>
+                $$\eta = 1 - \frac{300}{500} = 1 - 0.6 = 0.4 \quad \text{or } 40\%$$
+            </div>
+
+            <div class="quick-check">
+                <h3>Quick Check Questions (3)</h3>
+                <ol>
+                    <li>What are the four types of processes involved in a Carnot cycle?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> Two **Isothermal** processes and two **Adiabatic** processes.
+                            </div>
+                        </details>
+                    </li>
+                    <li>A heat engine operates between $1000 \text{ K}$ and $500 \text{ K}$. What is its maximum possible efficiency?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Calculation:</strong> $\eta = 1 - \frac{T_2}{T_1} = 1 - \frac{500 \text{ K}}{1000 \text{ K}} = 0.5$.
+                                <p><strong>Answer:</strong> **$50\%$**.</p>
+                            </div>
+                        </details>
+                    </li>
+                    <li>To increase the efficiency of a Carnot engine, is it better to increase the source temperature ($T_1$) or decrease the sink temperature ($T_2$) by the same amount ($\Delta T$)?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> It is always **more effective to decrease the sink temperature ($T_2$)**. This increases the ratio $T_2/T_1$ more significantly, thus increasing $\eta = 1 - T_2/T_1$.
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="section-card">
+            <h2>4. Second Law of Thermodynamics ⚖️</h2>
+            
+            <h3>Kelvin–Planck Statement</h3>
+            <p>It is **impossible** to construct an engine that, operating in a cycle, produces no effect other than the **absorption of heat from a single reservoir and the performance of an equivalent amount of work**.</p>
+            <p class="note">Interpretation: $100\%$ conversion of heat to work is impossible in a cycle.</p>
+
+            <h3>Clausius Statement</h3>
+            <p>It is **impossible** to construct a device which operates in a cycle and produces no effect other than the **transfer of heat from a colder body to a hotter body**.</p>
+            <p class="note">Interpretation: Heat does not spontaneously flow from cold to hot.</p>
+
+            <h3>Equivalence of the Statements</h3>
+            <p>If the Kelvin–Planck statement were false (a $100\%$ efficient engine existed), it could be used to violate the Clausius statement (spontaneous heat flow cold to hot), and vice versa. They are therefore logically **equivalent**.</p>
+            
+            <div class="quick-check">
+                <h3>Quick Check Questions (4)</h3>
+                <ol>
+                    <li>Which of the two statements (Kelvin–Planck or Clausius) directly relates to the impossibility of a Perpetual Motion Machine of the Second Kind (PMM2)?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> The **Kelvin–Planck statement**. A PMM2 would be an engine that achieves $100\%$ efficiency by operating from a single reservoir, which the statement forbids.
+                            </div>
+                        </details>
+                    </li>
+                    <li>If a refrigerator (a device based on the Clausius statement) is run, why is it necessary to supply external work?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> The Clausius statement says that heat **cannot spontaneously** flow from cold to hot. To force this transfer against nature's flow, **external work** must be supplied.
+                            </div>
+                        </details>
+                    </li>
+                    <li>Explain the core concept that both statements aim to establish regarding natural processes.
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> Both statements establish that **all macroscopic processes are directional** and cannot be perfectly reversed without leaving a change in the environment, confirming the existence of irreversibility in nature.
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <h2>5. Carnot’s Theorem ⭐</h2>
+            
+            <h3>Statement of Carnot’s Theorem</h3>
+            <ol>
+                <li>All **reversible heat engines** operating between the same two temperatures ($T_1$ and $T_2$) have the **same efficiency**.</li>
+                <li>**No irreversible heat engine** operating between the same two temperatures can have an efficiency **greater than** that of a reversible engine ($\eta_{\text{irr}} < \eta_{\text{rev}}$).</li>
+            </ol>
+
+            <h3>Implications</h3>
+            <p>The efficiency of an ideal engine depends **only on the absolute temperatures** ($T_1, T_2$), and **not on the nature of the working substance**.</p>
+
+            <div class="quick-check">
+                <h3>Quick Check Questions (5)</h3>
+                <ol>
+                    <li>Engine A is a reversible engine and Engine B is an irreversible engine, both operating between $400 \text{ K}$ and $300 \text{ K}$. Can Engine B have $30\%$ efficiency if Engine A has $25\%$ efficiency?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> **No.** Carnot's Theorem states that no engine (reversible or irreversible) can be *more* efficient than the Carnot engine. The maximum possible efficiency here is $\eta_{\text{rev}} = 1 - 300/400 = 0.25$ or $25\%$. Engine A's efficiency is $25\%$, but Engine B cannot exceed $25\%$.
+                            </div>
+                        </details>
+                    </li>
+                    <li>What property of the Carnot engine makes its efficiency a universal benchmark?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> Its efficiency depends **only on the temperatures of the hot and cold reservoirs** ($T_1$ and $T_2$), not on the specific gas or fluid used (the working substance).
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="section-card">
+            <h2>6. Thermodynamic Scale of Temperature 🌡️</h2>
+            
+            <h3>Definition and Need</h3>
+            <p>The **Thermodynamic Scale (or Kelvin Scale)** is a temperature scale based purely on the **Second Law** and Carnot's Theorem, making it **independent of the properties of any specific substance** (unlike the ideal gas scale).</p>
+
+            <h3>Derivation</h3>
+            <p>Based on Carnot's finding that the heat ratio is fixed for any reversible engine:</p>
+            $$\mathbf{\frac{Q_1}{Q_2} = \frac{T_1}{T_2}}$$
+            <p>This relation defines the ratio of temperatures on the thermodynamic scale.</p>
+            
+            <p><strong>Identity:</strong> The Thermodynamic Scale is proven to be **identical** to the Perfect Gas Kelvin Scale.</p>
+            
+            <div class="quick-check">
+                <h3>Quick Check Questions (6)</h3>
+                <ol>
+                    <li>What is the fundamental difference between the thermodynamic scale and a scale based on the expansion of alcohol or mercury?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> The thermodynamic scale is **independent of the properties of any material**, whereas scales based on alcohol or mercury depend on the specific thermal expansion properties of those substances.
+                            </div>
+                        </details>
+                    </li>
+                    <li>If a reversible engine rejects $Q_2 = 100 \text{ J}$ at $300 \text{ K}$ and absorbs $Q_1 = 150 \text{ J}$ at $T_1$, what is the temperature $T_1$ on the thermodynamic scale?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Calculation:</strong> $\frac{Q_1}{Q_2} = \frac{T_1}{T_2} \implies \frac{150}{100} = \frac{T_1}{300 \text{ K}} \implies T_1 = 1.5 \times 300 \text{ K} = 450 \text{ K}$.
+                                <p><strong>Answer:</strong> **$450 \text{ K}$**.</p>
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="section-card">
+            <h2>7. Entropy (S) 🔬</h2>
+            
+            <h3>Mathematical Definition (Change in Entropy)</h3>
+            <p>The change in entropy ($dS$) for a **reversible process** is:</p>
+            $$\mathbf{dS = \frac{\delta Q_{\text{rev}}}{T}}$$
+            <p>Entropy ($S$) is a **state function**; its value depends only on the system's state.</p>
+
+            <h3>Physical Interpretation</h3>
+            <ul>
+                <li>**Disorder:** Entropy is a measure of the **randomness, disorder, or multiplicity of microscopic states** (Boltzmann: $S = k \ln W$).</li>
+                <li>**Unavailability of Energy:** It measures the energy that is **unavailable** for useful work.</li>
+            </ul>
+            
+            <h3>The Principle of Increase of Entropy</h3>
+            <p>The entropy of the universe always increases for any spontaneous (irreversible) process:</p>
+            $$\mathbf{\Delta S_{\text{universe}} = \Delta S_{\text{system}} + \Delta S_{\text{surroundings}} \ge 0}$$
+            <ul>
+                <li>Reversible: $\Delta S_{\text{universe}} = 0$</li>
+                <li>Irreversible (Natural): $\Delta S_{\text{universe}} > 0$</li>
+            </ul>
+
+            <div class="example-box">
+                <strong>Units and Dimensional Analysis:</strong>
+                <p>Unit of Entropy: **Joule per Kelvin** ($\text{J/K}$).</p>
+                $$[S] = \frac{[\text{Heat}]}{[\text{Temperature}]} = \frac{\text{M L}^2 \text{T}^{-2}}{\Theta} = \text{M L}^2 \text{T}^{-2} \Theta^{-1}$$
+            </div>
+            
+            <div class="quick-check">
+                <h3>Quick Check Questions (7)</h3>
+                <ol>
+                    <li>Is entropy a state function or a path function?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> A **state function**. The change in entropy ($\Delta S$) between two states is independent of the path taken.
+                            </div>
+                        </details>
+                    </li>
+                    <li>If an ice cube melts in a glass of water (an irreversible process), what happens to the total entropy of the universe?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> The total entropy of the universe **increases** ($\Delta S_{\text{universe}} > 0$). This confirms the process is spontaneous and irreversible.
+                            </div>
+                        </details>
+                    </li>
+                    <li>What does the Boltzmann relation, $S = k \ln W$, relate entropy to?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> It relates entropy to **$W$**, the **number of microscopic configurations (disorder/multiplicity)** corresponding to a macroscopic state.
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="section-card">
+            <h2>8. Mathematical Formulation of the Second Law</h2>
+            
+            <h3>Clausius Inequality</h3>
+            <p>The mathematical form of the Second Law for any cyclic process (reversible or irreversible) is the **Clausius Inequality**:</p>
+            $$\mathbf{\oint \frac{\delta Q}{T} \le 0}$$
+            <ul>
+                <li>If $\oint \frac{\delta Q}{T} = 0$, the cycle is **reversible**.</li>
+                <li>If $\oint \frac{\delta Q}{T} < 0$, the cycle is **irreversible** (and possible).</li>
+            </ul>
+
+            <h3>Clausius Theorem</h3>
+            <p>The condition $\oint \frac{\delta Q_{\text{rev}}}{T} = 0$ (for a reversible cycle) proves that $\frac{\delta Q_{\text{rev}}}{T}$ is an **exact differential**, defining **Entropy ($S$)** as a state function.</p>
+            
+            <div class="example-box">
+                <strong>Checking Feasibility (Clausius):</strong>
+                <p>A cycle takes $Q_1 = 1200 \text{ J}$ at $T_1 = 400 \text{ K}$ and rejects $Q_2 = 800 \text{ J}$ at $T_2 = 300 \text{ K}$.</p>
+                $$\oint \frac{\delta Q}{T} = \frac{1200}{400} + \frac{-800}{300} = 3.0 \text{ J/K} - 2.67 \text{ J/K} = 0.33 \text{ J/K}$$
+                <p>Since $\oint \frac{\delta Q}{T} > 0$, this process is **impossible** (violates the Second Law).</p>
+            </div>
+            
+            <div class="quick-check">
+                <h3>Quick Check Questions (8)</h3>
+                <ol>
+                    <li>What is the sign of $\oint \frac{\delta Q}{T}$ for a cycle that is theoretically possible but operates with friction?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> **Negative** ($\oint \frac{\delta Q}{T} < 0$). This is the condition for an irreversible but possible cycle according to the Clausius Inequality.
+                            </div>
+                        </details>
+                    </li>
+                    <li>If a cyclic process results in $\oint \frac{\delta Q}{T} = 0$, what can you conclude about the process?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> The process is **reversible** (ideal Carnot cycle or equivalent).
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="section-card">
+            <h2>9. Entropy of an Ideal Gas</h2>
+            
+            <h3>Entropy Change in terms of T and V</h3>
+            <p>For $n$ moles of an ideal gas between states $(T_1, V_1)$ and $(T_2, V_2)$:</p>
+            $$\mathbf{\Delta S = n C_v \ln\left(\frac{T_2}{T_1}\right) + n R \ln\left(\frac{V_2}{V_1}\right)}$$
+
+            <h3>Entropy Change in terms of T and P</h3>
+            <p>For $n$ moles of an ideal gas between states $(T_1, P_1)$ and $(T_2, P_2)$ (using $C_p - C_v = R$):</p>
+            $$\mathbf{\Delta S = n C_p \ln\left(\frac{T_2}{T_1}\right) - n R \ln\left(\frac{P_2}{P_1}\right)}$$
+            
+            <div class="quick-check">
+                <h3>Quick Check Questions (9)</h3>
+                <ol>
+                    <li>If an ideal gas undergoes an isobaric (constant pressure) heating, which terms remain in the T-P entropy equation?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> The $P$ terms drop out ($\ln(P_2/P_1) = \ln(1) = 0$), leaving: $$\Delta S = n C_p \ln\left(\frac{T_2}{T_1}\right)$$
+                            </div>
+                        </details>
+                    </li>
+                    <li>Why is it acceptable to use the reversible heat capacity definitions ($C_v$ and $C_p$) to calculate the entropy change for an irreversible process between two states?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> Because **Entropy ($S$) is a state function**. The change in entropy ($\Delta S$) depends only on the initial and final states. We can therefore calculate $\Delta S$ by finding a convenient *reversible path* between the states, which simplifies the calculations using $C_v$ or $C_p$.
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="section-card">
+            <h2>10. T–S Diagram and Applications 📊</h2>
+            
+            <h3>Area Under T–S Curve</h3>
+            <p>The T–S diagram plots **Absolute Temperature ($T$)** against **Entropy ($S$)**. For any **reversible process**, the heat absorbed ($Q_{\text{rev}}$) is given by the area under the curve:</p>
+            $$Q_{\text{rev}} = \int T dS$$
+            
+            <h3>Analysis of Cycles</h3>
+            <p>The **area enclosed by a closed cycle** on the T–S diagram represents the **Net Work Done ($W$)** by the cycle.</p>
+            <p>For a Carnot cycle (a rectangle): $\mathbf{W = (T_1 - T_2) \cdot \Delta S}$.</p>
+
+            <div class="quick-check">
+                <h3>Quick Check Questions (10)</h3>
+                <ol>
+                    <li>What shape does a reversible cycle, such as the Carnot cycle, take on a T-S diagram?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> A **rectangle**. The isothermal paths are horizontal lines ($T$ = constant) and the adiabatic paths are vertical lines ($S$ = constant).
+                            </div>
+                        </details>
+                    </li>
+                    <li>What type of process is represented by a vertical line on a T-S diagram?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> A reversible **Adiabatic** process ($\Delta S=0$, thus **Isentropic**).
+                            </div>
+                        </details>
+                    </li>
+                    <li>If the area enclosed by a T-S cycle is $500 \text{ J}$, what does this value represent?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> The **Net Work Done ($W$)** by the engine during one cycle.
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="section-card">
+            <h2>11. Evaluation of Entropy Changes in Simple Cases</h2>
+            
+            <h3>Reversible Isothermal Expansion</h3>
+            <p>Since $\Delta U = 0$, $Q_{\text{rev}} = W_{\text{rev}} = n R T \ln(V_2/V_1)$.</p>
+            $$\mathbf{\Delta S = n R \ln\left(\frac{V_2}{V_1}\right)}$$
+            
+            <h3>Reversible Adiabatic Process</h3>
+            <p>By definition, $Q_{\text{rev}} = 0$. Therefore, **$\mathbf{\Delta S = 0}$** (Isentropic process).</p>
+
+            <h3>Entropy Change for Phase Change</h3>
+            <p>For a phase transition (e.g., melting, boiling) at constant temperature ($T_{\text{trans}}$) and pressure:</p>
+            $$\mathbf{\Delta S_{\text{trans}} = \frac{L}{T_{\text{trans}}}}$$
+            <p>Where $L$ is the molar or specific latent heat.</p>
+            
+            <div class="example-box">
+                <strong>Example: Melting Ice</strong>
+                <p>1 $\text{kg}$ of ice melts at $0^\circ \text{C} (273.15 \text{ K})$. Latent Heat of Fusion $L_f = 334 \text{ kJ/kg}$.</p>
+                $$\Delta S = \frac{334,000 \text{ J/kg} \times 1 \text{ kg}}{273.15 \text{ K}} \approx \mathbf{1222.8 \text{ J/K}}$$
+            </div>
+
+            <div class="quick-check">
+                <h3>Quick Check Questions (11)</h3>
+                <ol>
+                    <li>If a gas doubles its volume in a reversible isothermal expansion, does the entropy increase or decrease?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> The entropy **increases**. Since $V_2 > V_1$, $\ln(V_2/V_1)$ is positive, and $\Delta S > 0$. Increased volume means increased disorder.
+                            </div>
+                        </details>
+                    </li>
+                    <li>A liquid boils at $373 \text{ K}$ with a latent heat of vaporization of $2260 \text{ kJ/kg}$. Calculate the entropy change per $\text{kg}$.
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Calculation:</strong> $\Delta S = \frac{L}{T} = \frac{2,260,000 \text{ J/kg}}{373 \text{ K}} \approx 6059 \text{ J/K}$.
+                                <p><strong>Answer:</strong> **$6059 \text{ J/(kg·K)}$**.</p>
+                            </div>
+                        </details>
+                    </li>
+                    <li>What is the entropy change of the *system* in a reversible adiabatic compression?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> **Zero** ($\Delta S = 0$). Adiabatic means $\delta Q_{\text{rev}}=0$, and the reversible condition ensures no entropy is generated.
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="section-card">
+            <h2>12. Third Law of Thermodynamics ❄️</h2>
+            
+            <h3>Statement of the Third Law (Nernst Heat Theorem)</h3>
+            <p>"The entropy of a **pure, perfect crystalline substance** is **zero** at the **absolute zero of temperature** ($0 \text{ K}$)."</p>
+            $$\mathbf{S \to 0 \quad \text{as} \quad T \to 0 \text{ K}}$$
+
+            <h3>Unattainability Principle</h3>
+            <p>A consequence of the Third Law: "It is **impossible** to reduce the temperature of any system to $0 \text{ K}$ in a finite number of operations."</p>
+            
+            <h3>Significance</h3>
+            <p>The Third Law provides a **zero reference point** for entropy, allowing the calculation of the **Absolute Entropy** of any substance at any temperature $T > 0 \text{ K}$.</p>
+            
+            <div class="quick-check">
+                <h3>Quick Check Questions (12)</h3>
+                <ol>
+                    <li>What condition must a substance meet for its entropy to be zero at $0 \text{ K}$?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> It must be a **pure and perfect crystalline substance**. Imperfect crystals or mixtures retain some residual (configurational) entropy.
+                            </div>
+                        </details>
+                    </li>
+                    <li>What is the key implication of the "Unattainability Principle"?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> It means that **Absolute Zero ($0 \text{ K}$) can never be reached** in a finite series of steps.
+                            </div>
+                        </details>
+                    </li>
+                    <li>How does the Third Law relate to the absolute value of entropy?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> It establishes a **natural zero reference point** for entropy, allowing the calculation of the absolute entropy of a substance at $T > 0 \text{ K}$, unlike internal energy ($\Delta U$) which only has relative values.
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="section-card">
+            <h2>13. Summary & Practice 📝</h2>
+            
+            <h3>Key Equations (Second Law & Entropy)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Concept</th>
+                        <th>Equation</th>
+                        <th>Relation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Carnot Efficiency</td>
+                        <td>$$\eta = 1 - \frac{T_2}{T_1}$$</td>
+                        <td>Maximum possible efficiency</td>
+                    </tr>
+                    <tr>
+                        <td>Entropy Change (Reversible)</td>
+                        <td>$$\Delta S = \int \frac{\delta Q_{\text{rev}}}{T}$$</td>
+                        <td>Definition of a state function</td>
+                    </tr>
+                    <tr>
+                        <td>Clausius Inequality</td>
+                        <td>$$\oint \frac{\delta Q}{T} \le 0$$</td>
+                        <td>Feasibility of a cyclic process</td>
+                    </tr>
+                    <tr>
+                        <td>Isothermal Expansion $\Delta S$</td>
+                        <td>$$\Delta S = n R \ln\left(\frac{V_2}{V_1}\right)$$</td>
+                        <td>Change in disorder/randomness</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>Practice Numerical Problems</h3>
+            <ol>
+                <li>A heat engine absorbs $500 \text{ J}$ from a reservoir at $400 \text{ K}$ and rejects $300 \text{ J}$ to a sink at $200 \text{ K}$. Calculate the actual efficiency and the maximum possible (Carnot) efficiency.
+                    <details>
+                        <summary>See Answer</summary>
+                        <div class="answer-box">
+                            <strong>Step-by-step Solution:</strong>
+                            <ol>
+                                <li><strong>Actual Efficiency ($\eta_{\text{actual}}$):</strong>
+                                    $$\eta_{\text{actual}} = \frac{W}{Q_1} = \frac{Q_1 - Q_2}{Q_1}$$
+                                    $$\eta_{\text{actual}} = \frac{500 \text{ J} - 300 \text{ J}}{500 \text{ J}} = \frac{200 \text{ J}}{500 \text{ J}} = 0.4$$
+                                    <p>$$\mathbf{\eta_{\text{actual}} = 40\%}$$</p>
+                                </li>
+                                <li><strong>Carnot Efficiency ($\eta_{\text{Carnot}}$):</strong>
+                                    $$\eta_{\text{Carnot}} = 1 - \frac{T_2}{T_1}$$
+                                    $$\eta_{\text{Carnot}} = 1 - \frac{200 \text{ K}}{400 \text{ K}} = 1 - 0.5 = 0.5$$
+                                    <p>$$\mathbf{\eta_{\text{Carnot}} = 50\%}$$</p>
+                                </li>
+                            </ol>
+                            <p class="note">Conclusion: Since $\eta_{\text{actual}} < \eta_{\text{Carnot}}$, the engine is possible, but irreversible.</p>
+                        </div>
+                    </details>
+                </li>
+                <li>$5 \text{ moles}$ of an ideal gas expand isothermally and reversibly from $1 \text{ L}$ to $10 \text{ L}$ at $300 \text{ K}$. Calculate the entropy change of the system. ($\text{R} = 8.314 \text{ J K}^{-1} \text{ mol}^{-1}$).
+                    <details>
+                        <summary>See Answer</summary>
+                        <div class="answer-box">
+                            <strong>Step-by-step Solution:</strong>
+                            <p>For an isothermal reversible expansion of an ideal gas, the entropy change is given by:</p>
+                            $$\Delta S = n R \ln\left(\frac{V_2}{V_1}\right)$$
+                            $$\Delta S = (5 \text{ mol}) \times (8.314 \text{ J K}^{-1} \text{ mol}^{-1}) \times \ln\left(\frac{10 \text{ L}}{1 \text{ L}}\right)$$
+                            $$\Delta S \approx 41.57 \text{ J K}^{-1} \times 2.3026$$
+                            <p>$$\mathbf{\Delta S \approx 95.71 \text{ J/K}}$$</p>
+                            <p class="note">The positive sign indicates increased entropy/disorder.</p>
+                        </div>
+                    </details>
+                </li>
+                <li>$1 \text{ kg}$ of water is heated from $293 \text{ K}$ to $363 \text{ K}$. Calculate the change in entropy. (Specific heat of water, $C_p = 4.184 \text{ kJ kg}^{-1} \text{ K}^{-1}$). Hint: $\Delta S = m C_p \ln(T_2/T_1)$.
+                    <details>
+                        <summary>See Answer</summary>
+                        <div class="answer-box">
+                            <strong>Step-by-step Solution:</strong>
+                            <p>The entropy change for a substance with constant specific heat capacity $C_p$ changing temperature is:</p>
+                            $$\Delta S = m C_p \ln\left(\frac{T_2}{T_1}\right)$$
+                            <p>Convert $C_p$ to $\text{J}$: $4.184 \text{ kJ kg}^{-1} \text{ K}^{-1} = 4184 \text{ J kg}^{-1} \text{ K}^{-1}$.</p>
+                            $$\Delta S = (1 \text{ kg}) \times (4184 \text{ J kg}^{-1} \text{ K}^{-1}) \times \ln\left(\frac{363 \text{ K}}{293 \text{ K}}\right)$$
+                            $$\Delta S \approx 4184 \text{ J/K} \times \ln(1.2389)$$
+                            $$\Delta S \approx 4184 \text{ J/K} \times 0.2144$$
+                            <p>$$\mathbf{\Delta S \approx 897.0 \text{ J/K}}$$</p>
+                        </div>
+                    </details>
+                </li>
+            </ol>
+        </div>
+        
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" integrity="sha384-F8XF/t3Q3gE+M2X+h5h2W5d9t5c8v82z2pE91XFwB1G+5Xf/A1P8A6K6Z8xY/5lH5Ff7bJ/..." crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+            // delimiters to recognize
+            delimiters: [
+                {left: "$$", right: "$$", display: true},
+                {left: "$",  right: "$",  display: false},
+                {left: "\\(", right: "\\)", display: false},
+                {left: "\\[", right: "\\]", display: true}
+            ],
+            // allow LaTeX macros like \text{}
+            macros: {
+                "\\RR": "\\mathbb{R}",
+                "\\bold": ["{\\bf #1}", 1]
+            }
+        });
+    });
+</script>
+
+        
+    </body>
+</html>

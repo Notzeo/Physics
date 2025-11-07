@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Unit 4 Quiz: Kinetic Theory of Gases</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- Base & Global Styling --- */
+        html { font-size: 16px; }
+        body {
+            font-family: 'Quicksand', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff0f5; 
+            color: #333;
+            min-height: 100vh;
+            text-rendering: optimizeLegibility;
+            -webkit-overflow-scrolling: touch; 
+        }
+
+        .container {
+            max-width: 100%; 
+            width: 900px; 
+            margin: auto;
+            padding: 1.25rem 1rem;
+        }
+
+        /* --- Header/Title Styling --- */
+        header {
+            text-align: center;
+            padding: 2.5rem 0;
+            background: linear-gradient(135deg, #f8bbd0, #e1bee7); 
+            color: #4a3858;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+            border-radius: 0 0 30px 30px; 
+        }
+
+        h1.main-title {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.75rem; 
+            margin: 0;
+            font-weight: 700;
+        }
+
+        p.cute-line {
+            font-size: 1rem;
+            margin-top: 0.3rem;
+            font-style: italic;
+            font-weight: 400;
+            color: #6b5a83;
+        }
+        
+        /* --- Quiz Specific Styling --- */
+        .quiz-section {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+
+        .question {
+            margin-bottom: 30px;
+            border-bottom: 1px dashed #f0e6f2; /* Light divider */
+            padding-bottom: 20px;
+        }
+
+        .question-text {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #5d4037; /* Brown/Earth accent for Unit 4 */
+            margin-bottom: 15px;
+        }
+        
+        /* Option Styling (Mobile optimized radio buttons) */
+        .option-group label {
+            display: flex;
+            align-items: center;
+            background-color: #fcfcfc;
+            padding: 12px 15px;
+            margin: 8px 0;
+            border-radius: 10px;
+            border: 1px solid #ffcdd2; 
+            cursor: pointer;
+            transition: background-color 0.15s ease;
+            font-size: 1rem;
+        }
+
+        .option-group label:hover {
+            background-color: #fce4ec;
+        }
+        
+        .option-group input[type="radio"] {
+            margin-right: 10px;
+            transform: scale(1.3); 
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #ff80ab;
+            border-radius: 50%;
+            outline: none;
+            transition: all 0.2s;
+            position: relative;
+        }
+        
+        .option-group input[type="radio"]:checked {
+            background-color: #ff80ab;
+            border-color: #d81b60;
+        }
+
+        /* --- Result Feedback Styling (Hidden until submitted) --- */
+        .feedback {
+            margin-top: 10px;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            display: none; 
+        }
+
+        .correct-answer {
+            background-color: #e8f5e9; 
+            border: 1px solid #4caf50;
+            color: #1b5e20;
+        }
+        
+        .incorrect-answer {
+            background-color: #ffebee; 
+            border: 1px solid #f44336;
+            color: #c62828;
+        }
+
+        /* --- Submit Button (Reusing Practice Button Style) --- */
+        #submit-button {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 15px;
+            margin-top: 20px;
+            text-decoration: none;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            background: linear-gradient(90deg, #ffcdd2, #f3e5f5) !important;
+            border: 3px solid #e040fb !important;
+            color: #e040fb !important;
+            border-radius: 20px; 
+            box-shadow: 0 6px 12px rgba(224, 64, 251, 0.25);
+            transition: all 0.2s;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        #submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(224, 64, 251, 0.4);
+        }
+
+        #results {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #fff0f5;
+            border: 2px dashed #f8bbd0;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #d81b60;
+            display: none;
+        }
+        
+        /* --- Footer (Reused from index.html) --- */
+        footer {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            margin-top: 2rem;
+            color: #6b5a83; 
+            font-weight: 500;
+            font-size: 0.9rem;
+            border-top: 1px solid #ffcdd2; 
+            background-color: #ffffff;
+            border-radius: 30px 30px 0 0;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 class="main-title">Physics Essentials | Practice Quiz</h1>
+        <p class="cute-line">Unit 4: Kinetic Theory of Gases & Distribution Laws</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="quiz-section">
+            <form id="physics-quiz">
+                </form>
+
+            <button id="submit-button" onclick="submitQuiz()">✨ Submit Answers and See Results</button>
+            
+            <div id="results"></div>
+        </div>
+        
+    </div>
+
+    <footer id="dynamic-footer">
+        </footer>
+
+    <script>
+        // --- Motivational Quotes Logic (Expanded List) ---
+        const quotes = [
+            "You've got this, cutiepie! <3",
+            "This is the easiest for my captain !!",
+            "One step closer to that A. You're doing amazing! ✨",
+            "Mastering Physics, one star at a time. 🌟",
+            "Keep up the momentum. 💫",
+            "You were born to shine, Captain! Conquer this unit! 💖",
+            "No stress, just success. I believe in you! ✨",
+            "Just like Maxwell's Equations, you are a fundamental truth! 👑"
+        ];
+        
+        function setRandomQuote() {
+            const footer = document.getElementById('dynamic-footer');
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            footer.innerHTML = quotes[randomIndex];
+        }
+
+        // --- Quiz Data for Unit 4 (15 Questions) ---
+        // NOTE: The math expressions in the rationale strings below are intentionally left as $...$ 
+        // because the KaTeX auto-render script will handle the math rendering automatically 
+        // after the innerHTML is set.
+        const quizData = {
+            questions: [
+                {
+                    questionNumber: 1,
+                    question: "According to the <strong>Kinetic Theory of Gases (KTG)</strong>, the pressure exerted by an ideal gas is due to:",
+                    answerOptions: [
+                        { text: "Gravitational forces between molecules.", rationale: "KTG assumes negligible intermolecular forces except during collisions.", isCorrect: false },
+                        { text: "The weight of the gas molecules.", rationale: "Gas pressure is independent of the container orientation.", isCorrect: false },
+                        { text: "The average kinetic energy of the molecules.", rationale: "Pressure is related to the rate of change of momentum during collisions with the walls.", isCorrect: true },
+                        { text: "Elastic repulsion between molecules.", rationale: "Molecules are assumed to be point masses with no volume.", isCorrect: false }
+                    ],
+                    hint: "Pressure is defined as force per unit area. Consider where the force comes from."
+                },
+                {
+                    questionNumber: 2,
+                    question: "The <strong>Root Mean Square (RMS) speed</strong> of a gas molecule is given by the formula:",
+                    answerOptions: [
+                        { text: "$v_{rms} = \\sqrt{\\frac{2RT}{M}}$", rationale: "This is the formula for the most probable speed.", isCorrect: false },
+                        { text: "$v_{rms} = \\sqrt{\\frac{3RT}{M}}$", rationale: "This is the correct formula derived from the KTG pressure equation $P = \\frac{1}{3} \\frac{mN}{V} v_{rms}^2$.", isCorrect: true },
+                        { text: "$v_{rms} = \\sqrt{\\frac{8RT}{\\pi M}}$", rationale: "This is the formula for the average speed.", isCorrect: false },
+                        { text: "$v_{rms} = \\frac{3RT}{M}$", rationale: "The speed must be proportional to the square root of temperature.", isCorrect: false }
+                    ],
+                    hint: "The formula is directly related to the factor of 3 in the relationship between kinetic energy and temperature."
+                },
+                {
+                    questionNumber: 3,
+                    question: "The <strong>Maxwell-Boltzmann distribution of speeds</strong> shows that as the temperature of the gas is increased:",
+                    answerOptions: [
+                        { text: "The curve sharpens and shifts to the left (lower speeds).", rationale: "Increasing temperature increases molecular motion.", isCorrect: false },
+                        { text: "The curve broadens and shifts to the left (lower speeds).", rationale: "The curve broadens but shifts to the right (higher speeds).", isCorrect: false },
+                        { text: "The curve sharpens and shifts to the right (higher speeds).", rationale: "The curve broadens as more molecules gain speed, and shifts right.", isCorrect: false },
+                        { text: "The curve broadens and shifts to the right (higher speeds).", rationale: "Higher $T$ increases both the average speed and the spread of speeds.", isCorrect: true }
+                    ],
+                    hint: "Think about what happens to the average kinetic energy and the range of possible speeds when energy is added to the system."
+                },
+                {
+                    questionNumber: 4,
+                    question: "The ratio of the three characteristic speeds, $v_{mp}$ (Most Probable) : $v_{avg}$ (Average) : $v_{rms}$ (RMS), is:",
+                    answerOptions: [
+                        { text: "$\\sqrt{2} : \\sqrt{3} : \\sqrt{\\frac{8}{\\pi}}$", rationale: "The correct ratio is based on the square roots of the coefficients: $\\sqrt{2} : \\sqrt{\\frac{8}{\\pi}} : \\sqrt{3}$.", isCorrect: false },
+                        { text: "$\\sqrt{2} : \\sqrt{\\frac{8}{\\pi}} : \\sqrt{3}$", rationale: "Numerically, this corresponds to $1.414 : 1.596 : 1.732$, confirming the order $v_{mp} < v_{avg} < v_{rms}$.", isCorrect: true },
+                        { text: "$1 : 2 : 3$", isCorrect: false },
+                        { text: "$3 : \\frac{8}{\\pi} : 2$", isCorrect: false }
+                    ],
+                    hint: "The three speeds are ordered as Most Probable < Average < RMS. Remember the coefficient for $v_{rms}$ is $\\sqrt{3}$."
+                },
+                {
+                    questionNumber: 5,
+                    question: "According to the <strong>Law of Equipartition of Energy</strong>, the average energy associated with each degree of freedom of a molecule is:",
+                    answerOptions: [
+                        { text: "$kT$", rationale: "This would be the energy for two degrees of freedom.", isCorrect: false },
+                        { text: "$\\frac{1}{2} RT$", rationale: "This is correct per mole, not per molecule.", isCorrect: false },
+                        { text: "$\\frac{1}{2} kT$", rationale: "The average energy per degree of freedom is $\\frac{1}{2} k_B T$, where $k_B$ is the Boltzmann constant.", isCorrect: true },
+                        { text: "$\\frac{3}{2} kT$", rationale: "This is the total energy for a monatomic gas (3 degrees of freedom).", isCorrect: false }
+                    ],
+                    hint: "Remember to use the Boltzmann constant ($k$) for energy per molecule, not the gas constant ($R$)."
+                },
+                {
+                    questionNumber: 6,
+                    question: "How many degrees of freedom does a <strong>diatomic gas</strong> (like $O_2$ or $N_2$) possess at room temperature?",
+                    answerOptions: [
+                        { text: "3", rationale: "This is correct for a monatomic gas.", isCorrect: false },
+                        { text: "5", rationale: "3 translational and 2 rotational degrees of freedom are active at room temperature.", isCorrect: true },
+                        { text: "6", rationale: "This assumes three rotational degrees of freedom, which is incorrect for linear molecules.", isCorrect: false },
+                        { text: "7", rationale: "This includes 3 translational, 2 rotational, and 2 vibrational degrees of freedom, but vibration is usually 'frozen out' at room temperature.", isCorrect: false }
+                    ],
+                    hint: "At room temperature, the vibrational modes are generally not excited (or 'frozen out')."
+                },
+                {
+                    questionNumber: 7,
+                    question: "For an ideal monatomic gas, the ratio of specific heats ($\gamma = C_P / C_V$) is:",
+                    answerOptions: [
+                        { text: "1.33 (or $4/3$)", rationale: "This is correct for a triatomic gas (like $NH_3$).", isCorrect: false },
+                        { text: "1.40 (or $7/5$)", rationale: "This is correct for a diatomic gas.", isCorrect: false },
+                        { text: "1.67 (or $5/3$)", rationale: "Monatomic gas has 3 degrees of freedom, so $C_V = \\frac{3}{2} R$ and $C_P = \\frac{5}{2} R$, making $\gamma = 5/3$.", isCorrect: true },
+                        { text: "2.00 (or $2/1$)", isCorrect: false }
+                    ],
+                    hint: "Use the relationship $C_V = \\frac{f}{2} R$ and Mayer's relation $C_P - C_V = R$, where $f$ is the degrees of freedom."
+                },
+                {
+                    questionNumber: 8,
+                    question: "The expression for the <strong>mean free path</strong> ($\lambda$) of a gas molecule is inversely proportional to:",
+                    answerOptions: [
+                        { text: "Molecular mass ($m$)", rationale: "The mean free path is independent of mass.", isCorrect: false },
+                        { text: "The square of the molecular diameter ($d^2$)", rationale: "The mean free path is $\\lambda \\propto 1 / (d^2)$.", isCorrect: true },
+                        { text: "The square root of temperature ($\\sqrt{T}$)", rationale: "$\lambda$ is independent of $T$ for constant volume, or proportional to $T$ for constant pressure.", isCorrect: false },
+                        { text: "Molecular speed ($v$)", rationale: "$\lambda$ is defined based on molecular properties and number density, independent of instantaneous speed.", isCorrect: false }
+                    ],
+                    hint: "The mean free path is related to the probability of collision, which is proportional to the collision cross-section."
+                },
+                {
+                    questionNumber: 9,
+                    question: "The <strong>viscosity ($\eta$)</strong> of an ideal gas, according to KTG, is independent of which thermodynamic variable?",
+                    answerOptions: [
+                        { text: "Temperature ($T$)", rationale: "Viscosity $\\eta \\propto \\sqrt{T}$.", isCorrect: false },
+                        { text: "Molecular mass ($m$)", rationale: "Viscosity $\\eta \\propto \\sqrt{m}$.", isCorrect: false },
+                        { text: "Pressure ($P$)", rationale: "KTG predicts viscosity is independent of pressure, as increased density (numerator) is canceled by decreased mean free path (denominator).", isCorrect: true },
+                        { text: "Mean free path ($\lambda$)", rationale: "Viscosity $\\eta \\propto \\lambda$.", isCorrect: false }
+                    ],
+                    hint: "This is one of the classic counter-intuitive predictions of KTG."
+                },
+                {
+                    questionNumber: 10,
+                    question: "If the temperature of a gas is doubled, the RMS speed of its molecules will change by a factor of:",
+                    answerOptions: [
+                        { text: "2", rationale: "$v_{rms} \\propto \\sqrt{T}$, so doubling $T$ increases $v_{rms}$ by $\\sqrt{2}$.", isCorrect: false },
+                        { text: "$\\sqrt{2}$", rationale: "Since $v_{rms} \\propto \\sqrt{T}$, if $T_2 = 2T_1$, then $v_{rms,2} = \\sqrt{2} v_{rms,1}$.", isCorrect: true },
+                        { text: "4", rationale: "This would be the change in kinetic energy, not speed.", isCorrect: false },
+                        { text: "$1 / 2$", isCorrect: false }
+                    ],
+                    hint: "Remember the relationship is proportional to the square root of the absolute temperature."
+                },
+                {
+                    questionNumber: 11,
+                    question: "The value of the <strong>pressure coefficient</strong> $\\beta = \\frac{1}{P} (\\frac{\\partial P}{\\partial T})_V$ for an ideal gas is:",
+                    answerOptions: [
+                        { text: "$V/T$", rationale: "This is dimensionally incorrect.", isCorrect: false },
+                        { text: "$1/T$", rationale: "From the ideal gas law $P = \\frac{nRT}{V}$, $\\beta = \\frac{1}{P} (\\frac{nR}{V}) = \\frac{1}{P} \\frac{P}{T} = \\frac{1}{T}$.", isCorrect: true },
+                        { text: "$0$", rationale: "The pressure changes with temperature.", isCorrect: false },
+                        { text: "$R$", rationale: "This is dimensionally incorrect.", isCorrect: false }
+                    ],
+                    hint: "Recall the ideal gas equation of state and the definition of the partial derivative."
+                },
+                {
+                    questionNumber: 12,
+                    question: "In the Maxwell-Boltzmann distribution, the probability of finding a molecule with zero velocity is:",
+                    answerOptions: [
+                        { text: "High, as molecules are constantly colliding.", rationale: "KTG requires molecules to be in motion.", isCorrect: false },
+                        { text: "Independent of temperature.", isCorrect: false },
+                        { text: "Zero.", rationale: "Although the curve starts at zero, a tiny, finite fraction of molecules will have very low speeds, but the probability density function itself starts at zero.", isCorrect: true },
+                        { text: "Proportional to $T$.", isCorrect: false }
+                    ],
+                    hint: "The distribution curve must always start at the origin on the speed axis."
+                },
+                {
+                    questionNumber: 13,
+                    question: "For a gas near its inversion temperature, the <strong>Joule-Kelvin coefficient</strong> $(\\frac{\\partial T}{\\partial P})_H$ is:",
+                    answerOptions: [
+                        { text: "Negative", rationale: "Negative coefficient implies heating, which happens above the inversion temperature.", isCorrect: false },
+                        { text: "Positive", rationale: "Positive coefficient implies cooling, which happens below the inversion temperature.", isCorrect: false },
+                        { text: "Zero", rationale: "The inversion temperature is the point where the coefficient changes sign, thus it is zero at the exact point.", isCorrect: true },
+                        { text: "Maximum", isCorrect: false }
+                    ],
+                    hint: "The inversion point is where a transition occurs between heating and cooling effects upon expansion."
+                },
+                {
+                    questionNumber: 14,
+                    question: "In KTG, the average translational kinetic energy of a molecule is directly proportional to:",
+                    answerOptions: [
+                        { text: "Pressure ($P$)", rationale: "Kinetic energy is proportional to $T$, not $P$.", isCorrect: false },
+                        { text: "Volume ($V$)", rationale: "Kinetic energy is independent of $V$.", isCorrect: false },
+                        { text: "The square of the absolute temperature ($T^2$)", rationale: "Kinetic energy is proportional to $T$, not $T^2$.", isCorrect: false },
+                        { text: "The absolute temperature ($T$)", rationale: "The average kinetic energy is $K_{avg} = \\frac{3}{2} k_B T$, making it directly proportional to $T$.", isCorrect: true }
+                    ],
+                    hint: "This relationship is a cornerstone of the Law of Equipartition and the definition of absolute temperature."
+                },
+                {
+                    questionNumber: 15,
+                    question: "The <strong>thermal conductivity ($\kappa$)</strong> of a gas is defined by the transport of which molecular property across the gas?",
+                    answerOptions: [
+                        { text: "Momentum", rationale: "Transport of momentum defines viscosity.", isCorrect: false },
+                        { text: "Mass", rationale: "Transport of mass defines diffusion.", isCorrect: false },
+                        { text: "Energy", rationale: "Thermal conductivity is the transport of thermal energy (heat) from hotter to colder regions.", isCorrect: true },
+                        { text: "Volume", isCorrect: false }
+                    ],
+                    hint: "Think about what is being transferred when a substance conducts heat."
+                }
+            ]
+        };
+
+        // --- Core Quiz Logic (Corrected Template Literals & Bold Tags) ---
+        function renderQuiz() {
+            const quizForm = document.getElementById('physics-quiz');
+            let quizHTML = '';
+
+            quizData.questions.forEach(q => {
+                let optionsHTML = '';
+                q.answerOptions.forEach((option, index) => {
+                    optionsHTML += `
+                        <div class="option-group">
+                            <label>
+                                <input type="radio" name="question-${q.questionNumber}" value="${index}">
+                                <span>${option.text}</span>
+                            </label>
+                        </div>
+                    `;
+                });
+
+                quizHTML += `
+                    <div class="question" id="q-${q.questionNumber}">
+                        <div class="question-text">${q.questionNumber}. ${q.question}</div>
+                        ${optionsHTML}
+                        <div class="feedback" id="feedback-${q.questionNumber}"></div>
+                        <p style="font-size:0.9rem; color:#888; margin-top:10px;">Hint: ${q.hint}</p>
+                    </div>
+                `;
+            });
+
+            quizForm.innerHTML = quizHTML;
+        }
+
+        function submitQuiz() {
+            let score = 0;
+            const totalQuestions = quizData.questions.length;
+
+            quizData.questions.forEach(q => {
+                const form = document.getElementById('physics-quiz');
+                const selectedOption = form.querySelector(`input[name="question-${q.questionNumber}"]:checked`);
+                const feedbackDiv = document.getElementById(`feedback-${q.questionNumber}`);
+                
+                const correctOption = q.answerOptions.find(opt => opt.isCorrect);
+                let isCorrect = false;
+
+                if (selectedOption) {
+                    const selectedIndex = parseInt(selectedOption.value);
+                    const selectedAnswer = q.answerOptions[selectedIndex];
+                    
+                    if (selectedAnswer.isCorrect) {
+                        score++;
+                        isCorrect = true;
+                    }
+
+                    feedbackDiv.classList.remove('correct-answer', 'incorrect-answer');
+                    
+                    if (isCorrect) {
+                        feedbackDiv.classList.add('correct-answer');
+                        // Inject the rationale, allowing KaTeX auto-render to handle the math ($, \frac, etc.)
+                        feedbackDiv.innerHTML = `✅ <strong>Correct!</strong> ${correctOption.rationale}`;
+                    } else {
+                        feedbackDiv.classList.add('incorrect-answer');
+                        // Inject the rationale, allowing KaTeX auto-render to handle the math
+                        feedbackDiv.innerHTML = `❌ <strong>Incorrect.</strong> The correct answer is <strong>${correctOption.text}</strong>. ${correctOption.rationale}`;
+                    }
+
+                } else {
+                    feedbackDiv.classList.remove('correct-answer', 'incorrect-answer');
+                    feedbackDiv.classList.add('incorrect-answer');
+                    // Inject the rationale, allowing KaTeX auto-render to handle the math
+                    feedbackDiv.innerHTML = `❌ <strong>Unanswered.</strong> The correct answer is <strong>${correctOption.text}</strong>. ${correctOption.rationale}`;
+                }
+
+                feedbackDiv.style.display = 'block';
+                
+                // --- FIX: Manually trigger KaTeX render on the newly injected content ---
+                // This forces KaTeX to process the feedback div immediately after injection.
+                if (window.renderMathInElement) {
+                    renderMathInElement(feedbackDiv, {
+                        delimiters: [
+                            { left: "$$", right: "$$", display: true },
+                            { left: "$", right: "$", display: false },
+                            { left: "\\(", right: "\\)", display: false },
+                            { left: "\\[", right: "\\]", display: true }
+                        ]
+                    });
+                }
+                // ---------------------------------------------------------------------
+
+            });
+
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = `Your Score: ${score} out of ${totalQuestions} (${((score / totalQuestions) * 100).toFixed(0)}%)!`;
+            resultsDiv.style.display = 'block';
+            
+            resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Initialize the quiz and the dynamic footer when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            renderQuiz();
+            setRandomQuote(); // Set the motivational quote
+        });
+    </script>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Note: This initial run handles the static math in the questions
+      renderMathInElement(document.body, {
+        delimiters: [
+          { left: "$$", right: "$$", display: true },
+          { left: "$", right: "$", display: false },
+          { left: "\\(", right: "\\)", display: false },
+          { left: "\\[", right: "\\]", display: true }
+        ]
+      });
+    });
+    </script>
+
+</body>
+</html>

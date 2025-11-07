@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Practice Papers & Cosmic Extras</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- COPY THE FULL STYLESHEET FROM INDEX.HTML HERE --- */
+        /* Placeholder for your full CSS */
+        html { font-size: 16px; }
+        body {
+            font-family: 'Quicksand', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff0f5; 
+            color: #333;
+            min-height: 100vh;
+            text-rendering: optimizeLegibility;
+            -webkit-overflow-scrolling: touch; 
+        }
+
+        .container {
+            max-width: 100%; 
+            width: 900px; 
+            margin: auto;
+            padding: 1.25rem 1rem;
+        }
+
+        header {
+            text-align: center;
+            padding: 2.5rem 0;
+            background: linear-gradient(135deg, #f8bbd0, #e1bee7); 
+            color: #4a3858;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+            border-radius: 0 0 30px 30px; 
+        }
+
+        h1.main-title {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.75rem; 
+            margin: 0;
+            font-weight: 700;
+        }
+
+        p.cute-line {
+            font-size: 1rem;
+            margin-top: 0.3rem;
+            font-style: italic;
+            font-weight: 400;
+            color: #6b5a83;
+        }
+        
+        /* Quiz Button List (similar to unit-list but specialized) */
+        .quiz-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: 1fr; 
+            gap: 1rem;
+            margin-bottom: 3rem; /* Add space before the next section */
+        }
+
+        .quiz-list li a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-color: #ffffff;
+            padding: 15px;
+            min-height: 70px;
+            text-decoration: none;
+            color: #4a3858; /* Darker text */
+            border-radius: 20px; 
+            border: 3px solid #ab47bc; /* Purple border */
+            box-shadow: 0 4px 8px rgba(139, 90, 156, 0.2); 
+            transition: all 0.15s ease-out;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .quiz-list li a:hover, .quiz-list li a:focus, .quiz-list li a:active {
+            background-color: #f3e5f5; /* Lighter purple hover */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(139, 90, 156, 0.3);
+        }
+
+        /* Sample Paper Button Styling (Distinct color) */
+        .sample-paper-list li a {
+            border-color: #ff80ab; /* Bright Pink */
+            color: #d81b60; /* Deep Pink */
+            background-color: #fce4ec; /* Lightest pink background */
+            font-size: 1.2rem;
+        }
+
+        .sample-paper-list li a:hover {
+            background-color: #ffcdd2;
+            box-shadow: 0 6px 12px rgba(255, 64, 129, 0.3);
+        }
+
+        /* Responsive Grid */
+        @media (min-width: 600px) {
+            .quiz-list, .sample-paper-list {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        /* Footer (Reused from index.html) */
+        footer {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            margin-top: 2rem;
+            color: #6b5a83; 
+            font-weight: 500;
+            font-size: 0.9rem;
+            border-top: 1px solid #ffcdd2; 
+            background-color: #ffffff;
+            border-radius: 30px 30px 0 0;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 class="main-title">🚀 Practice Papers & Cosmic Extras</h1>
+        <p class="cute-line">Test your knowledge across all thermodynamics units.</p>
+    </header>
+
+    <div class="container">
+        <h2 style="color: #d81b60; font-size: 1.5rem; text-align: center; margin-bottom: 1.5rem;">Unit-Specific Multiple Choice Quizzes (MCQs)</h2>
+        
+        <ul class="quiz-list">
+            <li><a href="mcq1.html">Quiz 1: Basic Concepts & First Law of Thermodynamics</a></li>
+            <li><a href="mcq2.html">Quiz 2: Second Law, Entropy, and Carnot's Cycle (Coming Soon!)</a></li>
+            <li><a href="mcq3.html">Quiz 3: Thermodynamic Potentials & Maxwell's Relations (Coming Soon!)</a></li>
+            <li><a href="mcq4.html">Quiz 4: Transport of Heat & Kinetic Theory (Coming Soon!)</a></li>
+            <li><a href="mcq5.html">Quiz 5: Fundamentals of Statistical Mechanics (Coming Soon!)</a></li>
+        </ul>
+        
+        <h2 style="color: #ab47bc; font-size: 1.5rem; text-align: center; margin-bottom: 1.5rem;">🌌 Full Length Sample Papers (25 Qs - PYQ Based)</h2>
+        
+        <ul class="quiz-list sample-paper-list">
+            <li><a href="sample1.html">Sample Paper 1: Full Syllabus Mock Test</a></li>
+            <li><a href="sample2.html">Sample Paper 2: Full Syllabus Mock Test</a></li>
+        </ul>
+        
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="index.html" style="text-decoration: none; color: #4a3858; font-weight: 700; font-size: 1.1rem;">← Back to Main Units</a>
+        </div>
+        
+    </div>
+
+    <footer>
+        "Remember, success is defined by the effort. Keep up the momentum. 💫" 
+    </footer>
+
+</body>
+</html>

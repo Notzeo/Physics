@@ -3,326 +3,622 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unit 5: Advanced Statistical Mechanics Notes</title>
+    <title>Unit 5: Fundamentals of Statistical Mechanics</title>
     
-    <!-- Load custom fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
     
-    <!-- Load MathJax for LaTeX rendering -->
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '\\[', right: '\\]', display: true}
+            ],
+            throwOnError : false
+        });"></script>
     
     <style>
-        /* General Styling for Clean Notes */
-        body { 
-            font-family: 'Roboto', sans-serif; 
-            line-height: 1.7; 
-            margin: 0; 
-            padding: 20px;
-            background-color: #f8f9fa; /* Light background */
-            color: #343a40;
+        /* --- Base & Global Styling (Same as Unit 2) --- */
+        body {
+            font-family: 'Quicksand', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff0f5; /* Lavender Blush */
+            color: #333;
+            min-height: 100vh;
+            line-height: 1.6;
         }
+
         .container {
-            max-width: 1000px;
+            max-width: 800px;
+            width: 95%;
             margin: auto;
-            padding: 0 15px;
+            padding: 20px 15px;
         }
-        h1, h2, h3 { 
-            font-family: 'Playfair Display', serif;
-            color: #495057; 
-            margin-top: 30px;
-            border-bottom: 1px solid #dee2e6;
-            padding-bottom: 5px;
-        }
-        h1 { 
-            border-bottom: 3px solid #6f42c1; /* Purple accent */
-            padding-bottom: 10px; 
-            font-size: 2.5em;
-            color: #6f42c1;
+
+        /* --- Header/Navigation --- */
+        header {
             text-align: center;
+            padding: 25px 0;
+            background: linear-gradient(135deg, #f8bbd0, #e1bee7); 
+            color: #4a3858;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 30px 30px;
+            position: relative;
         }
-        h2 { 
-            color: #007bff; 
+
+        h1 {
             font-size: 1.8em;
-            margin-top: 40px;
-        }
-        h3 { 
-            color: #28a745; 
-            font-size: 1.4em;
-            margin-top: 25px;
-            border-bottom: none;
-        }
-        .equation { 
-            text-align: center; 
-            font-size: 1.3em; 
-            margin: 25px 0; 
-            padding: 15px;
-            background-color: #e9ecef;
-            border-radius: 5px;
-            border-left: 5px solid #6f42c1; /* Purple accent */
-        }
-        .table-container { 
-            overflow-x: auto; 
-            margin: 20px 0;
-        }
-        table { 
-            min-width: 600px;
-            border-collapse: collapse; 
-        }
-        th, td { 
-            border: 1px solid #ced4da; 
-            padding: 12px; 
-            text-align: left;
-            vertical-align: top;
-        }
-        th { 
-            background-color: #f0e9f7;
-            color: #343a40;
+            margin: 0 0 5px 0;
             font-weight: 700;
         }
-        .highlight {
-            font-weight: bold;
-            color: #dc3545; /* Red accent for key terms */
+
+        h2 {
+            font-size: 1.4em;
+            color: #8e24aa;
+            border-bottom: 2px solid #ffcdd2;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
         }
-        strong { /* Ensure strong tags are respected */
-            font-weight: bold;
+        
+        h3 {
+            font-size: 1.1em;
+            color: #d81b60;
+            margin-top: 20px;
+            margin-bottom: 8px;
+            font-weight: 700;
         }
-        hr {
-            border: 0;
-            height: 1px;
-            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #ced4da, rgba(0, 0, 0, 0));
-            margin: 40px 0;
+
+        /* --- Content Styling --- */
+        p, ul, ol, table {
+            margin-bottom: 15px;
+            padding-left: 5px;
+        }
+        
+        ul, ol {
+            padding-left: 25px;
+        }
+
+        .section-card {
+            background-color: #ffffff;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid #ff80ab;
+        }
+        
+        /* --- Table Styling --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95em;
+        }
+
+        th, td {
+            border: 1px solid #ffcdd2;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #fce4ec;
+            color: #8e24aa;
+            font-weight: 700;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+
+        /* --- Math Rendering Area --- */
+        .katex-display {
+            margin: 15px 0 !important;
+            padding: 10px;
+            background-color: #f3e5f5;
+            border-radius: 10px;
+            overflow-x: auto;
+        }
+        
+        /* --- Back Button --- */
+        .back-button {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #ab47bc;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 700;
+            transition: background-color 0.2s;
+            position: absolute;
+            left: 20px;
+            top: 20px;
+        }
+
+        .back-button:hover {
+            background-color: #8e24aa;
+        }
+        
+        /* --- Examples and Notes --- */
+        .example-box {
+            border: 2px dashed #ff80ab;
+            padding: 15px;
+            margin: 15px 0;
+            background-color: #fffafc;
+            border-radius: 10px;
+        }
+        .example-box strong { color: #d81b60; }
+        
+        .note {
+            font-style: italic;
+            color: #6b5a83;
+            margin-top: 10px;
+        }
+        
+        /* --- Answer Box Styling --- */
+        .answer-box {
+            border: 1px solid #ffcdd2;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #fce4ec;
+            border-radius: 8px;
+        }
+        .answer-box strong { color: #8e24aa; }
+
+        summary {
+            cursor: pointer;
+            color: #ab47bc;
+            font-weight: 700;
+            padding: 5px 0;
+            outline: none;
+            transition: color 0.2s;
+        }
+        summary:hover {
+            color: #d81b60;
+        }
+
+        /* Question list styling */
+        .quick-check {
+            border-top: 2px dashed #ffcdd2;
+            margin-top: 20px;
+            padding-top: 15px;
+        }
+        .quick-check ol {
+            padding-left: 20px;
+        }
+        .quick-check h3 {
+            color: #8e24aa;
+            margin-bottom: 10px;
+        }
+        .quick-check li {
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
-<div class="container">
 
-    <h1>🌌 Unit 5: Detailed Statistical Mechanics Notes</h1>
+    <header>
+        <div class="container">
+            <a href="index.html" class="back-button">← Back to Units</a>
+            <h1>Unit 5: Fundamentals of Statistical Mechanics</h1>
+            <p style="margin-top: 10px;">The Bridge from Micro to Macro</p>
+        </div>
+    </header>
 
-    <hr>
+    <div class="container">
+        
+        <div class="section-card">
+            <h2>1. Introduction to Statistical Mechanics 🧠</h2>
+            
+            <h3>1.1 Definition and Scope</h3>
+            <p><strong>Statistical Mechanics (SM):</strong> It is a branch of physics that seeks to explain the macroscopic (thermodynamic) properties of matter in terms of the behavior and properties of its microscopic constituents (atoms and molecules).</p>
+            <p><strong>Scope:</strong> SM provides a statistical interpretation of fundamental thermodynamic quantities like temperature, pressure, and entropy, deriving them from the laws of mechanics (classical or quantum) applied to a system with an enormous number of particles ($\approx 10^{23}$).</p>
 
-    <h2>1. Microscopic Foundations and Probability</h2>
-    
-    <p>Statistical Mechanics connects the laws governing the behavior of \(10^{23}\) particles (microphysics) to the observed properties of macroscopic matter (thermodynamics).</p>
+            <h3>1.2 Importance of Statistics in Thermodynamics</h3>
+            <p><strong>Large Number Problem:</strong> A macroscopic system contains an astronomically large number of particles ($N$). It's impossible to track the state ($\mathbf{r}_i, \mathbf{p}_i$) of every single particle.</p>
+            <p><strong>Statistical Necessity:</strong> Since we cannot track individuals, we rely on statistical averages and probability to predict the bulk behavior of the system. For large $N$, statistical predictions become <strong>virtually certain</strong> (i.e., fluctuations are negligible).</p>
 
-    <h3>1.1 Microstate vs. Macrostate</h3>
-    <ul>
-        <li><strong>Microstate:</strong> A complete specification of the system, defined by the exact location \((q_i)\) and momentum \((p_i)\) of every single particle, or by the exact quantum state of every particle.</li>
-        <li><strong>Macrostate:</strong> A state defined by a few measurable variables (e.g., \(N, V, T\)). A single macrostate corresponds to a <strong>vast number of microstates</strong>.</li>
-    </ul>
+            <h3>1.3 Relationship between Microscopic and Macroscopic Systems</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>System</th>
+                        <th>Description</th>
+                        <th>Variables</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Microscopic</td>
+                        <td>Deals with individual particles and their mechanical states.</td>
+                        <td>Position ($\mathbf{r}_i$), Momentum ($\mathbf{p}_i$), Energy ($\epsilon_i$).</td>
+                    </tr>
+                    <tr>
+                        <td>Macroscopic</td>
+                        <td>Deals with the system as a whole (bulk properties).</td>
+                        <td>Pressure ($P$), Volume ($V$), Temperature ($T$), Entropy ($S$).</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><strong>The Bridge:</strong> Statistical Mechanics provides the rules to transition from the probabilities of microscopic states to the average values observed as macroscopic properties.</p>
+        </div>
+        
+        <div class="section-card">
+            <h2>2. Probability and Entropy: The Statistical Postulate 📜</h2>
 
-    <h4>Example: Two-Level Spin System</h4>
-    <p>Consider $N=4$ distinguishable spins, each either Up (\(\uparrow\), energy 0) or Down (\(\downarrow\), energy \(\epsilon\)).</p>
-    <ul>
-        <li><strong>Macrostate:</strong> 2 Up, 2 Down. Total Energy $E = 2\epsilon$.</li>
-        <li><strong>Microstates (Multiplicity $W$):</strong> The possible arrangements are \(\uparrow\uparrow\downarrow\downarrow\), \(\uparrow\downarrow\uparrow\downarrow\), \(\uparrow\downarrow\downarrow\uparrow\), \(\downarrow\uparrow\uparrow\downarrow\), \(\downarrow\uparrow\downarrow\uparrow\), \(\downarrow\downarrow\uparrow\uparrow\). The multiplicity is \(W=6\).</li>
-    </ul>
+            <h3>2.1 Concept of Probability and Thermodynamic Probability</h3>
+            <h4>a) Probability ($P$)</h4>
+            <p><strong>Definition:</strong> In general, the probability of an event is the ratio of the number of favorable outcomes to the total number of possible outcomes.</p>
+            $$P = \frac{\text{Number of Favorable Outcomes}}{\text{Total Number of Possible Outcomes}}$$
+            
+            <h4>b) Thermodynamic Probability ($W$)</h4>
+            <p><strong>Definition:</strong> The <strong>Thermodynamic Probability ($W$)</strong> (or <strong>Multiplicity</strong>) of a given macrostate is the total number of distinct microstates corresponding to that macrostate.</p>
+            <p><strong>Nature:</strong> Unlike mathematical probability ($P \le 1$), $W$ is always an integer and usually a <strong>very large number</strong>.</p>
+            <p><strong>Mathematical Expression (Distinguishable Particles):</strong></p>
+            $$W = \frac{N!}{n_1! n_2! \cdots n_k!} = \frac{N!}{\prod_{i=1}^{k} n_i!}$$
+            <p>Constraint: $\sum_{i=1}^{k} n_i = N$ (Total number of particles is constant).</p>
+            
+            <div class="example-box">
+                <strong>Example:</strong> Distributing 3 distinguishable particles (A, B, C) into 2 boxes such that $n_1=2$ and $n_2=1$.
+                $$W = \frac{3!}{2! 1!} = 3$$
+                <p>Possible microstates: $\{(A, B) | C\}$, $\{(A, C) | B\}$, $\{(B, C) | A\}$.</p>
+            </div>
 
-    <h3>1.2 Thermodynamic Probability (Multiplicity)</h3>
-    <p>The thermodynamic probability (\(W\)) or multiplicity is the number of accessible microstates corresponding to a given macrostate. The equilibrium state is the macrostate that possesses the maximum value of \(W\), designated \(W_{\text{max}}\).</p>
-    
-    <p><strong>Boltzmann's Relation (Fundamental Formula):</strong> This equation is the formal bridge between statistics and thermodynamics, linking microscopic multiplicity to macroscopic entropy.</p>
-    <div class="equation">
-        $$S = k \ln W$$
+            <h3>2.2 Connection between Probability and Entropy</h3>
+            <p><strong>Fundamental Insight:</strong> A system naturally evolves toward the macrostate that has the <strong>highest thermodynamic probability ($\mathbf{W}$)</strong>, as this state is statistically the most likely.</p>
+            <p><strong>Equilibrium:</strong> The state of thermodynamic equilibrium is the macrostate for which $W$ is maximum ($W_{\max}$).</p>
+            
+            <p><strong>Boltzmann's Postulate:</strong> The macroscopic quantity Entropy ($S$) is directly related to the maximum thermodynamic probability by:</p>
+            $$\mathbf{S = k \ln W}$$
+            <p>$k$: <strong>Boltzmann constant</strong> ($k = 1.38 \times 10^{-23} \text{ J/K}$).</p>
+            <p>Since a system naturally moves toward $W_{\max}$, and $\ln W$ is an increasing function, the system naturally moves toward $\mathbf{S_{\max}}$. This provides a statistical basis for the <strong>Second Law of Thermodynamics</strong>.</p>
+        </div>
+        
+        <div class="section-card">
+            <h2>3. Postulates and Ensembles 🌌</h2>
+
+            <h3>3.1 Fundamental Assumptions</h3>
+            <h4>Postulate of Equal a Priori Probability (Microcanonical Ensemble)</h4>
+            <p><strong>Statement:</strong> For an isolated system in equilibrium, all accessible microstates corresponding to the given macrostate (defined by $E, V, N$) are <strong>equally probable</strong>.</p>
+            <p><strong>Meaning:</strong> If a system can be in $W$ different microstates, the probability of finding the system in any one of those specific microstates is exactly $1/W$.</p>
+            
+            <h4>Ergodic Hypothesis (Conceptual)</h4>
+            <p><strong>Statement:</strong> For a system in equilibrium, the time average of any physical quantity (taken as the system evolves over a long time) is equal to the ensemble average (taken over all microstates accessible to the system at any given instant).</p>
+            <p><strong>Significance:</strong> It justifies replacing complex time averages with simpler ensemble averages.</p>
+
+            <h3>3.2 Concept of Ensembles (Gibbs)</h3>
+            <p><strong>Ensemble:</strong> A hypothetical collection of a very large number of independent systems, all constructed to be microscopic copies of the actual system under consideration, but differing in their instantaneous microscopic state.</p>
+            <p><strong>Representative Point:</strong> The instantaneous microscopic state of a system is uniquely defined by its coordinates in phase space. The collection of these points represents the statistical distribution of the ensemble.</p>
+
+            <h3>3.3 Types of Ensembles (The Three Pillars)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ensemble</th>
+                        <th>System Type</th>
+                        <th>Fixed Variables</th>
+                        <th>Statistical Weight / Probability ($\mathbf{P_i}$)</th>
+                        <th>Associated Potential</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Microcanonical</strong></td>
+                        <td>Isolated</td>
+                        <td>$N, V, E$</td>
+                        <td>$P_i = 1/\Omega(E)$ (Constant)</td>
+                        <td>Entropy ($S$)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Canonical</strong></td>
+                        <td>Closed (Heat Reservoir)</td>
+                        <td>$N, V, T$</td>
+                        <td>$P_i \propto e^{-E_i / k T}$ (Boltzmann Factor)</td>
+                        <td>Helmholtz Free Energy ($A$)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Grand Canonical</strong></td>
+                        <td>Open (Heat & Particle Reservoir)</td>
+                        <td>$V, T, \mu$</td>
+                        <td>$P_i \propto e^{-(E_i - \mu N_i) / k T}$</td>
+                        <td>Grand Potential ($\Phi$)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="section-card">
+            <h2>4. Macrostates and Microstates 🔬</h2>
+
+            <h3>4.1 Definition and Difference</h3>
+            <ul>
+                <li><strong>Macrostate:</strong> The state of a system specified by its macroscopic parameters ($P, V, T, E, N$). It describes the <strong>observable, bulk properties</strong>.</li>
+                <li><strong>Microstate:</strong> The state of a system specified by the <strong>exact state of every single constituent particle</strong> (position and momentum, or quantum state).</li>
+            </ul>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Macrostate</th>
+                        <th>Microstate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Specification</td>
+                        <td>Bulk variables ($P, V, T, E$)</td>
+                        <td>Particle variables ($\mathbf{r}_i, \mathbf{p}_i$)</td>
+                    </tr>
+                    <tr>
+                        <td>Number</td>
+                        <td>Few</td>
+                        <td>Extremely Large ($W$)</td>
+                    </tr>
+                    <tr>
+                        <td>Observability</td>
+                        <td>Directly Observable</td>
+                        <td>Hypothetical/Unobservable</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>4.2 Thermodynamic Probability ($W$) Example (4 Coins)</h3>
+            <p>For $N=4$ distinguishable coins, the macrostate is defined by the count of Heads ($H$) and Tails ($T$). The most probable macrostate has the highest $W$ (or Multiplicity).</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Macrostate ($n_H, n_T$)</th>
+                        <th>Thermodynamic Probability ($W$)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>(4, 0)</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>(3, 1)</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td><strong>(2, 2)</strong></td>
+                        <td>$\mathbf{6}$ ($W_{\max}$)</td>
+                    </tr>
+                    <tr>
+                        <td>(1, 3)</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>(0, 4)</td>
+                        <td>1</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="note">As $N \to \infty$, the distribution becomes sharply peaked around the equilibrium mean ($N/2, N/2$), confirming that <strong>equilibrium is the most probable state</strong>.</p>
+        </div>
+
+        <div class="section-card">
+            <h2>5. Phase Space and Elementary Cells 🌌</h2>
+            
+            <h3>5.1 Definition of Phase Space</h3>
+            <p><strong>Phase Space:</strong> A theoretical, multi-dimensional space used to represent the instantaneous state of a mechanical system by its generalized position coordinates ($q_i$) and conjugate momentum coordinates ($p_i$).</p>
+            <p><strong>Dimensions:</strong> For a system with $N$ particles in 3D, the phase space is $\mathbf{6N}$-dimensional ($3N$ position $+ 3N$ momentum).</p>
+            <p><strong>Representative Point:</strong> Every microstate corresponds to a single point in $\gamma$-space. The evolution of the system is the trajectory of this point.</p>
+
+            <h3>5.2 $\mu$-space and $\gamma$-space</h3>
+            <ul>
+                <li><strong>$\mu$-space (Mu-space, Single-Particle):</strong> <strong>6-dimensional</strong> (3 position, 3 momentum). The state of the entire $N$-particle system is represented by $N$ separate points in $\mu$-space.</li>
+                <li><strong>$\gamma$-space (Gamma-space, Multi-Particle):</strong> <strong>$6N$-dimensional</strong>. The state of the entire system is represented by a single, unique representative point.</li>
+            </ul>
+
+            <h3>5.3 Elementary Cells and Quantum Connection</h3>
+            <p><strong>Elementary Cell (Quantum Volume):</strong> Due to the <strong>Heisenberg Uncertainty Principle</strong> ($\Delta q \Delta p \ge h$), the phase space cannot be specified with infinite precision. It must be divided into tiny, irreducible volumes called elementary cells.</p>
+            <p><strong>Volume of Elementary Cell:</strong></p>
+            <ul>
+                <li>In 6-dimensional $\mu$-space: $\mathbf{\text{Volume} = h^3}$</li>
+                <li>In $6N$-dimensional $\gamma$-space: $\mathbf{\text{Volume} = h^{3N}}$</li>
+            </ul>
+            <p class="note">Counting the number of microstates ($W$) is equivalent to counting the number of elementary cells occupied by the system, linking statistical mechanics to quantum mechanics via Planck's constant ($h$).</p>
+        </div>
+        
+        <div class="section-card">
+            <h2>6. Equilibrium and Fluctuation Constraints 🌡️</h2>
+            
+            <h3>6.1 Concept of Equilibrium in Statistical Mechanics</h3>
+            <p><strong>Equilibrium:</strong> The most probable macrostate ($W_{\max}$) toward which the system naturally evolves. Macroscopic parameters are stable over time.</p>
+            <p><strong>Mathematical Condition:</strong> Equilibrium is found by maximizing $\ln W$ subject to constraints: $\sum n_i = N$ (constant particles) and $\sum n_i \epsilon_i = E$ (constant energy).</p>
+
+            <h3>6.2 Conditions for Equilibrium Between Systems</h3>
+            <p>When two systems $A_1$ and $A_2$ exchange a quantity $X$ (like energy, volume, or particles), the equilibrium condition (maximizing total entropy $S = S_1 + S_2$) is achieved when the intensive parameters associated with $X$ are equal.</p>
+            <ul>
+                <li><strong>Thermal Equilibrium ($\delta E = 0$):</strong> Since $\frac{\partial S}{\partial E} = \frac{1}{T}$, equilibrium requires: $$\mathbf{T_1 = T_2}$$</li>
+                <li><strong>Mechanical Equilibrium ($\delta V = 0$):</strong> Since $\frac{\partial S}{\partial V} = \frac{P}{T}$, equilibrium requires: $$\mathbf{P_1 = P_2}$$</li>
+                <li><strong>Diffusive Equilibrium ($\delta N = 0$):</strong> Since $\frac{\partial S}{\partial N} = -\frac{\mu}{T}$, equilibrium requires: $$\mathbf{\mu_1 = \mu_2}$$ (Chemical Potential is equal).</li>
+            </ul>
+
+            <h3>6.3 Fluctuations and Statistical Basis of the Second Law</h3>
+            <p><strong>Fluctuations:</strong> Deviations from the equilibrium state ($W_{\max}$). They are negligible for macroscopic systems ($N \to \infty$).</p>
+            <p><strong>Probability of Fluctuation:</strong> The probability of observing a state with entropy $S$ that is slightly less than the maximum equilibrium entropy $S_0$ is given by:</p>
+            $$P(S) \propto e^{(S - S_0) / k}$$
+            <p>Since $S_0 - S$ is positive, the probability of any large fluctuation (decrease in $S$) is <strong>exponentially tiny</strong>. The Second Law ($\Delta S \ge 0$) is thus a statement of overwhelmingly high probability, not absolute certainty.</p>
+        </div>
+        
+        <div class="section-card">
+            <h2>7. Boltzmann Canonical Distribution Law 🌡️</h2>
+
+            <h3>7.1 Expression for Probability ($P_i$)</h3>
+            <p>The canonical distribution gives the probability $P_i$ that a system, in thermal contact with a large heat reservoir at constant temperature $T$, will be in a specific microstate $i$ with energy $E_i$.</p>
+            $$P_i = \frac{e^{-E_i / k T}}{\sum_{j} e^{-E_j / k T}} = \frac{e^{-E_i / k T}}{Z}$$
+
+            <h3>7.2 Partition Function ($Z$) and its Significance</h3>
+            <p><strong>Definition (Sum over microstates):</strong></p>
+            $$Z = \sum_{i} e^{-E_i / k T}$$
+            
+            <p><strong>Significance (The Bridge):</strong> All macroscopic thermodynamic properties can be derived from the Partition Function ($Z$) and its derivatives:</p>
+            <ul>
+                <li><strong>Normalization:</strong> $Z$ is the normalization constant ($\sum P_i = 1$).</li>
+                <li><strong>Helmholtz Free Energy ($A$):</strong> $$\mathbf{A = - k T \ln Z}$$</li>
+                <li><strong>Internal Energy ($U$):</strong> $U = \langle E \rangle = - \left( \frac{\partial \ln Z}{\partial \beta} \right)_{V} \quad \text{where } \beta = 1/kT$</li>
+            </ul>
+            
+            <div class="example-box">
+                <strong>Example: Population Ratio</strong>
+                <p>The ratio of the number of particles ($n_2/n_1$) occupying two non-degenerate energy levels $\epsilon_2$ and $\epsilon_1$ ($\epsilon_2 > \epsilon_1$) at temperature $T$ is given by the Boltzmann factor ratio:</p>
+                $$\frac{n_2}{n_1} = e^{-(\epsilon_2 - \epsilon_1) / k T}$$
+            </div>
+        </div>
+
+        <div class="section-card">
+            <h2>8. Classical and Quantum Statistics ⚛️</h2>
+
+            <h3>8.1 Need for Quantum Statistics</h3>
+            <p>Classical <strong>Maxwell-Boltzmann (MB)</strong> statistics failed because it treated particles as <strong>distinguishable</strong>, which violates the fundamental quantum reality of indistinguishable particles (electrons, photons, etc.), and it ignored the Pauli Exclusion Principle.</p>
+
+            <h3>8.2 Comparison of the Three Statistics</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Maxwell–Boltzmann (MB)</th>
+                        <th>Bose–Einstein (BE)</th>
+                        <th>Fermi–Dirac (FD)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Distinguishability</td>
+                        <td><strong>Distinguishable</strong> (Classical)</td>
+                        <td><strong>Indistinguishable</strong> (Quantum)</td>
+                        <td><strong>Indistinguishable</strong> (Quantum)</td>
+                    </tr>
+                    <tr>
+                        <td>Particle Type</td>
+                        <td>Ideal Gases (High $T$)</td>
+                        <td>Bosons (Integer Spin)</td>
+                        <td>Fermions (Half-Integer Spin)</td>
+                    </tr>
+                    <tr>
+                        <td>Occupancy</td>
+                        <td>Unlimited</td>
+                        <td>Unlimited</td>
+                        <td><strong>Max 1 particle per state (Pauli)</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Distribution Law ($n_i/g_i$)</td>
+                        <td>$\propto e^{-\epsilon_i / k T}$</td>
+                        <td>$\frac{1}{e^{(\epsilon_i - \mu) / k T} - 1}$</td>
+                        <td>$\frac{1}{e^{(\epsilon_i - \mu) / k T} + 1}$</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="note">
+                <strong>Key Concepts:</strong>
+                <ul>
+                    <li><strong>Bose-Einstein Condensation (BEC):</strong> At very low $T$, a macroscopic number of bosons "condense" into the lowest energy state.</li>
+                    <li><strong>Fermi Energy ($E_F$):</strong> At $T=0 \text{ K}$, all energy levels up to $E_F$ are completely filled by fermions, and all above are empty.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section-card">
+            <h2>9. Summary of Fundamental Equations 🌟</h2>
+            
+            <p>These equations form the core mathematical links provided by Statistical Mechanics:</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Relation</th>
+                        <th>Ensemble</th>
+                        <th>Formula</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Entropy</td>
+                        <td>Microcanonical</td>
+                        <td>$$\mathbf{S = k \ln \Omega(E)}$$</td>
+                    </tr>
+                    <tr>
+                        <td>Thermal Eq.</td>
+                        <td>General</td>
+                        <td>$$\frac{1}{T} = \left( \frac{\partial S}{\partial E} \right)_{V, N}$$</td>
+                    </tr>
+                    <tr>
+                        <td>Helmholtz Free Energy</td>
+                        <td>Canonical</td>
+                        <td>$$\mathbf{A = - k T \ln Z}$$</td>
+                    </tr>
+                    <tr>
+                        <td>Canonical Probability</td>
+                        <td>Canonical</td>
+                        <td>$$P_i = \frac{e^{-E_i / k T}}{Z}$$</td>
+                    </tr>
+                    <tr>
+                        <td>BE Distribution</td>
+                        <td>Grand Canonical</td>
+                        <td>$$n_i = \frac{g_i}{e^{(\epsilon_i - \mu) / k T} - 1}$$</td>
+                    </tr>
+                    <tr>
+                        <td>FD Distribution</td>
+                        <td>Grand Canonical</td>
+                        <td>$$n_i = \frac{g_i}{e^{(\epsilon_i - \mu) / k T} + 1}$$</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+        </div>
+        
+        <div class="section-card">
+            <div class="quick-check">
+                <h3>Unit 5 Review Questions</h3>
+                <ol>
+                    <li>Explain the physical meaning of the ratio $\frac{\sqrt{\langle (\Delta E)^2 \rangle}}{\langle E \rangle} \propto \frac{1}{\sqrt{N}}$ in statistical mechanics.
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> This ratio represents the <strong>relative energy fluctuation</strong>. Since $N$ is astronomically large ($\approx 10^{23}$), the fluctuation is incredibly small, which justifies the use of time-independent equilibrium values for macroscopic systems.
+                            </div>
+                        </details>
+                    </li>
+                    <li>What property of entropy dictates that the function $S=f(W)$ must be logarithmic?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> Entropy must be an <strong>additive property</strong> ($S = S_1 + S_2$), while thermodynamic probability is a <strong>multiplicative property</strong> ($W = W_1 \times W_2$). The only function satisfying $f(W_1 W_2) = f(W_1) + f(W_2)$ is $f(W) = k \ln W$.
+                            </div>
+                        </details>
+                    </li>
+                    <li>What is the significance of the fact that all accessible microstates are equally probable in the Microcanonical Ensemble?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> This postulate (Equal a Priori Probability) ensures that when a system is isolated (fixed $N, V, E$), there is no physical bias towards any specific microscopic arrangement, allowing the calculation of ensemble averages to be straightforward and statistically unbiased.
+                            </div>
+                        </details>
+                    </li>
+                    <li>Which physical principle makes the concept of an elementary cell in phase space necessary?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> The <strong>Heisenberg Uncertainty Principle</strong> ($\Delta q \Delta p \ge h$), which dictates that position and momentum cannot be simultaneously known with infinite precision, defining a minimum, irreducible volume $h$ for a pair of canonical coordinates.
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
     </div>
-    <ul>
-        <li>\(S\): Entropy (J/K).</li>
-        <li>\(W\): Thermodynamic Probability (unitless).</li>
-        <li>\(k\): Boltzmann Constant (\(k = 1.3806 \times 10^{-23} \text{ J/K}\)).</li>
-    </ul>
-    
-    <h3>1.3 Counting Microstates (Distinguishable Particles)</h3>
-    <p>For a system of \(N\) total <strong>distinguishable</strong> particles where \(n_i\) particles are in the state/level \(i\):</p>
-    <div class="equation">
-        $$W = \frac{N!}{n_1! n_2! n_3! \cdots} = \frac{N!}{\prod_{i} n_i!}$$
-    </div>
-    <p>The equilibrium distribution \((n_i^*)\) is found by maximizing \(W\) (or \(\ln W\)) subject to constraints on total particle number (\(\sum n_i = N\)) and total energy (\(\sum n_i \epsilon_i = E\)). This optimization is typically solved using the method of **Lagrange Multipliers**.</p>
 
-    <hr>
-
-    <h2>2. Statistical Ensembles and Their Partition Functions</h2>
-
-    <p>An <strong>Ensemble</strong> is a theoretical collection of a large number of independent systems, all constructed to satisfy the same macroscopic boundary conditions. Using an ensemble allows us to replace the time average (hard to calculate) with the ensemble average (easier to calculate).</p>
-
-    <h3>2.1 The Three Principal Ensembles</h3>
-    <div class="table-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>Ensemble</th>
-                    <th>Fixed Variables (Constants)</th>
-                    <th>Physical System</th>
-                    <th>Partition Function / Potential</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Microcanonical (MCE)</strong></td>
-                    <td>$E, V, N$ (Energy, Volume, Particle Number)</td>
-                    <td><strong>Isolated System</strong> (No exchange of energy or matter)</td>
-                    <td>Multiplicity \(W\) / Entropy \(S\)</td>
-                </tr>
-                <tr>
-                    <td><strong>Canonical (CE)</strong></td>
-                    <td>$T, V, N$ (Temperature, Volume, Particle Number)</td>
-                    <td>System in contact with a <strong>Heat Reservoir</strong> (Exchanges Energy \(E\))</td>
-                    <td>Partition Function \(Z\) / Helmholtz Free Energy \(A\)</td>
-                </tr>
-                <tr>
-                    <td><strong>Grand Canonical (GCE)</strong></td>
-                    <td>$T, V, \mu$ (Temperature, Volume, Chemical Potential)</td>
-                    <td>System in contact with a <strong>Particle/Heat Reservoir</strong> (Exchanges Energy \(E\) and Particles \(N\))</td>
-                    <td>Grand Partition Function \(\mathcal{Z}\) / Grand Potential \(\Phi\)</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <h3>2.2 The Canonical Ensemble and Partition Function (\(Z\))</h3>
-    
-    <p>The probability \(P_i\) of finding the system in a microstate \(i\) with energy \(E_i\) is given by the <strong>Boltzmann Factor</strong>, where \(\beta = 1/k T\):</p>
-    <div class="equation">
-        $$P_i = \frac{e^{-E_i/k T}}{Z} = \frac{e^{-\beta E_i}}{Z}$$
-    </div>
-    
-    <p>The <strong>Canonical Partition Function (\(Z\))</strong> is the sum over all possible microstates \(i\). It "partitions" the energy over the possible states.</p>
-    <div class="equation">
-        $$Z = \sum_{i} e^{-\beta E_i}$$
-    </div>
-    
-    <h4>Deriving Thermodynamic Variables from $Z$</h4>
-    <p>All macroscopic properties are derivatives of the Helmholtz Free Energy, which is directly linked to $Z$.</p>
-    <ul>
-        <li><strong>Helmholtz Free Energy (\(A\)):</strong> The starting point for all derivations.
-            $$A = - k T \ln Z$$
-        </li>
-        <li><strong>Internal Energy (\(\langle E \rangle\)):</strong> Derived using the inverse temperature \(\beta\).
-            $$\langle E \rangle = - \left( \frac{\partial \ln Z}{\partial \beta} \right)_{V, N} = k T^2 \left( \frac{\partial \ln Z}{\partial T} \right)_{V, N}$$
-        </li>
-        <li><strong>Pressure (\(P\)):</strong> Derived from the Free Energy's volume dependence.
-            $$P = - \left( \frac{\partial A}{\partial V} \right)_{T, N} = k T \left( \frac{\partial \ln Z}{\partial V} \right)_{T, N}$$
-        </li>
-        <li><strong>Entropy (\(S\)):</strong> Derived from the Free Energy's temperature dependence.
-            $$S = - \left( \frac{\partial A}{\partial T} \right)_{V, N}$$
-        </li>
-        <li><strong>Heat Capacity ($C_V$):</strong> The key fluctuation quantity related to energy variance.
-            $$C_V = \left( \frac{\partial \langle E \rangle}{\partial T} \right)_{V, N}$$
-        </li>
-    </ul>
-
-    <hr>
-
-    <h2>3. Phase Space, Indistinguishability, and Fluctuations</h2>
-
-    <h3>3.1 Phase Space and Indistinguishability</h3>
-    <p>For a system of \(N\) particles, the <strong>$\Gamma$-Space</strong> is \(6N\)-dimensional (3 spatial coordinates and 3 momentum coordinates for each particle). A single point in this space represents one microstate.</p>
-    
-    <p>In classical mechanics, the number of microstates (\(W\)) accessible to a system with total phase space volume \(\tau\) is determined by dividing the phase space volume by the minimum quantum volume \(h^{3N}\). For identical particles (like an ideal gas), we must include the **Gibbs Correction** to avoid the Gibbs Paradox (an entropy mixing problem):</p>
-    <div class="equation">
-        $$W_{\text{corrected}} \approx \frac{1}{N!} \frac{\tau}{h^{3N}}$$
-    </div>
-    <p>The factor \(1/N!\) ensures that the resulting entropy $S$ is an **extensive property** (proportional to \(N\)), meaning it scales correctly with the size of the system.</p>
-
-    <h3>3.2 Fluctuations in the Canonical Ensemble</h3>
-    <p>The canonical ensemble allows the energy $E$ to fluctuate around its mean value \(\langle E \rangle\). For macroscopic systems, the relative fluctuation (\(\delta\)) of any thermodynamic quantity (\(X\)) is extremely small because it scales inversely with the square root of the number of particles \(N\):</p>
-    <div class="equation">
-        $$\delta = \frac{\sqrt{\langle (\Delta E)^2 \rangle}}{\langle E \rangle} = \frac{\sqrt{k T^2 C_V}}{\langle E \rangle} \propto \frac{1}{\sqrt{N}}$$
-    </div>
-    <p>Since $N \approx 10^{23}$, the fluctuations are negligible, and the ensemble average is practically identical to the thermodynamic mean.</p>
-
-    <hr>
-
-    <h2>4. Quantum Distribution Laws: MB, BE, and FD Statistics</h2>
-    
-    <p>The distribution laws describe the average number of particles \(\langle n_i \rangle\) that occupy an energy level \(\epsilon_i\) with degeneracy \(g_i\).</p>
-
-    <h4>General Distribution Function (Occupation Number)</h4>
-    <div class="equation">
-        $$\langle n_i \rangle = \frac{g_i}{e^{\beta(\epsilon_i - \mu)} + \alpha}$$
-    </div>
-    <p>Where \(\beta = 1/k T\), \(\mu\) is the chemical potential, and \(\alpha\) defines the type of statistics.</p>
-
-    <div class="table-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>Statistics</th>
-                    <th>$\alpha$ Value</th>
-                    <th>Particles</th>
-                    <th>Multiplicity $W$ Formula</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Maxwell-Boltzmann (MB)</strong></td>
-                    <td>$\alpha = 0$</td>
-                    <td>**Distinguishable** (Classical Limit)</td>
-                    <td>$$W_{\text{MB}} = \prod_{i} \frac{g_i^{n_i}}{n_i!}$$</td>
-                </tr>
-                <tr>
-                    <td><strong>Bose-Einstein (BE)</strong></td>
-                    <td>$\alpha = -1$</td>
-                    <td>**Bosons** (Integer Spin, Indistinguishable)</td>
-                    <td>$$W_{\text{BE}} = \prod_{i} \frac{(n_i + g_i - 1)!}{n_i! (g_i - 1)!}$$</td>
-                </tr>
-                <tr>
-                    <td><strong>Fermi-Dirac (FD)</strong></td>
-                    <td>$\alpha = +1$</td>
-                    <td>**Fermions** (Half-Integer Spin, Indistinguishable)</td>
-                    <td>$$W_{\text{FD}} = \prod_{i} \frac{g_i!}{n_i! (g_i - n_i)!}$$</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    
-    <hr>
-    
-    <h2>5. The Grand Canonical Ensemble (GCE) and Ideal Gas</h2>
-    
-    <p>The GCE is defined by fixed **$T, V,$ and $\mu$**. The Grand Partition Function ($\mathcal{Z}$) is useful because it is directly related to the average particle number $\langle N \rangle$ and the pressure $P$.</p>
-    
-    <h3>5.1 Grand Canonical Partition Function (\(\mathcal{Z}\))</h3>
-    <div class="equation">
-        $$\mathcal{Z} = \sum_{N=0}^{\infty} Z_N e^{\beta \mu N}$$
-    </div>
-    <p>Where $Z_N$ is the Canonical Partition Function for a system with exactly $N$ particles. The quantity $e^{\beta \mu}$ is the **Fugacity** or **Absolute Activity** $z$.</p>
-    
-    <h4>Relationship to Grand Potential and Pressure</h4>
-    <p>The potential associated with the GCE is the **Grand Potential** (\(\Phi\) or \(\Omega\)):</p>
-    <div class="equation">
-        $$\Phi = - k T \ln \mathcal{Z}$$
-    </div>
-    <p>The thermodynamic relation $\Phi = U - T S - \mu N$ (where $\Phi$ is the Grand Potential) and the fundamental thermodynamic relation $\text{d}U = T \text{d}S - P \text{d}V + \mu \text{d}N$ imply a direct link to pressure:</p>
-    <div class="equation">
-        $$\Phi = - P V$$
-    </div>
-    <p>This means that $\ln \mathcal{Z}$ is simply proportional to the macroscopic pressure $P$ and volume $V$: $P V = k T \ln \mathcal{Z}$.</p>
-    
-    <h3>5.2 Classical Ideal Monatomic Gas (Derivation Example)</h3>
-    <p>The key to deriving the ideal gas law is the relationship between the system partition function ($Z$) and the single-particle partition function ($z$).</p>
-    
-    <p>For $N$ identical, non-interacting particles (Ideal Gas):</p>
-    <div class="equation">
-        $$Z = \frac{z^N}{N!}$$
-    </div>
-    
-    <p>Where $z$ (the single-particle partition function) is calculated using the phase space volume accessible to one particle:</p>
-    <div class="equation">
-        $$z = V \left(\frac{2 \pi m k T}{h^2}\right)^{3/2} = \frac{V}{\lambda^3}$$
-    </div>
-    <p>Here, \(\lambda\) is the **thermal de Broglie wavelength**, $\lambda = h / \sqrt{2 \pi m k T}$.</p>
-
-    <h4>Resulting Equations:</h4>
-    <ul>
-        <li><strong>Equation of State:</strong> $P = k T \left( \frac{\partial \ln Z}{\partial V} \right)_{T, N}$. Substituting $Z = z^N/N!$ yields the ideal gas law:
-            $$P V = N k T$$
-        </li>
-        <li><strong>Entropy (Sackur-Tetrode Equation):</strong> Derived from $A = -kT \ln Z$, the entropy is calculated as:
-            $$S = N k \left[ \ln \left( \frac{V}{N \lambda^3} \right) + \frac{5}{2} \right]$$
-        </li>
-    </ul>
-
-</div>
 </body>
 </html>

@@ -3,17 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unit 5: Thermodynamic Potentials and Phase Transitions</title>
+    <title>Unit 2: Second Law of Thermodynamics and Entropy</title>
     
     
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrF9T5D/38yF182X+8S8v82z2pE91XFwB1G+5Xf/A1P8A6K6Z8xY/5lH5Ff7bJ/..." crossorigin="anonymous">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" integrity="sha384-fVEd2c75L1f6SgoDEwCRHmLbTdaYRPXznhyD8p7jmQJzZ+SyEaGrgKMZAGkNkI/B" crossorigin="anonymous"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" integrity="sha384-c5AtJtf8M8b8Q6E7y+zW4Rj7WjE0uB+rR+h5uS6s/5m8z+Nl8A5bE7J/O+JzX+D" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '\\[', right: '\\]', display: true}
+            ],
+            throwOnError : false
+        });"></script>
+    
     <style>
-        /* --- Base & Global Styling (Matching Aesthetic) --- */
+        /* --- Base & Global Styling --- */
         body {
             font-family: 'Quicksand', sans-serif;
             margin: 0;
@@ -25,8 +36,9 @@
         }
 
         .container {
-            max-width: 95%; 
-            width: 800px;
+            /* FIX 5: Use max-width and width for better responsiveness */
+            max-width: 800px;
+            width: 95%;
             margin: auto;
             padding: 20px 15px;
         }
@@ -40,6 +52,7 @@
             margin-bottom: 25px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             border-radius: 0 0 30px 30px;
+            position: relative; /* Needed for absolute positioning of button */
         }
 
         h1 {
@@ -50,7 +63,7 @@
 
         h2 {
             font-size: 1.4em;
-            color: #8e24aa; /* Purple accent for main sections */
+            color: #8e24aa;
             border-bottom: 2px solid #ffcdd2;
             padding-bottom: 5px;
             margin-top: 30px;
@@ -59,13 +72,13 @@
         
         h3 {
             font-size: 1.1em;
-            color: #d81b60; /* Deep pink accent for subsections */
+            color: #d81b60;
             margin-top: 20px;
             margin-bottom: 8px;
             font-weight: 700;
         }
 
-        /* --- Content Styling (Cards for Clarity) --- */
+        /* --- Content Styling --- */
         p, ul, ol, table {
             margin-bottom: 15px;
             padding-left: 5px;
@@ -81,15 +94,10 @@
             margin-bottom: 25px;
             border-radius: 15px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-            border-left: 5px solid #ff80ab; /* Cute side stripe */
+            border-left: 5px solid #ff80ab;
         }
         
-        .section-card h2, .section-card h3 {
-            margin-top: 0;
-            padding-top: 0;
-        }
-
-        /* --- Table Styling --- */
+        /* --- Table Styling (Unchanged) --- */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -98,13 +106,13 @@
         }
 
         th, td {
-            border: 1px solid #ffcdd2; /* Soft pink border */
+            border: 1px solid #ffcdd2;
             padding: 10px;
             text-align: left;
         }
 
         th {
-            background-color: #fce4ec; /* Lighter pink header */
+            background-color: #fce4ec;
             color: #8e24aa;
             font-weight: 700;
         }
@@ -113,33 +121,36 @@
             background-color: #fafafa;
         }
 
-        /* --- Math Rendering Area --- */
+        /* --- Math Rendering Area (Unchanged) --- */
         .katex-display {
             margin: 15px 0 !important;
             padding: 10px;
-            background-color: #f3e5f5; /* Light purple background for equations */
+            background-color: #f3e5f5;
             border-radius: 10px;
-            overflow-x: auto; /* Ensure equations fit on mobile */
+            overflow-x: auto;
         }
         
-        /* --- Back Button (Placeholder) --- */
+        /* --- Back Button --- */
         .back-button {
             display: inline-block;
-            margin-bottom: 20px;
             padding: 10px 15px;
-            background-color: #ab47bc; /* Purple button */
+            background-color: #ab47bc;
             color: white;
             text-decoration: none;
             border-radius: 10px;
             font-weight: 700;
             transition: background-color 0.2s;
+            /* FIX 5: Absolute positioning */
+            position: absolute;
+            left: 20px;
+            top: 20px; /* Adjusted to fit better with padding */
         }
 
         .back-button:hover {
             background-color: #8e24aa;
         }
         
-        /* --- Solved Examples and Notes --- */
+        /* --- Solved Examples and Notes (Unchanged) --- */
         .example-box {
             border: 2px dashed #ff80ab;
             padding: 15px;
@@ -155,20 +166,19 @@
             margin-top: 10px;
         }
         
-        /* --- Answer Box Styling --- */
+        /* --- Answer Box Styling (Unchanged) --- */
         .answer-box {
-            border: 1px solid #ffcdd2; /* Soft pink border */
+            border: 1px solid #ffcdd2;
             padding: 10px;
             margin-top: 10px;
-            background-color: #fce4ec; /* Lighter pink background for answers */
+            background-color: #fce4ec;
             border-radius: 8px;
         }
         .answer-box strong { color: #8e24aa; }
 
-        /* Style the 'See Answer' link */
         summary {
             cursor: pointer;
-            color: #ab47bc; /* Purple color for visibility */
+            color: #ab47bc;
             font-weight: 700;
             padding: 5px 0;
             outline: none;
@@ -178,7 +188,7 @@
             color: #d81b60;
         }
 
-        /* Question list styling */
+        /* Question list styling (Unchanged) */
         .quick-check {
             border-top: 2px dashed #ffcdd2;
             margin-top: 20px;
@@ -195,7 +205,7 @@
             margin-bottom: 10px;
         }
 
-        /* --- Custom styling for images/diagrams --- */
+        /* --- Custom styling for images/diagrams (Unchanged) --- */
         .diagram-container {
             text-align: center;
             margin: 25px 0;
@@ -207,7 +217,19 @@
             margin-top: 5px;
             font-style: italic;
         }
-
+        /* Placeholder styling for visibility */
+        .image-placeholder {
+            min-height: 100px;
+            background-color: #ffebee; 
+            border: 1px solid #ffcdd2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #8e24aa;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -215,7 +237,7 @@
     <header>
         <div class="container">
             <a href="index.html" class="back-button">← Back to Units</a>
-            <h1>Unit 5: Thermodynamic Potentials and Phase Transitions ⚛️</h1>
+            <h1>Unit 2: Second Law of Thermodynamics and Entropy</h1>
             <p style="margin-top: 10px;">B.Sc. Physics Essentials</p>
         </div>
     </header>
@@ -223,52 +245,48 @@
     <div class="container">
         
         <div class="section-card">
-            <h2>1. Thermodynamic Potentials 🌟</h2>
+            <h2>1. Limitations of the First Law of Thermodynamics 🚫</h2>
             
-            <h3>Concept of Potentials</h3>
-            <p>Thermodynamic potentials are state functions that represent the **stored energy** in a system under specific constant constraints (T, V, P, or S). Their differentials (e.g., $dU, dH, dF, dG$) relate the First and Second Laws.</p>
+            <h3>Recap of the First Law</h3>
+            <p>The First Law is the <strong>Law of Conservation of Energy</strong> for thermodynamic systems:</p>
+            $$\Delta Q = \Delta U + \Delta W$$
             
-            <h3>1.1 Internal Energy ($U$)</h3>
-            <p>Represents the total energy of a system. It is the natural potential for processes at **constant $\mathbf{S}$ and $\mathbf{V}$ (isentropic/isochoric)**.</p>
-            $$\mathbf{dU = T dS - P dV}$$
+            <h3>Why the First Law is Insufficient</h3>
+            <p>The First Law only ensures <strong>energy balance</strong>; it cannot determine:</p>
+            <ul>
+                <li>The <strong>direction of heat flow</strong> (e.g., hot to cold).</li>
+                <li>Whether a process is <strong>spontaneous</strong> (naturally occurring) or non-spontaneous.</li>
+                <li>The <strong>quality of energy</strong>: It suggests $100\%$ heat-to-work conversion is possible, which is false in a cyclic process.</li>
+            </ul>
 
-            <h3>1.2 Enthalpy ($H$)</h3>
-            <p>Defined as $H = U + PV$. It is the natural potential for processes at **constant $\mathbf{S}$ and $\mathbf{P}$ (isentropic/isobaric)**.</p>
-            $$\mathbf{dH = T dS + V dP}$$
             <div class="note">
-                <strong>Key Use:</strong> $\Delta H$ is the heat exchanged ($\Delta Q$) in an **isobaric** (constant pressure) process.
-            </div>
-
-            <h3>1.3 Helmholtz Free Energy ($F$)</h3>
-            <p>Defined as $F = U - TS$. It is the natural potential for processes at **constant $\mathbf{T}$ and $\mathbf{V}$ (isothermal/isochoric)**.</p>
-            $$\mathbf{dF = -S dT - P dV}$$
-            <div class="note">
-                <strong>Key Use:</strong> $-\Delta F$ represents the **maximum work** ($W_{\text{max}}$) a system can perform during an isothermal process.
-            </div>
-
-            <h3>1.4 Gibbs Free Energy ($G$)</h3>
-            <p>Defined as $G = H - TS = U + PV - TS$. It is the natural potential for processes at **constant $\mathbf{T}$ and $\mathbf{P}$ (isothermal/isobaric)**.</p>
-            $$\mathbf{dG = -S dT + V dP}$$
-            <div class="note">
-                <strong>Key Use:</strong> $\Delta G$ determines the **spontaneity** of a process at constant T and P. $\Delta G < 0$ means spontaneous.
+                <strong>Real-World Limitation:</strong> Heat always flows from higher temperature ($T_1$) to lower temperature ($T_2$). The reverse is forbidden by nature, though not by the First Law.
             </div>
 
             <div class="quick-check">
                 <h3>Quick Check Questions (1)</h3>
                 <ol>
-                    <li>Which thermodynamic potential is the most useful criterion for spontaneity in a chemical reaction that occurs in an open beaker?
+                    <li>If a process is allowed by the First Law ($\Delta Q = \Delta U + \Delta W$), does that mean it will occur spontaneously?
                         <details>
                             <summary>See Answer</summary>
                             <div class="answer-box">
-                                <strong>Answer:</strong> **Gibbs Free Energy ($\mathbf{G}$)**. An open beaker is typically at constant temperature ($T$) and constant pressure ($P$).
+                                <strong>Answer:</strong> <strong>No.</strong> The First Law only accounts for the <strong>quantity</strong> of energy transferred, not the <strong>direction</strong> or <strong>feasibility</strong> of the process (the domain of the Second Law).
                             </div>
                         </details>
                     </li>
-                    <li>If an engine performs work at constant volume and temperature, which potential determines the maximum work done?
+                    <li>What key physical observation regarding heat flow is ignored by the First Law?
                         <details>
                             <summary>See Answer</summary>
                             <div class="answer-box">
-                                <strong>Answer:</strong> **Helmholtz Free Energy ($\mathbf{F}$)**. $-\Delta F$ is the maximum work at constant $T$ and $V$.
+                                <strong>Answer:</strong> The observation that <strong>heat naturally flows only from a hotter body to a colder body</strong> (not the reverse).
+                            </div>
+                        </details>
+                    </li>
+                    <li>The First Law permits an engine to convert $1000 \text{ J}$ of absorbed heat entirely into $1000 \text{ J}$ of work in a cycle. Why is this impossible in practice?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> This violates the <strong>Second Law of Thermodynamics</strong> (specifically, the Kelvin–Planck statement), which dictates that some heat must always be rejected to a cold reservoir.
                             </div>
                         </details>
                     </li>
@@ -277,50 +295,72 @@
         </div>
         
         <div class="section-card">
-            <h2>2. Maxwell’s Relations (From Potentials) 🔗</h2>
+            <h2>2. Reversible and Irreversible Processes 🔄</h2>
             
-            <h3>Concept</h3>
-            <p>The four Maxwell relations are a set of equations derived from the fact that the potentials ($U, H, F, G$) are **exact differentials** (state functions). This means the order of mixed partial differentiation does not matter.</p>
+            <h3>Definition of Reversible Process</h3>
+            <p>A process where both the <strong>system and the surroundings</strong> can be restored exactly to their initial states without any net change in the universe.</p>
+            <p><strong>Ideal Conditions:</strong></p>
+            <ul>
+                <li>Must be performed <strong>infinitesimally slowly</strong> (quasi-statically).</li>
+                <li>Must be free from <strong>dissipative effects</strong> (friction, viscosity, electrical resistance).</li>
+            </ul>
 
-            <h3>Derivation Principle</h3>
-            <p>For a state function $Z(x, y)$, where $dZ = M dx + N dy$, we have $\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}$.</p>
-
-            <h3>The Four Relations</h3>
-            <ol>
-                <li>**From $U$ ($dU = T dS - P dV$):**
-                    $$\mathbf{\left(\frac{\partial T}{\partial V}\right)_S = -\left(\frac{\partial P}{\partial S}\right)_V}$$
-                </li>
-                <li>**From $H$ ($dH = T dS + V dP$):**
-                    $$\mathbf{\left(\frac{\partial T}{\partial P}\right)_S = \left(\frac{\partial V}{\partial S}\right)_P}$$
-                </li>
-                <li>**From $F$ ($dF = -S dT - P dV$):**
-                    $$\mathbf{\left(\frac{\partial S}{\partial V}\right)_T = \left(\frac{\partial P}{\partial T}\right)_V}$$
-                </li>
-                <li>**From $G$ ($dG = -S dT + V dP$):**
-                    $$\mathbf{-\left(\frac{\partial S}{\partial P}\right)_T = \left(\frac{\partial V}{\partial T}\right)_P}$$
-                </li>
-            </ol>
+            <h3>Irreversible Processes</h3>
+            <p>Any real-world process that cannot be exactly reversed. <strong>All natural processes are irreversible.</strong></p>
+            <p><strong>Examples:</strong> Heat flow due to finite $\Delta T$, free expansion of a gas, mixing of liquids, and all processes involving <strong>friction</strong>.</p>
             
-            <div class="note">
-                <strong>Significance:</strong> Maxwell's relations allow us to relate difficult-to-measure properties (like $\left(\frac{\partial P}{\partial T}\right)_V$) to easily measurable properties (like $\left(\frac{\partial S}{\partial V}\right)_T$).
-            </div>
-
+            <h3>Comparison Table</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Reversible Process</th>
+                        <th>Irreversible Process</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Speed</td>
+                        <td>Infinitesimally slow (quasi-static)</td>
+                        <td>Proceeds at a finite rate</td>
+                    </tr>
+                    <tr>
+                        <td>Work Output</td>
+                        <td>Maximum work output</td>
+                        <td>Work output is less than maximum</td>
+                    </tr>
+                    <tr>
+                        <td>Entropy Change</td>
+                        <td>$\Delta S_{\text{universe}} = 0$</td>
+                        <td>$\Delta S_{\text{universe}} > 0$</td>
+                    </tr>
+                </tbody>
+            </table>
+            
             <div class="quick-check">
                 <h3>Quick Check Questions (2)</h3>
                 <ol>
-                    <li>Which Maxwell relation connects the entropy and pressure changes with temperature and volume?
+                    <li>A gas expands rapidly into a vacuum. Is this process reversible or irreversible?
                         <details>
                             <summary>See Answer</summary>
                             <div class="answer-box">
-                                <strong>Answer:</strong> The **4th relation (from G)**: $-\left(\frac{\partial S}{\partial P}\right)_T = \left(\frac{\partial V}{\partial T}\right)_P$.
+                                <strong>Answer:</strong> <strong>Irreversible.</strong> The process (free expansion) occurs spontaneously and is non-quasi-static.
                             </div>
                         </details>
                     </li>
-                    <li>What is the mathematical condition that makes the Maxwell relations possible?
+                    <li>If a process is truly reversible, what must be the change in entropy of the *universe*?
                         <details>
                             <summary>See Answer</summary>
                             <div class="answer-box">
-                                <strong>Answer:</strong> The thermodynamic potentials ($U, H, F, G$) must be **exact differentials**, meaning their second-order mixed partial derivatives are equal.
+                                <strong>Answer:</strong> <strong>$\Delta S_{\text{universe}} = 0$</strong>. Both the system and the surroundings must return to their exact initial states.
+                            </div>
+                        </details>
+                    </li>
+                    <li>Why does the presence of friction make any real-world machine irreversible?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> Friction converts mechanical work into <strong>random, dissipated heat</strong>. This random heat cannot be perfectly recovered into useful work, causing an irreversible increase in the entropy of the surroundings.
                             </div>
                         </details>
                     </li>
@@ -329,51 +369,118 @@
         </div>
         
         <div class="section-card">
-            <h2>3. Phase Transitions and Clausius-Clapeyron Equation 💧</h2>
+            <h2>3. Carnot’s Engine and Carnot’s Cycle ⚙️</h2>
             
-            <h3>3.1 Phase Equilibrium</h3>
-            <p>Two phases (e.g., liquid and vapor) are in equilibrium when they have the same **temperature, pressure, and Gibbs free energy per mole ($\mathbf{G_m}$)**.</p>
-            $$\mathbf{G_{\text{phase 1}} = G_{\text{phase 2}}}$$
+            <h3>Carnot Engine</h3>
+            <p>A <strong>hypothetical, ideal, reversible heat engine</strong> operating between a Source ($T_1$) and a Sink ($T_2$). It defines the theoretical limit of efficiency.</p>
 
-            <h3>3.2 Clausius-Clapeyron Equation</h3>
-            <p>This equation describes the slope of the phase boundary curve ($\frac{dP}{dT}$) on a P-T diagram.</p>
-            <p>It relates the latent heat of transition ($\mathbf{L}$), the temperature ($\mathbf{T}$), and the change in volume ($\mathbf{\Delta V}$) during the transition.</p>
-            $$\mathbf{\frac{dP}{dT} = \frac{L}{T \Delta V}}$$
-            <ul>
-                <li>$\mathbf{L}$: Latent heat (e.g., $L_{\text{fusion}}, L_{\text{vaporization}}$).</li>
-                <li>$\mathbf{\Delta V = V_2 - V_1}$: Change in volume between the two phases.</li>
-            </ul>
+            <h3>The Carnot Cycle (Four Reversible Steps)</h3>
+            <ol>
+                <li><strong>Isothermal Expansion (A $\to$ B):</strong> Gas absorbs heat $Q_1$ from Source ($T_1$). $W_{\text{done}} = Q_1$.</li>
+                <li><strong>Adiabatic Expansion (B $\to$ C):</strong> Gas expands, $T$ drops from $T_1$ to $T_2$. $Q=0$.</li>
+                <li><strong>Isothermal Compression (C $\to$ D):</strong> Gas rejects heat $Q_2$ to Sink ($T_2$). $|W_{\text{on}}| = Q_2$.</li>
+                <li><strong>Adiabatic Compression (D $\to$ A):</strong> Gas is compressed, $T$ rises from $T_2$ back to $T_1$. $Q=0$.</li>
+            </ol>
+            
+            <h3>Graphical Representation</h3>
+            <div class="diagram-container">
+                <div class="image-placeholder">
 
-            <h3>3.3 Application to Vaporization</h3>
-            <p>When liquid converts to vapor, $V_{\text{vapor}} \gg V_{\text{liquid}}$, so $\Delta V \approx V_{\text{vapor}}$. Also, $P V_{\text{vapor}} = R T$.</p>
-            <p>The **integrated form** (assuming $L$ is constant and applying the Ideal Gas Law) is:</p>
-            $$\mathbf{\ln P = -\frac{L}{R T} + C}$$
-            <div class="example-box">
-                <strong>Prediction:</strong> Since $L > 0$ and $\Delta V > 0$ (for vaporization), $\frac{dP}{dT} > 0$. **Boiling point increases with pressure.**
+
+[Image of the Carnot cycle PV diagram]
+
+</div>
+                <p class="diagram-caption">The Carnot cycle on a P-V diagram (closed loop). The area enclosed is the Net Work Done ($W$).</p>
+                <div class="image-placeholder">
+
+</div>
+                <p class="diagram-caption">The Carnot cycle on a T-S diagram is a <strong>perfect rectangle</strong>. Area enclosed is Net Work Done ($W$).</p>
             </div>
-
-            <h3>3.4 Application to Fusion (Melting)</h3>
-            <ul>
-                <li>**Most Substances ($\mathbf{V_{\text{liquid}} > V_{\text{solid}}}$):** $\Delta V > 0 \implies \frac{dP}{dT} > 0$. Melting point increases with pressure.</li>
-                <li>**Water ($\mathbf{V_{\text{liquid}} < V_{\text{solid}}}$):** $\Delta V < 0 \implies \frac{dP}{dT} < 0$. **Melting point decreases with pressure** (this is why ice skating works).</li>
-            </ul>
+            
+            <h3>Derivation of Carnot Efficiency ($\eta$)</h3>
+            <p>Efficiency is Work Output divided by Heat Input:</p>
+            $$\eta = \frac{W}{Q_1} = \frac{Q_1 - Q_2}{Q_1} = 1 - \frac{Q_2}{Q_1}$$
+            <p>For a reversible cycle, the ratio of heat exchanged equals the ratio of absolute temperatures:</p>
+            $$\frac{Q_2}{Q_1} = \frac{T_2}{T_1}$$
+            <p>Therefore, the maximum theoretical efficiency is:</p>
+            $$\mathbf{\eta = 1 - \frac{T_2}{T_1}}$$
+            
+            <div class="example-box">
+                <strong>Example Problem:</strong>
+                <p>An engine operates between $T_1 = 500 \text{ K}$ and $T_2 = 300 \text{ K}$.</p>
+                $$\eta = 1 - \frac{300}{500} = 1 - 0.6 = 0.4 \quad \text{or } 40\%$$
+            </div>
 
             <div class="quick-check">
                 <h3>Quick Check Questions (3)</h3>
                 <ol>
-                    <li>What must be equal between two phases in equilibrium (besides $T$ and $P$)?
+                    <li>What are the four types of processes involved in a Carnot cycle?
                         <details>
                             <summary>See Answer</summary>
                             <div class="answer-box">
-                                <strong>Answer:</strong> The **Gibbs Free Energy per mole ($\mathbf{G_m}$)**.
+                                <strong>Answer:</strong> Two <strong>Isothermal</strong> processes and two <strong>Adiabatic</strong> processes.
                             </div>
                         </details>
                     </li>
-                    <li>If the Clausius-Clapeyron equation gives a negative slope ($\frac{dP}{dT} < 0$), what does that tell you about the relative volumes of the two phases?
+                    <li>A heat engine operates between $1000 \text{ K}$ and $500 \text{ K}$. What is its maximum possible efficiency?
                         <details>
                             <summary>See Answer</summary>
                             <div class="answer-box">
-                                <strong>Answer:</strong> It means the **volume of Phase 1 is greater than the volume of Phase 2 ($\mathbf{\Delta V < 0}$)**. For example, ice (Phase 1) melting into water (Phase 2).
+                                <strong>Calculation:</strong> $\eta = 1 - \frac{T_2}{T_1} = 1 - \frac{500 \text{ K}}{1000 \text{ K}} = 0.5$.
+                                <p><strong>Answer:</strong> <strong>$50\%$</strong>.</p>
+                            </div>
+                        </details>
+                    </li>
+                    <li>To increase the efficiency of a Carnot engine, is it better to increase the source temperature ($T_1$) or decrease the sink temperature ($T_2$) by the same amount ($\Delta T$)?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> It is always <strong>more effective to decrease the sink temperature ($T_2$)</strong>. This increases the ratio $T_2/T_1$ more significantly, thus increasing $\eta = 1 - T_2/T_1$.
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="section-card">
+            <h2>4. Second Law of Thermodynamics ⚖️</h2>
+            
+            <h3>Kelvin–Planck Statement</h3>
+            <p>It is <strong>impossible</strong> to construct an engine that, operating in a cycle, produces no effect other than the <strong>absorption of heat from a single reservoir and the performance of an equivalent amount of work</strong>.</p>
+            <p class="note">Interpretation: $100\%$ conversion of heat to work is impossible in a cycle.</p>
+
+            <h3>Clausius Statement</h3>
+            <p>It is <strong>impossible</strong> to construct a device which operates in a cycle and produces no effect other than the <strong>transfer of heat from a colder body to a hotter body</strong>.</p>
+            <p class="note">Interpretation: Heat does not spontaneously flow from cold to hot.</p>
+
+            <h3>Equivalence of the Statements</h3>
+            <p>If the Kelvin–Planck statement were false (a $100\%$ efficient engine existed), it could be used to violate the Clausius statement (spontaneous heat flow cold to hot), and vice versa. They are therefore logically <strong>equivalent</strong>.</p>
+            
+            <div class="quick-check">
+                <h3>Quick Check Questions (4)</h3>
+                <ol>
+                    <li>Which of the two statements (Kelvin–Planck or Clausius) directly relates to the impossibility of a Perpetual Motion Machine of the Second Kind (PMM2)?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> The <strong>Kelvin–Planck statement</strong>. A PMM2 would be an engine that achieves $100\%$ efficiency by operating from a single reservoir, which the statement forbids.
+                            </div>
+                        </details>
+                    </li>
+                    <li>If a refrigerator (a device based on the Clausius statement) is run, why is it necessary to supply external work?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> The Clausius statement says that heat <strong>cannot spontaneously</strong> flow from cold to hot. To force this transfer against nature's flow, <strong>external work</strong> must be supplied.
+                            </div>
+                        </details>
+                    </li>
+                    <li>Explain the core concept that both statements aim to establish regarding natural processes.
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> Both statements establish that <strong>all macroscopic processes are directional</strong> and cannot be perfectly reversed without leaving a change in the environment, confirming the existence of irreversibility in nature.
                             </div>
                         </details>
                     </li>
@@ -382,49 +489,33 @@
         </div>
 
         <div class="section-card">
-            <h2>4. Joule-Thomson Effect (Porous Plug Experiment) ❄️</h2>
+            <h2>5. Carnot’s Theorem ⭐</h2>
             
-            <h3>Concept</h3>
-            <p>When a real gas is forced to flow steadily through a **porous plug** from a high-pressure region ($P_1$) to a low-pressure region ($P_2$) under **adiabatic** conditions, a temperature change is generally observed.</p>
-            <div class="note">
-                <strong>Key Property:</strong> This is an **Isenthalpic** process ($H = \text{constant}$), meaning the enthalpy does not change ($\Delta H = 0$).
-            </div>
-            
-            <h3>Joule-Thomson Coefficient ($\mu$)</h3>
-            <p>It is defined as the change in temperature with respect to pressure at constant enthalpy:</p>
-            $$\mathbf{\mu = \left(\frac{\partial T}{\partial P}\right)_H}$$
-            <ul>
-                <li>$\mathbf{\mu > 0}$: Cooling (Observed for most gases at room temperature).</li>
-                <li>$\mathbf{\mu < 0}$: Heating (Observed for $\text{H}_2$ and $\text{He}$ above their inversion temperature).</li>
-                <li>$\mathbf{\mu = 0}$: No change in temperature.</li>
-            </ul>
+            <h3>Statement of Carnot’s Theorem</h3>
+            <ol>
+                <li>All <strong>reversible heat engines</strong> operating between the same two temperatures ($T_1$ and $T_2$) have the <strong>same efficiency</strong>.</li>
+                <li><strong>No irreversible heat engine</strong> operating between the same two temperatures can have an efficiency <strong>greater than</strong> that of a reversible engine ($\eta_{\text{irr}} < \eta_{\text{rev}}$).</li>
+            </ol>
 
-            <h3>Inversion Temperature ($T_i$)</h3>
-            <p>The temperature at which $\mu$ changes sign ($\mu = 0$).</p>
-            <ul>
-                <li>Above $T_i$, the gas heats upon expansion ($\mu < 0$).</li>
-                <li>Below $T_i$, the gas cools upon expansion ($\mu > 0$).</li>
-            </ul>
-            <div class="example-box">
-                <strong>Liquefaction Principle:</strong> To liquefy a gas using the Joule-Thomson effect (e.g., in a Linde machine), the gas must first be cooled **below its inversion temperature ($T_i$)**. $\text{H}_2$ and $\text{He}$ require precooling because their $T_i$ is very low.
-            </div>
+            <h3>Implications</h3>
+            <p>The efficiency of an ideal engine depends <strong>only on the absolute temperatures</strong> ($T_1, T_2$), and <strong>not on the nature of the working substance</strong>.</p>
 
             <div class="quick-check">
-                <h3>Quick Check Questions (4)</h3>
+                <h3>Quick Check Questions (5)</h3>
                 <ol>
-                    <li>If a gas experiences a cooling effect ($\Delta T < 0$) during Joule-Thomson expansion, what is the sign of the Joule-Thomson coefficient ($\mu$)?
+                    <li>Engine A is a reversible engine and Engine B is an irreversible engine, both operating between $400 \text{ K}$ and $300 \text{ K}$. Can Engine B have $30\%$ efficiency if Engine A has $25\%$ efficiency?
                         <details>
                             <summary>See Answer</summary>
                             <div class="answer-box">
-                                <strong>Answer:</strong> **Positive ($\mathbf{\mu > 0}$)**. A decrease in $P$ ($\Delta P < 0$) causes a decrease in $T$ ($\Delta T < 0$), making the ratio $\mu = \Delta T / \Delta P$ positive.
+                                <strong>Answer:</strong> <strong>No.</strong> Carnot's Theorem states that no engine (reversible or irreversible) can be *more* efficient than the Carnot engine. The maximum possible efficiency here is $\eta_{\text{rev}} = 1 - 300/400 = 0.25$ or $25\%$. Engine A's efficiency is $25\%$, but Engine B cannot exceed $25\%$.
                             </div>
                         </details>
                     </li>
-                    <li>What is the conserved quantity in a Joule-Thomson expansion?
+                    <li>What property of the Carnot engine makes its efficiency a universal benchmark?
                         <details>
                             <summary>See Answer</summary>
                             <div class="answer-box">
-                                <strong>Answer:</strong> **Enthalpy ($\mathbf{H}$)**. The process is isenthalpic ($\Delta H = 0$).
+                                <strong>Answer:</strong> Its efficiency depends <strong>only on the temperatures of the hot and cold reservoirs</strong> ($T_1$ and $T_2$), not on the specific gas or fluid used (the working substance).
                             </div>
                         </details>
                     </li>
@@ -432,6 +523,181 @@
             </div>
         </div>
         
+        <div class="section-card">
+            <h2>6. Thermodynamic Scale of Temperature 🌡️</h2>
+            
+            <h3>Definition and Need</h3>
+            <p>The <strong>Thermodynamic Scale (or Kelvin Scale)</strong> is a temperature scale based purely on the <strong>Second Law</strong> and Carnot's Theorem, making it <strong>independent of the properties of any specific substance</strong> (unlike the ideal gas scale).</p>
+
+            <h3>Derivation</h3>
+            <p>Based on Carnot's finding that the heat ratio is fixed for any reversible engine:</p>
+            $$\mathbf{\frac{Q_1}{Q_2} = \frac{T_1}{T_2}}$$
+            <p>This relation defines the ratio of temperatures on the thermodynamic scale.</p>
+            
+            <p><strong>Identity:</strong> The Thermodynamic Scale is proven to be <strong>identical</strong> to the Perfect Gas Kelvin Scale.</p>
+            
+            <div class="quick-check">
+                <h3>Quick Check Questions (6)</h3>
+                <ol>
+                    <li>What is the fundamental difference between the thermodynamic scale and a scale based on the expansion of alcohol or mercury?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> The thermodynamic scale is <strong>independent of the properties of any material</strong>, whereas scales based on alcohol or mercury depend on the specific thermal expansion properties of those substances.
+                            </div>
+                        </details>
+                    </li>
+                    <li>If a reversible engine rejects $Q_2 = 100 \text{ J}$ at $300 \text{ K}$ and absorbs $Q_1 = 150 \text{ J}$ at $T_1$, what is the temperature $T_1$ on the thermodynamic scale?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Calculation:</strong> $\frac{Q_1}{Q_2} = \frac{T_1}{T_2} \implies \frac{150}{100} = \frac{T_1}{300 \text{ K}} \implies T_1 = 1.5 \times 300 \text{ K} = 450 \text{ K}$.
+                                <p><strong>Answer:</strong> <strong>$450 \text{ K}$</strong>.</p>
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="section-card">
+            <h2>7. Entropy (S) 🔬</h2>
+            
+            <h3>Mathematical Definition (Change in Entropy)</h3>
+            <p>The change in entropy ($dS$) for a <strong>reversible process</strong> is:</p>
+            $$\mathbf{dS = \frac{\delta Q_{\text{rev}}}{T}}$$
+            <p>Entropy ($S$) is a <strong>state function</strong>; its value depends only on the system's state.</p>
+
+            <h3>Physical Interpretation</h3>
+            <ul>
+                <li><strong>Disorder:</strong> Entropy is a measure of the <strong>randomness, disorder, or multiplicity of microscopic states</strong> (Boltzmann: $S = k \ln W$).</li>
+                <li><strong>Unavailability of Energy:</strong> It measures the energy that is <strong>unavailable</strong> for useful work.</li>
+            </ul>
+            
+            <h3>The Principle of Increase of Entropy</h3>
+            <p>The entropy of the universe always increases for any spontaneous (irreversible) process:</p>
+            $$\mathbf{\Delta S_{\text{universe}} = \Delta S_{\text{system}} + \Delta S_{\text{surroundings}} \ge 0}$$
+            <ul>
+                <li>Reversible: $\Delta S_{\text{universe}} = 0$</li>
+                <li>Irreversible (Natural): $\Delta S_{\text{universe}} > 0$</li>
+            </ul>
+
+            <div class="example-box">
+                <strong>Units and Dimensional Analysis:</strong>
+                <p>Unit of Entropy: <strong>Joule per Kelvin</strong> ($\text{J/K}$).</p>
+                $$[S] = \frac{[\text{Heat}]}{[\text{Temperature}]} = \frac{\text{M L}^2 \text{T}^{-2}}{\Theta} = \text{M L}^2 \text{T}^{-2} \Theta^{-1}$$
+            </div>
+            
+            <div class="quick-check">
+                <h3>Quick Check Questions (7)</h3>
+                <ol>
+                    <li>Is entropy a state function or a path function?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> A <strong>state function</strong>. The change in entropy ($\Delta S$) between two states is independent of the path taken.
+                            </div>
+                        </details>
+                    </li>
+                    <li>If an ice cube melts in a glass of water (an irreversible process), what happens to the total entropy of the universe?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> The total entropy of the universe <strong>increases</strong> ($\Delta S_{\text{universe}} > 0$). This confirms the process is spontaneous and irreversible.
+                            </div>
+                        </details>
+                    </li>
+                    <li>What does the Boltzmann relation, $S = k \ln W$, relate entropy to?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> It relates entropy to <strong>$W$</strong>, the <strong>number of microscopic configurations (disorder/multiplicity)</strong> corresponding to a macroscopic state.
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="section-card">
+            <h2>8. Mathematical Formulation of the Second Law</h2>
+            
+            <h3>Clausius Inequality</h3>
+            <p>The mathematical form of the Second Law for any cyclic process (reversible or irreversible) is the <strong>Clausius Inequality</strong>:</p>
+            $$\mathbf{\oint \frac{\delta Q}{T} \le 0}$$
+            <ul>
+                <li>If $\oint \frac{\delta Q}{T} = 0$, the cycle is <strong>reversible</strong>.</li>
+                <li>If $\oint \frac{\delta Q}{T} < 0$, the cycle is <strong>irreversible</strong> (and possible).</li>
+                <li>If $\oint \frac{\delta Q}{T} > 0$, the cycle is <strong>impossible</strong> (violates the Second Law).</li>
+            </ul>
+
+            <h3>Clausius Theorem</h3>
+            <p>The condition $\oint \frac{\delta Q_{\text{rev}}}{T} = 0$ (for a reversible cycle) proves that $\frac{\delta Q_{\text{rev}}}{T}$ is an <strong>exact differential</strong>, defining <strong>Entropy ($S$)</strong> as a state function.</p>
+            
+            <div class="example-box">
+                <strong>Checking Feasibility (Clausius):</strong>
+                <p>A cycle takes $Q_1 = 1200 \text{ J}$ at $T_1 = 400 \text{ K}$ and rejects $Q_2 = 800 \text{ J}$ at $T_2 = 300 \text{ K}$.</p>
+                $$\oint \frac{\delta Q}{T} = \frac{1200}{400} + \frac{-800}{300} = 3.0 \text{ J/K} - 2.67 \text{ J/K} \approx 0.33 \text{ J/K}$$
+                <p>Since $\oint \frac{\delta Q}{T} > 0$, this process is <strong>impossible</strong> (violates the Second Law).</p>
+            </div>
+            
+            <div class="quick-check">
+                <h3>Quick Check Questions (8)</h3>
+                <ol>
+                    <li>What is the sign of $\oint \frac{\delta Q}{T}$ for a cycle that is theoretically possible but operates with friction?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> <strong>Negative</strong> ($\oint \frac{\delta Q}{T} < 0$). This is the condition for an irreversible but possible cycle according to the Clausius Inequality.
+                            </div>
+                        </details>
+                    </li>
+                    <li>If a cyclic process results in $\oint \frac{\delta Q}{T} = 0$, what can you conclude about the process?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> The process is <strong>reversible</strong> (ideal Carnot cycle or equivalent).
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="section-card">
+            <h2>9. Entropy of an Ideal Gas</h2>
+            
+            <h3>Entropy Change in terms of T and V</h3>
+            <p>For $n$ moles of an ideal gas between states $(T_1, V_1)$ and $(T_2, V_2)$:</p>
+            $$\mathbf{\Delta S = n C_v \ln\left(\frac{T_2}{T_1}\right) + n R \ln\left(\frac{V_2}{V_1}\right)}$$
+
+            <h3>Entropy Change in terms of T and P</h3>
+            <p>For $n$ moles of an ideal gas between states $(T_1, P_1)$ and $(T_2, P_2)$ (using $C_p - C_v = R$):</p>
+            $$\mathbf{\Delta S = n C_p \ln\left(\frac{T_2}{T_1}\right) - n R \ln\left(\frac{P_2}{P_1}\right)}$$
+            
+            <div class="quick-check">
+                <h3>Quick Check Questions (9)</h3>
+                <ol>
+                    <li>If an ideal gas undergoes an <strong>isothermal</strong> (constant $T$) expansion, what is the equation for the change in entropy?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> Since $T_2 = T_1$, $\ln(T_2/T_1) = 0$. The equation simplifies to: $$\mathbf{\Delta S = n R \ln\left(\frac{V_2}{V_1}\right)}$$
+                            </div>
+                        </details>
+                    </li>
+                    <li>For an <strong>isochoric</strong> (constant $V$) heating process, what is the term for work in the general $\Delta S$ equation?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> The $\mathbf{n R \ln\left(\frac{V_2}{V_1}\right)}$ term becomes $\mathbf{0}$ since $V_2 = V_1$, leaving $\Delta S = n C_v \ln\left(\frac{T_2}{T_1}\right)$.
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
     </div>
 
 </body>

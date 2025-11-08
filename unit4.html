@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unit 2: Second Law of Thermodynamics and Entropy</title>
+    <title>Unit 4: Transport of Heat and Kinetic Theory of Gases</title>
     
     
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;700&display=swap" rel="stylesheet">
@@ -24,7 +24,7 @@
         });"></script>
     
     <style>
-        /* --- Base & Global Styling --- */
+        /* --- Base & Global Styling (Copied from previous example) --- */
         body {
             font-family: 'Quicksand', sans-serif;
             margin: 0;
@@ -36,7 +36,6 @@
         }
 
         .container {
-            /* FIX 5: Use max-width and width for better responsiveness */
             max-width: 800px;
             width: 95%;
             margin: auto;
@@ -52,7 +51,7 @@
             margin-bottom: 25px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             border-radius: 0 0 30px 30px;
-            position: relative; /* Needed for absolute positioning of button */
+            position: relative;
         }
 
         h1 {
@@ -97,7 +96,7 @@
             border-left: 5px solid #ff80ab;
         }
         
-        /* --- Table Styling (Unchanged) --- */
+        /* --- Table Styling --- */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -120,37 +119,14 @@
         tr:nth-child(even) {
             background-color: #fafafa;
         }
-
-        /* --- Math Rendering Area (Unchanged) --- */
-        .katex-display {
-            margin: 15px 0 !important;
-            padding: 10px;
-            background-color: #f3e5f5;
-            border-radius: 10px;
-            overflow-x: auto;
+        
+        /* --- Custom styles for Notes and Examples --- */
+        .note {
+            font-style: italic;
+            color: #6b5a83;
+            margin-top: 10px;
         }
         
-        /* --- Back Button --- */
-        .back-button {
-            display: inline-block;
-            padding: 10px 15px;
-            background-color: #ab47bc;
-            color: white;
-            text-decoration: none;
-            border-radius: 10px;
-            font-weight: 700;
-            transition: background-color 0.2s;
-            /* FIX 5: Absolute positioning */
-            position: absolute;
-            left: 20px;
-            top: 20px; /* Adjusted to fit better with padding */
-        }
-
-        .back-button:hover {
-            background-color: #8e24aa;
-        }
-        
-        /* --- Solved Examples and Notes (Unchanged) --- */
         .example-box {
             border: 2px dashed #ff80ab;
             padding: 15px;
@@ -159,14 +135,7 @@
             border-radius: 10px;
         }
         .example-box strong { color: #d81b60; }
-        
-        .note {
-            font-style: italic;
-            color: #6b5a83;
-            margin-top: 10px;
-        }
-        
-        /* --- Answer Box Styling (Unchanged) --- */
+
         .answer-box {
             border: 1px solid #ffcdd2;
             padding: 10px;
@@ -187,8 +156,17 @@
         summary:hover {
             color: #d81b60;
         }
-
-        /* Question list styling (Unchanged) */
+        
+        /* --- Math Rendering Area --- */
+        .katex-display {
+            margin: 15px 0 !important;
+            padding: 10px;
+            background-color: #f3e5f5;
+            border-radius: 10px;
+            overflow-x: auto;
+        }
+        
+        /* Practice Question Bank Style */
         .quick-check {
             border-top: 2px dashed #ffcdd2;
             margin-top: 20px;
@@ -205,31 +183,35 @@
             margin-bottom: 10px;
         }
 
-        /* --- Custom styling for images/diagrams (Unchanged) --- */
-        .diagram-container {
-            text-align: center;
+        .formula-card {
+            background-color: #fce4ec;
+            padding: 15px;
+            border-radius: 10px;
             margin: 25px 0;
-        }
-
-        .diagram-caption {
-            font-size: 0.9em;
-            color: #6b5a83;
-            margin-top: 5px;
-            font-style: italic;
-        }
-        /* Placeholder styling for visibility */
-        .image-placeholder {
-            min-height: 100px;
-            background-color: #ffebee; 
             border: 1px solid #ffcdd2;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-style: italic;
-            color: #8e24aa;
-            border-radius: 5px;
-            margin-bottom: 10px;
         }
+        .formula-card h3 {
+            color: #d81b60;
+            margin-top: 0;
+        }
+        
+        .back-button {
+             display: inline-block;
+             padding: 10px 15px;
+             background-color: #ab47bc;
+             color: white;
+             text-decoration: none;
+             border-radius: 10px;
+             font-weight: 700;
+             transition: background-color 0.2s;
+             position: absolute;
+             left: 20px;
+             top: 20px;
+         }
+         
+         .back-button:hover {
+             background-color: #8e24aa;
+         }
     </style>
 </head>
 <body>
@@ -237,467 +219,399 @@
     <header>
         <div class="container">
             <a href="index.html" class="back-button">← Back to Units</a>
-            <h1>Unit 2: Second Law of Thermodynamics and Entropy</h1>
-            <p style="margin-top: 10px;">Physics Essentials</p>
+            <h1>Unit 4: Transport of Heat and Kinetic Theory of Gases</h1>
+            <p style="margin-top: 10px;">Physics Essentials for Sunshine </p>
         </div>
     </header>
 
     <div class="container">
         
         <div class="section-card">
-            <h2>1. Limitations of the First Law of Thermodynamics 🚫</h2>
+            <h2>1. Transport of Heat 🌡️💨✨</h2>
             
-            <h3>Recap of the First Law</h3>
-            <p>The First Law is the <strong>Law of Conservation of Energy</strong> for thermodynamic systems:</p>
-            $$\Delta Q = \Delta U + \Delta W$$
+            <p><strong>Introduction:</strong> Heat is a form of energy that flows from a region of <strong>higher temperature</strong> to a region of <strong>lower temperature</strong>. There are three distinct modes of heat transfer: Conduction, Convection, and Radiation.</p>
             
-            <h3>Why the First Law is Insufficient</h3>
-            <p>The First Law only ensures <strong>energy balance</strong>; it cannot determine:</p>
+            <h3>1.1 Conduction</h3>
+            <p><strong>Definition:</strong> Conduction is the process of heat transfer through a medium (solid, liquid, or gas) without any <strong>macroscopic movement</strong> of the medium's particles themselves. It primarily occurs in solids due to the vibration of lattice atoms and the movement of free electrons.</p>
+            
+            <h4>1.1.1 Law of Heat Conduction (Fourier's Law)</h4>
+            <p>The rate of heat flow ($\text{H}$ or $\frac{dQ}{dt}$) through a material is:</p>
+            <p>$$\mathbf{H = \frac{dQ}{dt} = -k A \frac{dT}{dx}}$$</p>
             <ul>
-                <li>The <strong>direction of heat flow</strong> (e.g., hot to cold).</li>
-                <li>Whether a process is <strong>spontaneous</strong> (naturally occurring) or non-spontaneous.</li>
-                <li>The <strong>quality of energy</strong>: It suggests $100\%$ heat-to-work conversion is possible, which is false in a cyclic process.</li>
+                <li>$\mathbf{H}$ (or $\frac{dQ}{dt}$): Rate of heat flow (Power) (Unit: <strong>Watt (W)</strong> or $\text{J/s}$).</li>
+                <li>$\mathbf{k}$: <strong>Thermal Conductivity</strong> of the material (Unit: $\text{W/m}\cdot\text{K}$).</li>
+                <li>$\mathbf{A}$: Area of cross-section.</li>
+                <li>$\mathbf{\frac{dT}{dx}}$: Temperature gradient.</li>
             </ul>
+            <p class="note"><strong>Negative Sign:</strong> Indicates that heat flows in the direction of <strong>decreasing temperature</strong>.</p>
+            
+            <p><strong>Thermal Resistance ($\mathbf{R_T}$):</strong> Analogous to electrical resistance, for a slab of thickness $L$ and area $A$:</p>
+            <p>$$\mathbf{R_T = \frac{L}{k A}}$$</p>
+            
+            <h3>1.2 Convection</h3>
+            <p><strong>Definition:</strong> Convection is the mode of heat transfer by the <strong>actual movement of the heated matter (mass)</strong> itself. It primarily occurs in fluids (liquids and gases).</p>
+            <ul>
+                <li><strong>Natural Convection:</strong> Caused by differences in density (e.g., hot air rises).</li>
+                <li><strong>Forced Convection:</strong> Caused by an external agent (e.g., fan, pump).</li>
+            </ul>
+            
+            <h3>1.3 Radiation</h3>
+            <p><strong>Definition:</strong> Radiation is the process of heat transfer that <strong>does not require any medium</strong>. Heat is transferred in the form of electromagnetic waves (mostly infrared). It is the <strong>fastest</strong> mode of heat transfer (at the speed of light).</p>
+        </div>
 
-            <div class="note">
-                <strong>Real-World Limitation:</strong> Heat always flows from higher temperature ($T_1$) to lower temperature ($T_2$). The reverse is forbidden by nature, though not by the First Law.
-            </div>
+        <div class="section-card">
+            <h2>2. Black-Body Radiation and Thermodynamics of Radiations ☀️</h2>
+            
+            <h3>2.1 Black-Body</h3>
+            <p><strong>Definition:</strong> A perfect black-body is an ideal object that <strong>absorbs all</strong> the electromagnetic radiation that falls on it. It is also a <strong>perfect emitter</strong> of radiation when heated.</p>
+            
+            <h3>2.2 Definitions in Radiations</h3>
+            <ul>
+                <li><strong>Absorptive Power ($\mathbf{a}$):</strong> Ratio of energy absorbed to total energy incident. (For a perfect black-body, $a = 1$).</li>
+                <li><strong>Emissive Power ($\mathbf{e}$):</strong> Radiant energy emitted per unit time per unit area.</li>
+                <li><strong>Emissivity ($\mathbf{\epsilon}$):</strong> Ratio of the emissive power of a surface to that of a perfect black-body ($\text{E}_{\text{BB}}$) at the same $T$.
+                $$\mathbf{\epsilon = \frac{e_{\text{surface}}}{E_{\text{BB}}}}$$
+                For a perfect black-body, $\epsilon = 1$.</li>
+            </ul>
+            
+            <h3>2.3 Kirchhoff’s Law of Radiation</h3>
+            <p><strong>Statement:</strong> The ratio of the emissive power ($\text{e}$) to the absorptive power ($\text{a}$) is the same for all bodies and is equal to the emissive power of a perfect black-body ($\text{E}_{\text{BB}}$) at that temperature.</p>
+            <p>$$\mathbf{\frac{e}{a} = E_{\text{BB}}}$$</p>
+            <p class="note"><strong>Conclusion:</strong> <strong>Good absorbers are good emitters.</strong></p>
 
-            <div class="quick-check">
-                <h3>Quick Check Questions (1)</h3>
-                <ol>
-                    <li>If a process is allowed by the First Law ($\Delta Q = \Delta U + \Delta W$), does that mean it will occur spontaneously?
-                        <details>
-                            <summary>See Answer</summary>
-                            <div class="answer-box">
-                                <strong>Answer:</strong> <strong>No.</strong> The First Law only accounts for the <strong>quantity</strong> of energy transferred, not the <strong>direction</strong> or <strong>feasibility</strong> of the process (the domain of the Second Law).
-                            </div>
-                        </details>
-                    </li>
-                    <li>What key physical observation regarding heat flow is ignored by the First Law?
-                        <details>
-                            <summary>See Answer</summary>
-                            <div class="answer-box">
-                                <strong>Answer:</strong> The observation that <strong>heat naturally flows only from a hotter body to a colder body</strong> (not the reverse).
-                            </div>
-                        </details>
-                    </li>
-                    <li>The First Law permits an engine to convert $1000 \text{ J}$ of absorbed heat entirely into $1000 \text{ J}$ of work in a cycle. Why is this impossible in practice?
-                        <details>
-                            <summary>See Answer</summary>
-                            <div class="answer-box">
-                                <strong>Answer:</strong> This violates the <strong>Second Law of Thermodynamics</strong> (specifically, the Kelvin–Planck statement), which dictates that some heat must always be rejected to a cold reservoir.
-                            </div>
-                        </details>
-                    </li>
-                </ol>
-            </div>
+            <h3>2.4 Stefan–Boltzmann Law</h3>
+            <p><strong>Statement:</strong> The total radiant energy ($\text{E}$) emitted per unit time per unit area of a perfect black-body is directly proportional to the <strong>fourth power</strong> of its absolute temperature ($\text{T}$).</p>
+            <p>$$\mathbf{E = \sigma T^4}$$</p>
+            <ul>
+                <li>$\mathbf{\sigma}$: <strong>Stefan–Boltzmann Constant</strong> ($\approx 5.67 \times 10^{-8} \text{ W/m}^2\cdot\text{K}^4$).</li>
+            </ul>
+            <p><strong>Net Radiative Loss:</strong> For a body at $T$ in surroundings $T_0$ (with emissivity $\epsilon$):</p>
+            <p>$$\mathbf{E_{\text{net}} = \epsilon \sigma (T^4 - T_0^4)}$$</p>
+
+            <h3>2.5 Wien’s Displacement Law</h3>
+            <p><strong>Statement:</strong> The wavelength ($\lambda_{\text{max}}$) corresponding to the maximum energy emission is <strong>inversely proportional</strong> to the absolute temperature ($\text{T}$).</p>
+            <p>$$\mathbf{\lambda_{\text{max}} T = b}$$</p>
+            <p class="note"><strong>Interpretation:</strong> As an object gets hotter, its color shifts from red to white/blue (shorter wavelengths).</p>
         </div>
         
         <div class="section-card">
-            <h2>2. Reversible and Irreversible Processes 🔄</h2>
+            <h2>2.6 Black-Body Spectrum – Classical vs. Quantum</h2>
             
-            <h3>Definition of Reversible Process</h3>
-            <p>A process where both the <strong>system and the surroundings</strong> can be restored exactly to their initial states without any net change in the universe.</p>
-            <p><strong>Ideal Conditions:</strong></p>
-            <ul>
-                <li>Must be performed <strong>infinitesimally slowly</strong> (quasi-statically).</li>
-                <li>Must be free from <strong>dissipative effects</strong> (friction, viscosity, electrical resistance).</li>
-            </ul>
+            <h3>2.6.1 Rayleigh–Jeans Law (Classical Attempt)</h3>
+            <p>Based on the Law of Equipartition of Energy ($\frac{1}{2} kT$ per degree of freedom, or $kT$ per mode of oscillation).</p>
+            <p>$$\mathbf{E_{\lambda} = \frac{8\pi k T}{\lambda^4}}$$</p>
+            <p class="note"><strong>Limitation (The Ultraviolet Catastrophe):</strong> The formula incorrectly predicts that $E_{\lambda} \to \infty$ as $\lambda \to 0$ (short wavelengths), contradicting experimental data.</p>
+            
+            <h3>2.7 Quantum Theory of Radiation: Planck’s Formula</h3>
+            <p>Planck proposed that energy is emitted/absorbed in discrete packets ($\text{quanta}$ or $\text{photons}$):</p>
+            <p>$$\mathbf{E = h\nu}$$</p>
+            <p>Using this quantum hypothesis, Planck derived the universal formula:</p>
+            <p>$$\mathbf{E_{\lambda} = \frac{8\pi h c}{\lambda^5} \frac{1}{e^{h c / \lambda k T} - 1}}$$</p>
+            <p class="note">This formula accurately describes the black-body spectrum across <strong>all wavelengths</strong>.</p>
+        </div>
 
-            <h3>Irreversible Processes</h3>
-            <p>Any real-world process that cannot be exactly reversed. <strong>All natural processes are irreversible.</strong></p>
-            <p><strong>Examples:</strong> Heat flow due to finite $\Delta T$, free expansion of a gas, mixing of liquids, and all processes involving <strong>friction</strong>.</p>
+        <div class="section-card">
+            <h2>3. Kinetic Theory of Gases (KTG) ⚛️</h2>
             
-            <h3>Comparison Table</h3>
+            <h3>3.1 Postulates of Kinetic Theory of Gases (Key Points)</h3>
+            <ul>
+                <li>Gas consists of a very large number of identical, perfectly <strong>elastic, rigid molecules</strong>.</li>
+                <li>Molecules are in <strong>continuous, random, rapid motion</strong>.</li>
+                <li>The actual volume of molecules is <strong>negligible</strong> compared to the container volume.</li>
+                <li><strong>No intermolecular forces</strong> except during instantaneous, elastic collisions.</li>
+                <li>Pressure is due to molecular collisions with the walls.</li>
+                <li>The <strong>average kinetic energy</strong> is directly proportional to the <strong>absolute temperature</strong> ($\text{T}$).</li>
+            </ul>
+            
+            <h3>3.2 Kinetic Theory Interpretation of Pressure</h3>
+            <p>Based on molecular collisions with container walls, the pressure ($\text{P}$) is derived as:</p>
+            <p>$$\mathbf{P V = \frac{1}{3} N m v_{\text{rms}}^2}$$</p>
+            <p>In terms of gas density ($\rho = \frac{N m}{V}$):</p>
+            <p>$$\mathbf{P = \frac{1}{3} \rho v_{\text{rms}}^2}$$</p>
+            
+            <h3>3.3 Kinetic Interpretation of Temperature</h3>
+            <p>Comparing the KTG equation to the Ideal Gas Law ($PV = nRT$), the average translational kinetic energy ($\langle KE \rangle$) per molecule is found to be:</p>
+            <p>$$\mathbf{\langle KE \rangle = \frac{3}{2} k T}$$</p>
+            <p class="note">Conclusion: <strong>Temperature is a direct measure of the average translational kinetic energy of the molecules.<strong></p>
+
+            <h3>3.4 Degrees of Freedom ($\mathbf{f}$) and Specific Heats</h3>
+            <p>The degrees of freedom ($\text{f}$) are the total number of independent ways a molecule can possess energy (Translational, Rotational, Vibrational).</p>
+            
+            <h4>3.5 Law of Equipartition of Energy</h4>
+            <p>The average energy associated with each degree of freedom is $\mathbf{\frac{1}{2} k T}$.</p>
+            
+            <p><strong>Molar Specific Heat at Constant Volume ($\mathbf{C_V}$):</strong></p>
+            <p>$$\mathbf{C_V = \frac{f}{2} R}$$</p>
+            
+            <p><strong>Ratio of Specific Heats ($\mathbf{\gamma}$):</strong></p>
+            <p>$$\mathbf{\gamma = \frac{C_P}{C_V} = 1 + \frac{2}{f}}$$</p>
+
             <table>
                 <thead>
                     <tr>
-                        <th>Feature</th>
-                        <th>Reversible Process</th>
-                        <th>Irreversible Process</th>
+                        <th>Gas Type</th>
+                        <th>$f$</th>
+                        <th>$C_V$</th>
+                        <th>$\gamma$</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Speed</td>
-                        <td>Infinitesimally slow (quasi-static)</td>
-                        <td>Proceeds at a finite rate</td>
+                        <td>Monoatomic</td>
+                        <td>3</td>
+                        <td>$\frac{3}{2} R$</td>
+                        <td>$\frac{5}{3} \approx 1.67$</td>
                     </tr>
                     <tr>
-                        <td>Work Output</td>
-                        <td>Maximum work output</td>
-                        <td>Work output is less than maximum</td>
-                    </tr>
-                    <tr>
-                        <td>Entropy Change</td>
-                        <td>$\Delta S_{\text{universe}} = 0$</td>
-                        <td>$\Delta S_{\text{universe}} > 0$</td>
+                        <td>Diatomic (Low T)</td>
+                        <td>5</td>
+                        <td>$\frac{5}{2} R$</td>
+                        <td>$\frac{7}{5} = 1.40$</td>
                     </tr>
                 </tbody>
             </table>
-            
-            <div class="quick-check">
-                <h3>Quick Check Questions (2)</h3>
-                <ol>
-                    <li>A gas expands rapidly into a vacuum. Is this process reversible or irreversible?
-                        <details>
-                            <summary>See Answer</summary>
-                            <div class="answer-box">
-                                <strong>Answer:</strong> <strong>Irreversible.</strong> The process (free expansion) occurs spontaneously and is non-quasi-static.
-                            </div>
-                        </details>
-                    </li>
-                    <li>If a process is truly reversible, what must be the change in entropy of the *universe*?
-                        <details>
-                            <summary>See Answer</summary>
-                            <div class="answer-box">
-                                <strong>Answer:</strong> <strong>$\Delta S_{\text{universe}} = 0$</strong>. Both the system and the surroundings must return to their exact initial states.
-                            </div>
-                        </details>
-                    </li>
-                    <li>Why does the presence of friction make any real-world machine irreversible?
-                        <details>
-                            <summary>See Answer</summary>
-                            <div class="answer-box">
-                                <strong>Answer:</strong> Friction converts mechanical work into <strong>random, dissipated heat</strong>. This random heat cannot be perfectly recovered into useful work, causing an irreversible increase in the entropy of the surroundings.
-                            </div>
-                        </details>
-                    </li>
-                </ol>
-            </div>
+
+            <h3>3.7 Characteristic Speeds of Molecules</h3>
+            <p>The molecular speeds follow the Maxwell-Boltzmann Distribution $f(v)$:</p>
+            <p>$$\mathbf{f(v) dv = 4\pi \left( \frac{m}{2\pi k T} \right)^{3/2} v^2 e^{-m v^2 / 2 k T} dv}$$</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Speed Name</th>
+                        <th>Formula</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Most Probable Speed ($\mathbf{v_p}$)</td>
+                        <td>$$\mathbf{v_p = \sqrt{\frac{2 R T}{M}}}$$</td>
+                    </tr>
+                    <tr>
+                        <td>Average Speed ($\mathbf{\langle v \rangle}$)</td>
+                        <td>$$\mathbf{\langle v \rangle = \sqrt{\frac{8 R T}{\pi M}}}$$</td>
+                    </tr>
+                    <tr>
+                        <td>Root-Mean-Square Speed ($\mathbf{v_{\text{rms}}}$)</td>
+                        <td>$$\mathbf{v_{\text{rms}} = \sqrt{\frac{3 R T}{M}}}$$</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><strong>Order of Speeds:</strong> $\mathbf{v_p < \langle v \rangle < v_{\text{rms}}}$</p>
         </div>
         
         <div class="section-card">
-            <h2>3. Carnot’s Engine and Carnot’s Cycle ⚙️</h2>
+            <h2>📚 Solved Examples and Practice Question Bank</h2>
             
-            <h3>Carnot Engine</h3>
-            <p>A <strong>hypothetical, ideal, reversible heat engine</strong> operating between a Source ($T_1$) and a Sink ($T_2$). It defines the theoretical limit of efficiency.</p>
-
-            <h3>The Carnot Cycle (Four Reversible Steps)</h3>
-            <ol>
-                <li><strong>Isothermal Expansion (A $\to$ B):</strong> Gas absorbs heat $Q_1$ from Source ($T_1$). $W_{\text{done}} = Q_1$.</li>
-                <li><strong>Adiabatic Expansion (B $\to$ C):</strong> Gas expands, $T$ drops from $T_1$ to $T_2$. $Q=0$.</li>
-                <li><strong>Isothermal Compression (C $\to$ D):</strong> Gas rejects heat $Q_2$ to Sink ($T_2$). $|W_{\text{on}}| = Q_2$.</li>
-                <li><strong>Adiabatic Compression (D $\to$ A):</strong> Gas is compressed, $T$ rises from $T_2$ back to $T_1$. $Q=0$.</li>
-            </ol>
-            
-            <h3>Graphical Representation</h3>
-            <div class="diagram-container">
-                <div class="image-placeholder">
-
-
-[Image of the Carnot cycle PV diagram]
-
-</div>
-                <p class="diagram-caption">The Carnot cycle on a P-V diagram (closed loop). The area enclosed is the Net Work Done ($W$).</p>
-                <div class="image-placeholder">
-
-</div>
-                <p class="diagram-caption">The Carnot cycle on a T-S diagram is a <strong>perfect rectangle</strong>. Area enclosed is Net Work Done ($W$).</p>
-            </div>
-            
-            <h3>Derivation of Carnot Efficiency ($\eta$)</h3>
-            <p>Efficiency is Work Output divided by Heat Input:</p>
-            $$\eta = \frac{W}{Q_1} = \frac{Q_1 - Q_2}{Q_1} = 1 - \frac{Q_2}{Q_1}$$
-            <p>For a reversible cycle, the ratio of heat exchanged equals the ratio of absolute temperatures:</p>
-            $$\frac{Q_2}{Q_1} = \frac{T_2}{T_1}$$
-            <p>Therefore, the maximum theoretical efficiency is:</p>
-            $$\mathbf{\eta = 1 - \frac{T_2}{T_1}}$$
-            
+            <h3>1. Transport of Heat Examples</h3>
             <div class="example-box">
-                <strong>Example Problem:</strong>
-                <p>An engine operates between $T_1 = 500 \text{ K}$ and $T_2 = 300 \text{ K}$.</p>
-                $$\eta = 1 - \frac{300}{500} = 1 - 0.6 = 0.4 \quad \text{or } 40\%$$
+                <strong>Example 1.1 (Conduction - Thermal Resistance):</strong>
+                <p>A glass window pane has an area of $0.5 \text{ m}^2$ and a thickness of $6 \text{ mm}$. If the thermal conductivity of glass is $0.8 \text{ W/m}\cdot\text{K}$, calculate the thermal resistance of the pane.</p>
+                <p><strong>Solution:</strong> $L = 0.006 \text{ m}, A = 0.5 \text{ m}^2, k = 0.8 \text{ W/m}\cdot\text{K}$.</p>
+                $$\mathbf{R_T} = \frac{L}{k A} = \frac{0.006}{(0.8)(0.5)} = \frac{0.006}{0.4} = \mathbf{0.015 \text{ K/W}}$$
             </div>
-
-            <div class="quick-check">
-                <h3>Quick Check Questions (3)</h3>
-                <ol>
-                    <li>What are the four types of processes involved in a Carnot cycle?
-                        <details>
-                            <summary>See Answer</summary>
-                            <div class="answer-box">
-                                <strong>Answer:</strong> Two <strong>Isothermal</strong> processes and two <strong>Adiabatic</strong> processes.
-                            </div>
-                        </details>
-                    </li>
-                    <li>A heat engine operates between $1000 \text{ K}$ and $500 \text{ K}$. What is its maximum possible efficiency?
-                        <details>
-                            <summary>See Answer</summary>
-                            <div class="answer-box">
-                                <strong>Calculation:</strong> $\eta = 1 - \frac{T_2}{T_1} = 1 - \frac{500 \text{ K}}{1000 \text{ K}} = 0.5$.
-                                <p><strong>Answer:</strong> <strong>$50\%$</strong>.</p>
-                            </div>
-                        </details>
-                    </li>
-                    <li>To increase the efficiency of a Carnot engine, is it better to increase the source temperature ($T_1$) or decrease the sink temperature ($T_2$) by the same amount ($\Delta T$)?
-                        <details>
-                            <summary>See Answer</summary>
-                            <div class="answer-box">
-                                <strong>Answer:</strong> It is always <strong>more effective to decrease the sink temperature ($T_2$)</strong>. This increases the ratio $T_2/T_1$ more significantly, thus increasing $\eta = 1 - T_2/T_1$.
-                            </div>
-                        </details>
-                    </li>
-                </ol>
-            </div>
-        </div>
-        
-        <div class="section-card">
-            <h2>4. Second Law of Thermodynamics ⚖️</h2>
             
-            <h3>Kelvin–Planck Statement</h3>
-            <p>It is <strong>impossible</strong> to construct an engine that, operating in a cycle, produces no effect other than the <strong>absorption of heat from a single reservoir and the performance of an equivalent amount of work</strong>.</p>
-            <p class="note">Interpretation: $100\%$ conversion of heat to work is impossible in a cycle.</p>
-
-            <h3>Clausius Statement</h3>
-            <p>It is <strong>impossible</strong> to construct a device which operates in a cycle and produces no effect other than the <strong>transfer of heat from a colder body to a hotter body</strong>.</p>
-            <p class="note">Interpretation: Heat does not spontaneously flow from cold to hot.</p>
-
-            <h3>Equivalence of the Statements</h3>
-            <p>If the Kelvin–Planck statement were false (a $100\%$ efficient engine existed), it could be used to violate the Clausius statement (spontaneous heat flow cold to hot), and vice versa. They are therefore logically <strong>equivalent</strong>.</p>
-            
-            <div class="quick-check">
-                <h3>Quick Check Questions (4)</h3>
-                <ol>
-                    <li>Which of the two statements (Kelvin–Planck or Clausius) directly relates to the impossibility of a Perpetual Motion Machine of the Second Kind (PMM2)?
-                        <details>
-                            <summary>See Answer</summary>
-                            <div class="answer-box">
-                                <strong>Answer:</strong> The <strong>Kelvin–Planck statement</strong>. A PMM2 would be an engine that achieves $100\%$ efficiency by operating from a single reservoir, which the statement forbids.
-                            </div>
-                        </details>
-                    </li>
-                    <li>If a refrigerator (a device based on the Clausius statement) is run, why is it necessary to supply external work?
-                        <details>
-                            <summary>See Answer</summary>
-                            <div class="answer-box">
-                                <strong>Answer:</strong> The Clausius statement says that heat <strong>cannot spontaneously</strong> flow from cold to hot. To force this transfer against nature's flow, <strong>external work</strong> must be supplied.
-                            </div>
-                        </details>
-                    </li>
-                    <li>Explain the core concept that both statements aim to establish regarding natural processes.
-                        <details>
-                            <summary>See Answer</summary>
-                            <div class="answer-box">
-                                <strong>Answer:</strong> Both statements establish that <strong>all macroscopic processes are directional</strong> and cannot be perfectly reversed without leaving a change in the environment, confirming the existence of irreversibility in nature.
-                            </div>
-                        </details>
-                    </li>
-                </ol>
-            </div>
-        </div>
-
-        <div class="section-card">
-            <h2>5. Carnot’s Theorem ⭐</h2>
-            
-            <h3>Statement of Carnot’s Theorem</h3>
-            <ol>
-                <li>All <strong>reversible heat engines</strong> operating between the same two temperatures ($T_1$ and $T_2$) have the <strong>same efficiency</strong>.</li>
-                <li><strong>No irreversible heat engine</strong> operating between the same two temperatures can have an efficiency <strong>greater than</strong> that of a reversible engine ($\eta_{\text{irr}} < \eta_{\text{rev}}$).</li>
-            </ol>
-
-            <h3>Implications</h3>
-            <p>The efficiency of an ideal engine depends <strong>only on the absolute temperatures</strong> ($T_1, T_2$), and <strong>not on the nature of the working substance</strong>.</p>
-
-            <div class="quick-check">
-                <h3>Quick Check Questions (5)</h3>
-                <ol>
-                    <li>Engine A is a reversible engine and Engine B is an irreversible engine, both operating between $400 \text{ K}$ and $300 \text{ K}$. Can Engine B have $30\%$ efficiency if Engine A has $25\%$ efficiency?
-                        <details>
-                            <summary>See Answer</summary>
-                            <div class="answer-box">
-                                <strong>Answer:</strong> <strong>No.</strong> Carnot's Theorem states that no engine (reversible or irreversible) can be *more* efficient than the Carnot engine. The maximum possible efficiency here is $\eta_{\text{rev}} = 1 - 300/400 = 0.25$ or $25\%$. Engine A's efficiency is $25\%$, but Engine B cannot exceed $25\%$.
-                            </div>
-                        </details>
-                    </li>
-                    <li>What property of the Carnot engine makes its efficiency a universal benchmark?
-                        <details>
-                            <summary>See Answer</summary>
-                            <div class="answer-box">
-                                <strong>Answer:</strong> Its efficiency depends <strong>only on the temperatures of the hot and cold reservoirs</strong> ($T_1$ and $T_2$), not on the specific gas or fluid used (the working substance).
-                            </div>
-                        </details>
-                    </li>
-                </ol>
-            </div>
-        </div>
-        
-        <div class="section-card">
-            <h2>6. Thermodynamic Scale of Temperature 🌡️</h2>
-            
-            <h3>Definition and Need</h3>
-            <p>The <strong>Thermodynamic Scale (or Kelvin Scale)</strong> is a temperature scale based purely on the <strong>Second Law</strong> and Carnot's Theorem, making it <strong>independent of the properties of any specific substance</strong> (unlike the ideal gas scale).</p>
-
-            <h3>Derivation</h3>
-            <p>Based on Carnot's finding that the heat ratio is fixed for any reversible engine:</p>
-            $$\mathbf{\frac{Q_1}{Q_2} = \frac{T_1}{T_2}}$$
-            <p>This relation defines the ratio of temperatures on the thermodynamic scale.</p>
-            
-            <p><strong>Identity:</strong> The Thermodynamic Scale is proven to be <strong>identical</strong> to the Perfect Gas Kelvin Scale.</p>
-            
-            <div class="quick-check">
-                <h3>Quick Check Questions (6)</h3>
-                <ol>
-                    <li>What is the fundamental difference between the thermodynamic scale and a scale based on the expansion of alcohol or mercury?
-                        <details>
-                            <summary>See Answer</summary>
-                            <div class="answer-box">
-                                <strong>Answer:</strong> The thermodynamic scale is <strong>independent of the properties of any material</strong>, whereas scales based on alcohol or mercury depend on the specific thermal expansion properties of those substances.
-                            </div>
-                        </details>
-                    </li>
-                    <li>If a reversible engine rejects $Q_2 = 100 \text{ J}$ at $300 \text{ K}$ and absorbs $Q_1 = 150 \text{ J}$ at $T_1$, what is the temperature $T_1$ on the thermodynamic scale?
-                        <details>
-                            <summary>See Answer</summary>
-                            <div class="answer-box">
-                                <strong>Calculation:</strong> $\frac{Q_1}{Q_2} = \frac{T_1}{T_2} \implies \frac{150}{100} = \frac{T_1}{300 \text{ K}} \implies T_1 = 1.5 \times 300 \text{ K} = 450 \text{ K}$.
-                                <p><strong>Answer:</strong> <strong>$450 \text{ K}$</strong>.</p>
-                            </div>
-                        </details>
-                    </li>
-                </ol>
-            </div>
-        </div>
-        
-        <div class="section-card">
-            <h2>7. Entropy (S) 🔬</h2>
-            
-            <h3>Mathematical Definition (Change in Entropy)</h3>
-            <p>The change in entropy ($dS$) for a <strong>reversible process</strong> is:</p>
-            $$\mathbf{dS = \frac{\delta Q_{\text{rev}}}{T}}$$
-            <p>Entropy ($S$) is a <strong>state function</strong>; its value depends only on the system's state.</p>
-
-            <h3>Physical Interpretation</h3>
-            <ul>
-                <li><strong>Disorder:</strong> Entropy is a measure of the <strong>randomness, disorder, or multiplicity of microscopic states</strong> (Boltzmann: $S = k \ln W$).</li>
-                <li><strong>Unavailability of Energy:</strong> It measures the energy that is <strong>unavailable</strong> for useful work.</li>
-            </ul>
-            
-            <h3>The Principle of Increase of Entropy</h3>
-            <p>The entropy of the universe always increases for any spontaneous (irreversible) process:</p>
-            $$\mathbf{\Delta S_{\text{universe}} = \Delta S_{\text{system}} + \Delta S_{\text{surroundings}} \ge 0}$$
-            <ul>
-                <li>Reversible: $\Delta S_{\text{universe}} = 0$</li>
-                <li>Irreversible (Natural): $\Delta S_{\text{universe}} > 0$</li>
-            </ul>
-
+            <h3>2. Black-Body Radiation Examples</h3>
             <div class="example-box">
-                <strong>Units and Dimensional Analysis:</strong>
-                <p>Unit of Entropy: <strong>Joule per Kelvin</strong> ($\text{J/K}$).</p>
-                $$[S] = \frac{[\text{Heat}]}{[\text{Temperature}]} = \frac{\text{M L}^2 \text{T}^{-2}}{\Theta} = \text{M L}^2 \text{T}^{-2} \Theta^{-1}$$
+                <strong>Example 2.2 (Wien’s Displacement Law):</strong>
+                <p>The peak emission wavelength from a hot object is $500 \text{ nm}$. What is its surface temperature? ($b = 2.898 \times 10^{-3} \text{ m}\cdot\text{K}$).</p>
+                <p><strong>Solution:</strong> $\lambda_{\text{max}} = 500 \times 10^{-9} \text{ m}$.</p>
+                $$T = \frac{b}{\lambda_{\text{max}}} = \frac{2.898 \times 10^{-3}}{500 \times 10^{-9}} = \mathbf{5796 \text{ K}}$$
             </div>
-            
-            <div class="quick-check">
-                <h3>Quick Check Questions (7)</h3>
-                <ol>
-                    <li>Is entropy a state function or a path function?
-                        <details>
-                            <summary>See Answer</summary>
-                            <div class="answer-box">
-                                <strong>Answer:</strong> A <strong>state function</strong>. The change in entropy ($\Delta S$) between two states is independent of the path taken.
-                            </div>
-                        </details>
-                    </li>
-                    <li>If an ice cube melts in a glass of water (an irreversible process), what happens to the total entropy of the universe?
-                        <details>
-                            <summary>See Answer</summary>
-                            <div class="answer-box">
-                                <strong>Answer:</strong> The total entropy of the universe <strong>increases</strong> ($\Delta S_{\text{universe}} > 0$). This confirms the process is spontaneous and irreversible.
-                            </div>
-                        </details>
-                    </li>
-                    <li>What does the Boltzmann relation, $S = k \ln W$, relate entropy to?
-                        <details>
-                            <summary>See Answer</summary>
-                            <div class="answer-box">
-                                <strong>Answer:</strong> It relates entropy to <strong>$W$</strong>, the <strong>number of microscopic configurations (disorder/multiplicity)</strong> corresponding to a macroscopic state.
-                            </div>
-                        </details>
-                    </li>
-                </ol>
-            </div>
-        </div>
-        
-        <div class="section-card">
-            <h2>8. Mathematical Formulation of the Second Law</h2>
-            
-            <h3>Clausius Inequality</h3>
-            <p>The mathematical form of the Second Law for any cyclic process (reversible or irreversible) is the <strong>Clausius Inequality</strong>:</p>
-            $$\mathbf{\oint \frac{\delta Q}{T} \le 0}$$
-            <ul>
-                <li>If $\oint \frac{\delta Q}{T} = 0$, the cycle is <strong>reversible</strong>.</li>
-                <li>If $\oint \frac{\delta Q}{T} < 0$, the cycle is <strong>irreversible</strong> (and possible).</li>
-                <li>If $\oint \frac{\delta Q}{T} > 0$, the cycle is <strong>impossible</strong> (violates the Second Law).</li>
-            </ul>
 
-            <h3>Clausius Theorem</h3>
-            <p>The condition $\oint \frac{\delta Q_{\text{rev}}}{T} = 0$ (for a reversible cycle) proves that $\frac{\delta Q_{\text{rev}}}{T}$ is an <strong>exact differential</strong>, defining <strong>Entropy ($S$)</strong> as a state function.</p>
-            
+            <h3>3. Kinetic Theory of Gases Examples</h3>
             <div class="example-box">
-                <strong>Checking Feasibility (Clausius):</strong>
-                <p>A cycle takes $Q_1 = 1200 \text{ J}$ at $T_1 = 400 \text{ K}$ and rejects $Q_2 = 800 \text{ J}$ at $T_2 = 300 \text{ K}$.</p>
-                $$\oint \frac{\delta Q}{T} = \frac{1200}{400} + \frac{-800}{300} = 3.0 \text{ J/K} - 2.67 \text{ J/K} \approx 0.33 \text{ J/K}$$
-                <p>Since $\oint \frac{\delta Q}{T} > 0$, this process is <strong>impossible</strong> (violates the Second Law).</p>
+                <strong>Example 3.2 (Degrees of Freedom and $\gamma$):</strong>
+                <p>A certain gas has $\gamma = 1.4$. Calculate its molar specific heat at constant volume ($C_V$).</p>
+                <p><strong>Solution:</strong> Use $\gamma = 1 + \frac{2}{f}$.</p>
+                $$1.4 = 1 + \frac{2}{f} \implies f = \frac{2}{0.4} = 5$$
+                $$C_V = \frac{f}{2} R = \mathbf{\frac{5}{2} R}$$
             </div>
             
             <div class="quick-check">
-                <h3>Quick Check Questions (8)</h3>
+                <h3>Conceptual Short Questions (with Answers)</h3>
                 <ol>
-                    <li>What is the sign of $\oint \frac{\delta Q}{T}$ for a cycle that is theoretically possible but operates with friction?
+                    <li>Why is the negative sign necessary in Fourier's Law of Heat Conduction?
                         <details>
                             <summary>See Answer</summary>
                             <div class="answer-box">
-                                <strong>Answer:</strong> <strong>Negative</strong> ($\oint \frac{\delta Q}{T} < 0$). This is the condition for an irreversible but possible cycle according to the Clausius Inequality.
+                                <strong>Answer:</strong> The negative sign is necessary because it indicates that heat flow ($\mathbf{H}$) occurs in the direction of a <strong>decreasing temperature gradient</strong> ($\frac{dT}{dx}$), meaning heat flows from higher temperature to lower temperature.
                             </div>
                         </details>
                     </li>
-                    <li>If a cyclic process results in $\oint \frac{\delta Q}{T} = 0$, what can you conclude about the process?
+                    <li>State the underlying assumption of the classical theory (Rayleigh–Jeans) that led to the Ultraviolet Catastrophe.
                         <details>
                             <summary>See Answer</summary>
                             <div class="answer-box">
-                                <strong>Answer:</strong> The process is <strong>reversible</strong> (ideal Carnot cycle or equivalent).
+                                <strong>Answer:</strong> The classical theory assumed that each mode of oscillation (degree of freedom) in the black-body cavity possessed a mean energy of $\mathbf{kT}$ (based on the Law of Equipartition of Energy), regardless of frequency. This led to infinite energy at short wavelengths.
+                            </div>
+                        </details>
+                    </li>
+                    <li>How does the average kinetic energy of a gas molecule change if the absolute temperature is quadrupled?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> Since $\mathbf{\langle KE \rangle = \frac{3}{2} k T}$, the average kinetic energy is directly proportional to the absolute temperature. If $T$ is quadrupled (multiplied by 4), the average kinetic energy will also be <strong>quadrupled</strong>.
+                            </div>
+                        </details>
+                    </li>
+                    <li>Explain why a black surface gets hotter than a white surface under direct sunlight (relate to Kirchhoff's Law).
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> A black surface has a high <strong>absorptive power ($\mathbf{a \approx 1}$)</strong> for visible sunlight. According to <strong>Kirchhoff's Law</strong> ($\mathbf{\frac{e}{a} = E_{\text{BB}}}$), good absorbers are good emitters. A white surface is a poor absorber ($\mathbf{a \approx 0}$), reflecting most light. Since the black surface absorbs much more incident energy, its temperature rises higher.
+                            </div>
+                        </details>
+                    </li>
+                    <li>What are the three types of speeds in the Maxwell distribution, and which is the smallest?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer:</strong> The three speeds are the <strong>Most Probable Speed ($\mathbf{v_p}$)</strong>, the <strong>Average Speed ($\mathbf{\langle v \rangle}$)</strong>, and the <strong>Root-Mean-Square Speed ($\mathbf{v_{\text{rms}}}$)</strong>. The <strong>Most Probable Speed ($\mathbf{v_p}$)</strong> is the smallest.
                             </div>
                         </details>
                     </li>
                 </ol>
             </div>
+            
+            <div class="quick-check">
+                <h3>Numerical Problems (with Answers)</h3>
+                <ol>
+                    <li>The emissive power of a body is $100 \text{ W/m}^2$ at a certain temperature, and its absorptive power is $0.25$. What is the emissive power of a black-body ($\text{E}_{\text{BB}}$) at the same temperature?
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Calculation:</strong> Using Kirchhoff’s Law: $\frac{e}{a} = E_{\text{BB}}$.
+                                $$E_{\text{BB}} = \frac{100 \text{ W/m}^2}{0.25} = 400 \text{ W/m}^2$$
+                                <strong>Answer:</strong> The emissive power of a black-body is $\mathbf{400 \text{ W/m}^2}$.
+                            </div>
+                        </details>
+                    </li>
+                    <li>A furnace radiates maximum energy at a wavelength of $4.0 \times 10^{-6} \text{ m}$. What is the temperature of the furnace? ($b = 2.898 \times 10^{-3} \text{ m}\cdot\text{K}$).
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Calculation:</strong> Using Wien's Law: $\lambda_{\text{max}} T = b$.
+                                $$T = \frac{b}{\lambda_{\text{max}}} = \frac{2.898 \times 10^{-3} \text{ m}\cdot\text{K}}{4.0 \times 10^{-6} \text{ m}} = 0.7245 \times 10^3 = 724.5 \text{ K}$$
+                                <strong>Answer:</strong> The temperature of the furnace is $\mathbf{724.5 \text{ K}}$.
+                            </div>
+                        </details>
+                    </li>
+                    <li>Calculate the ratio of the RMS speed of Helium molecules ($\mathbf{M=4}$ $\text{g/mol}$) to that of Oxygen molecules ($\mathbf{M=32}$ $\text{g/mol}$) at the same temperature.
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Calculation:</strong> $v_{\text{rms}} = \sqrt{\frac{3 R T}{M}} \propto \frac{1}{\sqrt{M}}$.
+                                $$\frac{(v_{\text{rms}})_{\text{He}}}{(v_{\text{rms}})_{\text{O}_2}} = \sqrt{\frac{M_{\text{O}_2}}{M_{\text{He}}}} = \sqrt{\frac{32}{4}} = \sqrt{8} = 2\sqrt{2}$$
+                                <strong>Answer:</strong> The ratio is $\mathbf{2\sqrt{2}}$ (or approximately $2.828:1$).
+                            </div>
+                        </details>
+                    </li>
+                    <li>If the molar specific heat at constant volume ($\mathbf{C_V}$) for an unknown gas is $3 R$, find its degrees of freedom $f$ and the ratio of specific heats $\gamma$.
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Calculation for $\mathbf{f}$ (Degrees of Freedom):</strong>
+                                $$C_V = \frac{f}{2} R \implies 3 R = \frac{f}{2} R \implies f = 6$$
+                                <strong>Calculation for $\mathbf{\gamma}$:</strong>
+                                $$\gamma = 1 + \frac{2}{f} = 1 + \frac{2}{6} = 1 + \frac{1}{3} = \frac{4}{3}$$
+                                <strong>Answer:</strong> $f = \mathbf{6}$ (likely a triatomic non-linear gas like $\text{H}_2\text{O}$ at moderate $\text{T}$), and $\gamma = \mathbf{\frac{4}{3}} \approx 1.33$.
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+            
+            <div class="quick-check">
+                <h3>Objective-type Questions (with Answers)</h3>
+                <ol>
+                    <li>The ratio of $\mathbf{\langle v \rangle : v_{\text{rms}}}$ is:
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer: (b) $\mathbf{\sqrt{8/3\pi}}$</strong>.
+                                $$\frac{\langle v \rangle}{v_{\text{rms}}} = \frac{\sqrt{\frac{8 R T}{\pi M}}}{\sqrt{\frac{3 R T}{M}}} = \sqrt{\frac{8}{3\pi}}$$
+                            </div>
+                        </details>
+                    </li>
+                    <li>At high temperatures, a diatomic gas has $\gamma = \dots$ ($\frac{7}{5}$ / $\frac{9}{7}$ / $\frac{5}{3}$).
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer: $\mathbf{\frac{9}{7}}$</strong>. At high T, $f=7$ (3 translational + 2 rotational + 2 vibrational). $\gamma = 1 + \frac{2}{7} = \frac{9}{7}$.
+                            </div>
+                        </details>
+                    </li>
+                    <li>The unit of Stefan–Boltzmann constant $\mathbf{\sigma}$ is $\dots$.
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer: $\mathbf{W/m}^2\cdot\mathbf{K}^4$.</strong>
+                            </div>
+                        </details>
+                    </li>
+                    <li>The failure of classical theory to explain the black-body spectrum at short wavelengths is known as the $\dots$.
+                        <details>
+                            <summary>See Answer</summary>
+                            <div class="answer-box">
+                                <strong>Answer: Ultraviolet Catastrophe.</strong>
+                            </div>
+                        </details>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="formula-card">
+            <h3>📋 All Important Formulas at a Glance</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Topic</th>
+                        <th>Formula</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Conduction</td>
+                        <td>$H = -k A \frac{dT}{dx}$</td>
+                        <td>Fourier's Law of Conduction</td>
+                    </tr>
+                    <tr>
+                        <td>Stefan–Boltzmann</td>
+                        <td>$E = \sigma T^4$</td>
+                        <td>Energy radiated by a black-body</td>
+                    </tr>
+                    <tr>
+                        <td>Wien’s Law</td>
+                        <td>$\lambda_{\text{max}} T = b$</td>
+                        <td>Wavelength of peak emission vs. $T$</td>
+                    </tr>
+                    <tr>
+                        <td>Planck’s Formula</td>
+                        <td>$E_{\lambda} = \frac{8\pi h c}{\lambda^5} \frac{1}{e^{h c / \lambda k T} - 1}$</td>
+                        <td>Quantum formula (Universal fit)</td>
+                    </tr>
+                    <tr>
+                        <td>KTG Temperature</td>
+                        <td>$\langle KE \rangle = \frac{3}{2} k T$</td>
+                        <td>Average KE per molecule</td>
+                    </tr>
+                    <tr>
+                        <td>Equipartition $\gamma$</td>
+                        <td>$\gamma = 1 + \frac{2}{f}$</td>
+                        <td>Ratio of specific heats vs. degrees of freedom</td>
+                    </tr>
+                    <tr>
+                        <td>RMS Speed</td>
+                        <td>$v_{\text{rms}} = \sqrt{\frac{3 R T}{M}}$</td>
+                        <td>Root-mean-square speed</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         
-        <div class="section-card">
-            <h2>9. Entropy of an Ideal Gas</h2>
-            
-            <h3>Entropy Change in terms of T and V</h3>
-            <p>For $n$ moles of an ideal gas between states $(T_1, V_1)$ and $(T_2, V_2)$:</p>
-            $$\mathbf{\Delta S = n C_v \ln\left(\frac{T_2}{T_1}\right) + n R \ln\left(\frac{V_2}{V_1}\right)}$$
-
-            <h3>Entropy Change in terms of T and P</h3>
-            <p>For $n$ moles of an ideal gas between states $(T_1, P_1)$ and $(T_2, P_2)$ (using $C_p - C_v = R$):</p>
-            $$\mathbf{\Delta S = n C_p \ln\left(\frac{T_2}{T_1}\right) - n R \ln\left(\frac{P_2}{P_1}\right)}$$
-            
-            <div class="quick-check">
-                <h3>Quick Check Questions (9)</h3>
-                <ol>
-                    <li>If an ideal gas undergoes an <strong>isothermal</strong> (constant $T$) expansion, what is the equation for the change in entropy?
-                        <details>
-                            <summary>See Answer</summary>
-                            <div class="answer-box">
-                                <strong>Answer:</strong> Since $T_2 = T_1$, $\ln(T_2/T_1) = 0$. The equation simplifies to: $$\mathbf{\Delta S = n R \ln\left(\frac{V_2}{V_1}\right)}$$
-                            </div>
-                        </details>
-                    </li>
-                    <li>For an <strong>isochoric</strong> (constant $V$) heating process, what is the term for work in the general $\Delta S$ equation?
-                        <details>
-                            <summary>See Answer</summary>
-                            <div class="answer-box">
-                                <strong>Answer:</strong> The $\mathbf{n R \ln\left(\frac{V_2}{V_1}\right)}$ term becomes $\mathbf{0}$ since $V_2 = V_1$, leaving $\Delta S = n C_v \ln\left(\frac{T_2}{T_1}\right)$.
-                            </div>
-                        </details>
-                    </li>
-                </ol>
-            </div>
-        </div>
-
     </div>
 
 </body>

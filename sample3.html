@@ -8,24 +8,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;700&display=swap" rel="stylesheet">
 
      <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
-    <!-- Removed onload attribute here -->
-    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script> 
-    
-    <!-- === FIX: KaTeX Rendering Execution Timing === -->
-    <script>
-        // We ensure the rendering runs only after the entire document body content is available.
-        window.onload = function() {
-            renderMathInElement(document.body, {
-                // Essential delimiters for inline and display math
-                delimiters: [
-                    {left: '$$', right: '$$', display: true},
-                    {left: '\\[', right: '\\]', display: true}, 
-                    {left: '\\(', right: '\\)', display: false}, // Preferred inline
-                    {left: '$', right: '$', display: false}, // Standard inline
-                ],
-                throwOnError : false
-            });
-        };
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+
+<script>
+window.onload = function() {
+    renderMathInElement(document.body, {
+        delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '\\[', right: '\\]', display: true}, 
+            {left: '\\(', right: '\\)', display: false},
+            {left: '$', right: '$', display: false}
+        ],
+        throwOnError: false
+    });
+};
+</script>
+
     </script>
 
     <style>

@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics PYQ: Thermodynamics & Statistical Physics (2024-25)</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+        onload="renderMath()"></script>
+
+    <style>
+        /* ====== Base Styling ====== */
+        body {
+            font-family: 'Quicksand', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f3f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            width: 95%;
+            margin: 30px auto;
+            padding: 25px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #e1bee7, #f8bbd0);
+            color: #4a3858;
+            border-radius: 12px;
+            margin: -25px -25px 35px -25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin: 0 0 5px 0;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            color: #880e4f;
+            border-bottom: 3px solid #f8bbd0;
+            padding-bottom: 5px;
+            margin-top: 40px;
+        }
+        
+        h3 {
+             font-size: 1.3em;
+             color: #d81b60;
+             margin-top: 25px;
+             padding-left: 10px;
+        }
+        
+        /* ===== Question Styling ===== */
+        .question-item {
+            border: 1px solid #e0e0e0;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            background-color: #fcfcff;
+            border-left: 6px solid #ab47bc; /* Purple accent */
+        }
+        
+        .question-text {
+            font-size: 1.1em;
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .solution-button {
+            background-color: #ab47bc;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 6px;
+            font-weight: 700;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+
+        .solution-button:hover {
+            background-color: #8e24aa;
+        }
+
+        .solution-box {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px dashed #d81b60;
+            background-color: #fff0f5;
+            border-radius: 8px;
+            font-size: 0.95em;
+            line-height: 1.8;
+        }
+
+        .solution-box strong {
+            color: #880e4f;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        .solution-box ul {
+            padding-left: 20px;
+        }
+        
+        .katex-display {
+            overflow-x: auto;
+            padding: 10px 5px;
+            margin: 15px 0 !important;
+            background-color: #f3e5f5;
+            border-radius: 5px;
+            border: 1px solid #e1bee7;
+        }
+        
+        /* Footer Styling */
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+            color: #d81b60;
+            font-size: 1.2em;
+            font-weight: 700;
+            background-color: #f3e5f5;
+            border-radius: 0 0 15px 15px;
+            border-top: 1px solid #e1bee7;
+        }
+    </style>
+
+    <script>
+        function renderMath() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "\\[", right: "\\]", display: true },
+                    { left: "\\(", right: "\\)", display: false },
+                    { left: "$", right: "$", display: false }
+                ],
+                throwOnError: false,
+                ignoredTags: ["script", "noscript", "style", "textarea", "pre", "code"]
+            });
+        }
+
+        function toggleSolution(id) {
+            const sol = document.getElementById('solution-' + id);
+            const btn = document.getElementById('button-' + id);
+            if (sol.style.display === 'block') {
+                sol.style.display = 'none';
+                btn.textContent = 'Show Answer / Detailed Solution';
+            } else {
+                sol.style.display = 'block';
+                btn.textContent = 'Hide Solution';
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Previous Year Question Paper Archive</h1>
+            <h2>Physics: Thermodynamics & Statistical Physics (SN-3045)</h2>
+            <p>Session: 2024-25 | Max. Marks: 75 | Time: 3 Hours</p>
+        </header>
+
+        <main>
+            <h2>Section – A: Short Answer Type Questions (6 Marks Each)</h2>
+            <p style="font-style: italic; color: #555;">(Attempt any four questions.)</p>
+
+            <div class="question-item">
+                <p class="question-text"><strong>Q.A1.</strong> What is the Zeroth Law of Thermodynamics?</p>
+                <button class="solution-button" id="button-A1" onclick="toggleSolution('A1')">Show Answer / Detailed Solution</button>
+                <div class="solution-box" id="solution-A1">
+                    <strong>Detailed Explanation: The Zeroth Law of Thermodynamics</strong>
+                    
+                    The Zeroth Law is the most fundamental concept in thermodynamics because it defines the very meaning of <strong>temperature</strong>. It was formulated <em>after</em> the First and Second Laws, but it logically precedes them, hence the name "Zeroth."
+                    
+                    <h3>1. Statement of the Law:</h3>
+                    The law states: "<strong>If two thermodynamic systems are each in thermal equilibrium with a third system, then they are in thermal equilibrium with each other.</strong>"
+                    
+                    <h3>2. Step-wise Understanding:</h3>
+                    Imagine three bodies: A, B, and C.
+                    <ul>
+                        <li><strong>Step 1:</strong> System A is brought into contact with System C. If no net heat flows between them, they are in <strong>thermal equilibrium</strong>. We write this as $A \leftrightarrow C$.</li>
+                        <li><strong>Step 2:</strong> System B is brought into contact with System C. If no net heat flows between them, they are also in thermal equilibrium. We write this as $B \leftrightarrow C$.</li>
+                        <li><strong>Conclusion (Zeroth Law):</strong> The law dictates that if you now bring System A and System B into contact, they <strong>must</strong> also be in thermal equilibrium ($A \leftrightarrow B$).</li>
+                    </ul>
+                    
+                    <h3>3. Physical Significance (Defining Temperature):</h3>
+                    The most crucial significance of this law is that it establishes that there exists a property, which we call <strong>temperature</strong> ($T$), that determines whether a system is in thermal equilibrium with another.
+                    
+                    The law implies that all systems in thermal equilibrium share the same value for this property (temperature). This is the underlying principle that allows us to use a <strong>thermometer</strong> (the third system, C) to accurately measure and compare the temperatures of any two other bodies (A and B).
+                </div>
+            </div>
+
+            <div class="question-item">
+                <p class="question-text"><strong>Q.A2.</strong> What do you understand by Thermodynamic Equilibrium?</p>
+                <button class="solution-button" id="button-A2" onclick="toggleSolution('A2')">Show Answer / Detailed Solution</button>
+                <div class="solution-box" id="solution-A2">
+                    <strong>Detailed Explanation: Thermodynamic Equilibrium (The State of Perfect Balance)</strong>
+                    
+                    Thermodynamic equilibrium describes a state of a system where all macroscopic properties are perfectly stable and do not change over time. It is a state of <strong>perfect balance</strong> where no potential difference exists to drive any process.
+                    
+                    To be in complete thermodynamic equilibrium, a system must simultaneously satisfy <strong>three types of equilibrium</strong>:
+                    
+                    <h3>1. Thermal Equilibrium (Balance of Temperature):</h3>
+                    <ul>
+                        <li><strong>Condition:</strong> The temperature ($T$) must be uniform throughout the entire system.</li>
+                        <li><strong>Implication:</strong> There are no temperature gradients, meaning there is no spontaneous tendency for <strong>heat transfer</strong> to occur from one part of the system to another.</li>
+                    </ul>
+                    
+                    <h3>2. Mechanical Equilibrium (Balance of Forces):</h3>
+                    <ul>
+                        <li><strong>Condition:</strong> The pressure ($P$) must be uniform throughout the system, and there must be no unbalanced forces.</li>
+                        <li><strong>Implication:</strong> This prevents the system from undergoing spontaneous <strong>bulk motion</strong> (like a piston moving) or volume change. For example, if the pressure inside a balloon isn't balanced by the external pressure, it's not in mechanical equilibrium.</li>
+                    </ul>
+                    
+                    <h3>3. Chemical Equilibrium (Balance of Composition):</h3>
+                    <ul>
+                        <li><strong>Condition:</strong> The chemical composition of the system must not change over time.</li>
+                        <li><strong>Implication:</strong> This prevents any <strong>chemical reactions</strong> or <strong>phase transitions</strong> (like melting or evaporation) from occurring spontaneously. The number of moles of each chemical component remains constant.</li>
+                    </ul>
+                    
+                    Only when a system is in <strong>Thermal, Mechanical, AND Chemical Equilibrium</strong> is it considered to be in complete <strong>Thermodynamic Equilibrium</strong>.
+                </div>
+            </div>
+
+            <div class="question-item">
+                <p class="question-text"><strong>Q.A3.</strong> What do you mean by a Heat Engine? What is its efficiency?</p>
+                <button class="solution-button" id="button-A3" onclick="toggleSolution('A3')">Show Answer / Detailed Solution</button>
+                <div class="solution-box" id="solution-A3">
+                    <strong>Detailed Explanation: Heat Engine and Its Efficiency</strong>
+                    
+                    A Heat Engine is essentially a device that bridges the gap between thermal energy (heat) and mechanical energy (work).
+                    
+                    <h3>1. Definition of a Heat Engine:</h3>
+                    A heat engine is a device that operates in a <strong>thermodynamic cycle</strong> (meaning it returns to its initial state) and converts a portion of the heat energy supplied to it from a high-temperature source into useful mechanical <strong>work</strong>.
+                    
+                    <h3>2. Essential Components (The Cycle):</h3>
+                    A heat engine must interact with three parts:
+                    <ul>
+                        <li><strong>Source (High-Temperature Reservoir, $T_1$):</strong> Provides the heat input ($Q_1$).</li>
+                        <li><strong>Working Substance:</strong> The material (like steam in a turbine or gasoline in an engine) that absorbs the heat, expands, and performs the work.</li>
+                        <li><strong>Sink (Low-Temperature Reservoir, $T_2$):</strong> Receives the rejected heat ($Q_2$) that cannot be converted into work (due to the Second Law).</li>
+                    </ul>
+                    
+                    <h3>3. The Efficiency ($\eta$):</h3>
+                    The efficiency is a measure of how good the engine is at converting the <em>input</em> heat into the <em>output</em> work.
+                    
+                    <strong>Step 1: Definition in terms of Work and Heat Input:</strong>
+                    $$\eta = \frac{\text{Work Done by the Engine }(W)}{\text{Heat Absorbed from the Source }(Q_1)}$$
+                    
+                    <strong>Step 2: Applying the First Law of Thermodynamics:</strong>
+                    For a complete cycle, the change in internal energy ($\Delta U$) is zero. Thus, the work done ($W$) is the difference between the heat absorbed ($Q_1$) and the heat rejected ($Q_2$):
+                    $$W = Q_1 - Q_2$$
+                    
+                    <strong>Step 3: Final Efficiency Expression (in terms of Heat):</strong>
+                    Substituting the expression for $W$:
+                    $$\eta = \frac{Q_1 - Q_2}{Q_1} = 1 - \frac{Q_2}{Q_1}$$
+                    
+                    <strong>Note:</strong> For a <strong>Carnot Engine</strong> (the theoretical maximum efficiency), the efficiency can also be written in terms of absolute temperatures ($T$):
+                    $$\eta_{Carnot} = 1 - \frac{T_2}{T_1}$$
+                    Since $T_2$ is always greater than absolute zero, $\eta$ is always less than 1 (or 100%), which is a statement of the <strong>Second Law</strong>.
+                </div>
+            </div>
+
+            <div class="question-item">
+                <p class="question-text"><strong>Q.A4.</strong> Show that entropy remains constant in a reversible cycle.</p>
+                <button class="solution-button" id="button-A4" onclick="toggleSolution('A4')">Show Answer / Detailed Solution</button>
+                <div class="solution-box" id="solution-A4">
+                    <strong>Detailed Explanation: Entropy Change in a Reversible Cycle</strong>
+                    
+                    This proof relies on the fact that <strong>Entropy ($S$) is a state function</strong>.
+                    
+                    <h3>1. Definition of Entropy Change:</h3>
+                    Entropy change ($\Delta S$) is defined for a reversible process as the ratio of the heat supplied reversibly ($dQ_{rev}$) to the absolute temperature ($T$):
+                    $$dS = \frac{dQ_{rev}}{T}$$
+                    
+                    <h3>2. The Concept of a State Function:</h3>
+                    A <strong>state function</strong> (like $S$, $U$, $H$, $G$) depends <strong>only</strong> on the initial and final states of the system, and <strong>not</strong> on the path taken between them.
+                    
+                    <h3>3. Applying the Concept to a Cycle:</h3>
+                    A <strong>cyclic process</strong> is one where the system starts at an initial state (State 1) and, after a series of changes, returns exactly to the same initial state.
+                    
+                    Since the final state is identical to the initial state (State 1 = State 2), the change in <strong>any state function</strong> must be zero.
+                    
+                    <h3>4. Mathematical Proof (Clausius Theorem):</h3>
+                    For a small change in a cycle, the total change in entropy is:
+                    $$\Delta S_{\text{total}} = \int_{\text{initial}}^{\text{final}} dS$$
+                    For a complete cyclic process, the integral is written as a closed loop:
+                    $$\oint dS$$
+                    Since $S$ is a state function:
+                    $$\oint dS = 0$$
+                    Substituting the definition of $dS$ for a reversible cycle:
+                    $$\oint \frac{dQ_{rev}}{T} = 0$$
+                    
+                    <strong>Conclusion:</strong> This famous integral, derived from the Clausius inequality for a reversible cycle, mathematically proves that the net change in entropy of a system undergoing a <strong>reversible cycle</strong> is <strong>zero</strong>. This means the entropy of the system remains conserved throughout the reversible process.
+                </div>
+            </div>
+
+            <div class="question-item">
+                <p class="question-text"><strong>Q.A5.</strong> What is a perfectly black body? How can it be realized in practice?</p>
+                <button class="solution-button" id="button-A5" onclick="toggleSolution('A5')">Show Answer / Detailed Solution</button>
+                <div class="solution-box" id="solution-A5">
+                    <strong>Detailed Explanation: Perfectly Black Body and Its Practical Realization</strong>
+                    
+                    A perfectly black body is an idealized theoretical concept crucial to understanding thermal radiation.
+                    
+                    <h3>1. Definition of a Perfectly Black Body:</h3>
+                    A black body is defined by two properties:
+                    <ul>
+                        <li><strong>Perfect Absorber (Absorption):</strong> It absorbs <strong>all</strong> electromagnetic radiation (light, heat, radio waves, etc.) incident upon it, regardless of the wavelength, intensity, or angle. Its <strong>absorptivity</strong> ($a$) is exactly 1.</li>
+                        <li><strong>Perfect Emitter (Emission):</strong> When heated, it emits the maximum possible amount of thermal radiation at every frequency for a given temperature. It is the best possible emitter, and its <strong>emissivity</strong> ($\epsilon$) is also 1.</li>
+                    </ul>
+                    <em>Note: According to Kirchhoff's Law of Radiation, a good absorber is also a good emitter.</em>
+                    
+                    <h3>2. Practical Realization (Ferry's Black Body):</h3>
+                    While no material is a <em>perfectly</em> black body in reality, we can create a near-perfect model using a device called <strong>Ferry's Black Body</strong>.
+                    
+                    <strong>The Setup:</strong>
+                    The practical black body is a <strong>hollow enclosure</strong> (like a metal sphere or cylinder) with a very small opening (aperture). The inner walls are coated with a black material (like lamp black) which is a decent absorber.
+                    
+                    <strong>The Mechanism (Why it works):</strong>
+                    When radiation enters the small hole:
+                    <ul>
+                        <li>It strikes the inner wall and is partially absorbed (e.g., 90%).</li>
+                        <li>The remaining radiation (10%) is reflected to another point on the inner wall.</li>
+                        <li>At the second point, 90% of the remaining 10% is absorbed, and so on.</li>
+                    </ul>
+                    Due to the multiple internal reflections and absorptions, the probability of any radiation escaping back out of the tiny hole is virtually zero. <strong>The small aperture itself</strong> acts as the perfectly black surface, absorbing all incident energy. When this cavity is heated, the radiation emitted from the hole is considered to be nearly <strong>perfect black-body radiation</strong>.
+                </div>
+            </div>
+
+            <div class="question-item">
+                <p class="question-text"><strong>Q.A6.</strong> What do you mean by microstate and macrostate?</p>
+                <button class="solution-button" id="button-A6" onclick="toggleSolution('A6')">Show Answer / Detailed Solution</button>
+                <div class="solution-box" id="solution-A6">
+                    <strong>Detailed Explanation: Microstate vs. Macrostate (The Statistical View)</strong>
+                    
+                    These concepts are the heart of <strong>Statistical Mechanics</strong>, which links the microscopic world of atoms and molecules to the macroscopic world of pressure and temperature.
+                    
+                    <h3>1. Macrostate (The Big Picture):</h3>
+                    <ul>
+                        <li><strong>Definition:</strong> A macrostate is a state of a system described by its <strong>observable, bulk properties</strong> (macroscopic parameters).</li>
+                        <li><strong>Examples:</strong> Total Energy ($E$), Volume ($V$), Number of Particles ($N$), Pressure ($P$), and Temperature ($T$).</li>
+                        <li><strong>Key Feature:</strong> A macrostate defines the <em>condition</em> of the system that we can measure with instruments.</li>
+                    </ul>
+                    
+                    <h3>2. Microstate (The Detailed Picture):</h3>
+                    <ul>
+                        <li><strong>Definition:</strong> A microstate is a complete and precise description of the system at the atomic or molecular level.</li>
+                        <li><strong>Classical View:</strong> This means specifying the exact <strong>position</strong> and <strong>momentum</strong> of <strong>every single particle</strong> in the system.</li>
+                        <li><strong>Quantum View:</strong> This means specifying the exact <strong>quantum state</strong> (e.g., energy level) occupied by every particle in the system.</li>
+                        <li><strong>Key Feature:</strong> Microstates are the tiny, specific arrangements that make up a macrostate.</li>
+                    </ul>
+                    
+                    <h3>3. The Relationship (Thermodynamic Probability):</h3>
+                    The crucial link is that <strong>many different microstates can correspond to the same macrostate.</strong>
+                    
+                    The number of microstates corresponding to a given macrostate is called the <strong>Thermodynamic Probability</strong> or <strong>Weight ($\Omega$)</strong>.
+                    
+                    <em>Example:</em> For a gas in a box with fixed $V$ and $E$, every possible arrangement of the particles' positions and velocities that <em>adds up</em> to the total energy $E$ is a different microstate, but they all result in the same observed macrostate (same $P, T$).
+                    
+                    The macrostate with the highest $\Omega$ is the one the system is most likely to be in at equilibrium, leading to the <strong>Boltzmann Entropy Formula</strong>:
+                    $$S = k_B \ln \Omega$$
+                </div>
+            </div>
+
+            <div class="question-item">
+                <p class="question-text"><strong>Q.A7.</strong> State Stefan–Boltzmann Law of radiation.</p>
+                <button class="solution-button" id="button-A7" onclick="toggleSolution('A7')">Show Answer / Detailed Solution</button>
+                <div class="solution-box" id="solution-A7">
+                    <strong>Detailed Explanation: The Stefan–Boltzmann Law of Radiation</strong>
+                    
+                    This law quantifies the total energy radiated by a black body.
+                    
+                    <h3>1. Statement of the Law:</h3>
+                    The Stefan–Boltzmann Law states that the total radiant <strong>heat energy emitted per unit surface area per unit time</strong> (called the total emissive power, $E$) of a perfectly black body is <strong>directly proportional to the fourth power of its absolute temperature</strong> ($T$).
+                    
+                    <h3>2. Mathematical Expression:</h3>
+                    $$E = \sigma T^4$$
+                    Where:
+                    <ul>
+                        <li>$E$: Total energy emitted per square meter per second ($\text{W}/\text{m}^2$).</li>
+                        <li>$T$: The <strong>absolute temperature</strong> of the black body (in <strong>Kelvin, K</strong>).</li>
+                        <li>$\sigma$: The <strong>Stefan–Boltzmann Constant</strong>. Its value is $\sigma \approx 5.67 \times 10^{-8} \text{ W} \cdot \text{m}^{-2} \cdot \text{K}^{-4}$.</li>
+                    </ul>
+                    
+                    <h3>3. Significance:</h3>
+                    The dependence on $T^4$ is extremely steep. This means a small increase in temperature leads to a massive increase in the emitted radiation power.
+                    
+                    <em>Example:</em> Doubling the absolute temperature ($2T$) increases the emitted energy by a factor of $2^4 = 16$. This is why the sun (very high $T$) radiates so much more energy than the Earth (lower $T$).
+                    
+                    <h3>4. For Non-Black Bodies:</h3>
+                    For a real object (a gray body) with emissivity $\epsilon$ (where $0 < \epsilon < 1$):
+                    $$E_{\text{real}} = \epsilon \sigma T^4$$
+                </div>
+            </div>
+
+            <div class="question-item">
+                <p class="question-text"><strong>Q.A8.</strong> What is the Rayleigh–Jeans Law?</p>
+                <button class="solution-button" id="button-A8" onclick="toggleSolution('A8')">Show Answer / Detailed Solution</button>
+                <div class="solution-box" id="solution-A8">
+                    <strong>Detailed Explanation: The Rayleigh–Jeans Law (A Classical Failure)</strong>
+                    
+                    The Rayleigh–Jeans Law was a classical physics formula (before quantum mechanics) that attempted to describe the intensity of radiation emitted by a black body at a given temperature.
+                    
+                    <h3>1. Classical Basis:</h3>
+                    The law was derived using two classical principles:
+                    <ul>
+                        <li>The laws of classical electromagnetism to find the number of standing wave modes (oscillators) inside a black-body cavity.</li>
+                        <li>The <strong>Equipartition Theorem</strong> of classical thermodynamics, which states that every mode should have an average energy of $k_B T$.</li>
+                    </ul>
+                    
+                    <h3>2. Mathematical Expression (in terms of Wavelength $\lambda$):</h3>
+                    The spectral energy density $u(\lambda)$ (energy per unit volume per unit wavelength) is given by:
+                    $$u(\lambda, T) = \frac{8\pi k_B T}{\lambda^4}$$
+                    
+                    <h3>3. The Problem: The Ultraviolet Catastrophe:</h3>
+                    The Rayleigh–Jeans Law agreed well with experimental data for <strong>long wavelengths</strong> (low frequencies). However, it failed dramatically for <strong>short wavelengths</strong> (high frequencies, i.e., the ultraviolet region and beyond).
+                    
+                    According to the formula:
+                    $$\text{As } \lambda \to 0, \quad u(\lambda, T) \to \infty$$
+                    This predicted that a black body should emit an <strong>infinite amount of energy</strong> at short wavelengths, which is clearly impossible and contradicts observation. This theoretical disaster was famously named the <strong>Ultraviolet Catastrophe</strong>.
+                    
+                    <h3>4. Resolution:</h3>
+                    The failure of the Rayleigh–Jeans law forced physicists to abandon the classical assumption of continuous energy and paved the way for <strong>Planck's Quantum Hypothesis</strong> (Q.B6), where energy is quantized ($E = h\nu$).
+                </div>
+            </div>
+
+            <hr>
+
+            <h2>Section – B: Long Answer Type Questions (15 Marks Each)</h2>
+            <p style="font-style: italic; color: #555;">(Attempt any three questions.)</p>
+
+            <div class="question-item">
+                <p class="question-text"><strong>Q.B1.</strong> Formulate the First Law of Thermodynamics and explain its physical significance.</p>
+                <button class="solution-button" id="button-B1" onclick="toggleSolution('B1')">Show Answer / Detailed Solution</button>
+                <div class="solution-box" id="solution-B1">
+                    <strong>Detailed Explanation: The First Law of Thermodynamics and its Significance</strong>
+                    
+                    The First Law is simply the principle of <strong>Conservation of Energy</strong> applied to thermodynamic systems. It describes how energy is transformed between heat, work, and internal energy.
+                    
+                    <h3>1. Formulation of the First Law (Mathematical Statement)</h3>
+                    The law states that the change in the <strong>internal energy ($\Delta U$)</strong> of a closed thermodynamic system is equal to the <strong>heat energy ($Q$)</strong> supplied to the system minus the <strong>work ($W$)</strong> done <em>by</em> the system on its surroundings.
+                    
+                    $$\Delta U = Q - W$$
+                    
+                    <em>Alternative convention (Work done ON the system):</em> If $W$ represents work done <em>on</em> the system (e.g., compressing a gas), the formula is $\Delta U = Q + W$. We will use the former convention ($\Delta U = Q - W$).
+                    
+                    <em>For a small change in state:</em>
+                    $$dU = dQ - dW$$
+                    
+                    Where:
+                    <ul>
+                        <li>$dU$ (or $\Delta U$): The change in <strong>Internal Energy</strong> (a state function).</li>
+                        <li>$dQ$ (or $Q$): The heat added <em>to</em> the system (a path function).</li>
+                        <li>$dW$ (or $W$): The work done <em>by</em> the system (a path function, often $P dV$).</li>
+                    </ul>
+                    
+                    <h3>2. Physical Significance and Implications</h3>
+                    
+                    <h4>A. The Law of Conservation of Energy:</h4>
+                    The most profound significance is that the First Law mathematically formalizes the idea that <strong>energy is conserved</strong>. Energy cannot be created or destroyed; it can only be converted from one form (heat $Q$) into another (work $W$) or stored (internal energy $U$).
+                    
+                    <h4>B. Introduction of Internal Energy ($U$):</h4>
+                    The First Law defines <strong>Internal Energy ($U$)</strong> as a fundamental property of the system.
+                    
+                    * <strong>$U$ is a State Function:</strong> The change in internal energy ($\Delta U$) depends only on the initial and final states of the system ($U_{\text{final}} - U_{\text{initial}}$), regardless of the path taken (how much heat $Q$ was added or work $W$ was done). This means $dU$ is an <strong>exact differential</strong>.
+                    * <strong>Energy and Temperature:</strong> For an ideal gas, internal energy depends only on temperature ($U \propto T$). For real systems, it also slightly depends on volume and pressure.
+                    
+                    <h4>C. Distinction between Heat and Work:</h4>
+                    The law makes it clear that $Q$ and $W$ are <strong>not</strong> state functions; they are <strong>path functions</strong>. The amount of heat exchanged and work done depends entirely on the specific process (path) the system takes between the initial and final states.
+                    
+                    <h4>D. Exclusion of Perpetual Motion Machines (Type I):</h4>
+                    A device that could produce work ($W > 0$) without any external energy input ($Q=0$) would require a spontaneous creation of internal energy ($\Delta U = -W$), violating the First Law. The law makes the <strong>Perpetual Motion Machine of the First Kind</strong> impossible.
+                </div>
+            </div>
+
+            <div class="question-item">
+                <p class="question-text"><strong>Q.B2.</strong> State and prove Carnot’s Theorem.</p>
+                <button class="solution-button" id="button-B2" onclick="toggleSolution('B2')">Show Answer / Detailed Solution</button>
+                <div class="solution-box" id="solution-B2">
+                    <strong>Detailed Explanation: Carnot's Theorem (The Limit of Efficiency)</strong>
+                    
+                    Carnot's Theorem is a cornerstone of the <strong>Second Law of Thermodynamics</strong> and sets the ultimate theoretical limit on the efficiency of any heat engine.
+                    
+                    <h3>1. Statement of Carnot's Theorem</h3>
+                    The theorem has two parts, applying to engines operating between a high-temperature source ($T_1$) and a low-temperature sink ($T_2$):
+                    
+                    <h4>Part I (Maximum Efficiency):</h4>
+                    > "No heat engine operating between two given constant temperature reservoirs can have an efficiency greater than a reversible engine (like a Carnot engine) operating between the same two reservoirs."
+                    $$\eta_{\text{irreversible}} \le \eta_{\text{reversible}}$$
+                    
+                    <h4>Part II (Universal Efficiency):</h4>
+                    > "The efficiency of all reversible engines operating between the same two temperature reservoirs is the same, regardless of the nature of the working substance."
+                    $$\eta_{\text{reversible}} = 1 - \frac{T_2}{T_1}$$
+                    
+                    <h3>2. Proof by Contradiction</h3>
+                    The proof of Part I is typically done by assuming the theorem is false and showing that this leads to a contradiction of the Second Law of Thermodynamics (specifically, the Clausius Statement).
+                    
+                    <h4>Step 1: The Setup</h4>
+                    Assume we have two engines operating between $T_1$ and $T_2$:
+                    * <strong>$R$</strong>: A <strong>Reversible</strong> Carnot engine (efficiency $\eta_R$).
+                    * <strong>$I$</strong>: A hypothetical <strong>Irreversible</strong> engine (efficiency $\eta_I$).
+                    
+                    Let's assume the contradiction is true: $\mathbf{\eta_I > \eta_R}$.
+                    
+                    <h4>Step 2: Coupling the Engines</h4>
+                    1.  Engine <strong>$I$</strong> is operated <strong>forward</strong> (as an engine), taking $Q_{1I}$ from $T_1$ and giving out work $W_I$.
+                    2.  Engine <strong>$R$</strong> is operated <strong>in reverse</strong> (as a refrigerator), consuming work $W_R$ to lift heat $Q_{2R}$ from $T_2$ to $T_1$.
+                    
+                    We adjust the engines so that the <strong>work done is equal and cancels out:</strong> $W_I = W_R = W$.
+                    
+                    <h4>Step 3: Calculating Heat Flows (The Contradiction)</h4>
+                    Since we assumed $\eta_I > \eta_R$ and $W_I = W_R$:
+                    $$\frac{W_I}{Q_{1I}} > \frac{W_R}{Q_{1R}} \implies \frac{W}{Q_{1I}} > \frac{W}{Q_{1R}}$$
+                    This means the heat absorbed by $I$ must be less than the heat rejected by $R$:
+                    $$Q_{1I} < Q_{1R}$$
+                    
+                    Now, calculate the net heat flows for the combined system:
+                    * <strong>Net Work:</strong> $W_{\text{net}} = W_I - W_R = 0$
+                    * <strong>Net Heat at $T_1$ (Hot Reservoir):</strong> $Q_{\text{net}, 1} = Q_{1R} - Q_{1I}$. Since $Q_{1R} > Q_{1I}$, the net flow is <strong>into $T_1$</strong> (heat rejected to the hot reservoir).
+                    * <strong>Net Heat at $T_2$ (Cold Reservoir):</strong> By the First Law, since $W_{\text{net}}=0$, the net heat absorbed from $T_2$ must equal the net heat delivered to $T_1$. Therefore, the system must <strong>absorb</strong> $Q_{\text{net}, 1}$ from $T_2$.
+                    
+                    <h4>Step 4: Conclusion</h4>
+                    The coupled device absorbs a net amount of heat from the cold reservoir $T_2$ and rejects the entire amount to the hot reservoir $T_1$, with no external work input.
+                    
+                    <strong>This is a direct violation of the Clausius Statement of the Second Law</strong> (Heat cannot spontaneously flow from a colder body to a hotter body).
+                    
+                    Since our conclusion violates a proven law, our initial assumption ($\eta_I > \eta_R$) must be false. Therefore, $\mathbf{\eta_I \le \eta_R}$.
+                </div>
+            </div>
+
+            <div class="question-item">
+                <p class="question-text"><strong>Q.B3.</strong> What are Thermodynamic Potentials? Define them and derive Maxwell’s Thermodynamic Relations.</p>
+                <button class="solution-button" id="button-B3" onclick="toggleSolution('B3')">Show Answer / Detailed Solution</button>
+                <div class="solution-box" id="solution-B3">
+                    <strong>Detailed Explanation: Thermodynamic Potentials and Maxwell’s Relations</strong>
+                    
+                    Thermodynamic Potentials are fundamental state functions that measure the energy available in a thermodynamic system under specific experimental conditions (constraints). They simplify complex thermodynamic processes.
+                    
+                    <h3>1. Defining the Four Potentials</h3>
+                    All potentials are derived from the <strong>First Law ($dU = dQ - dW$)</strong> combined with the <strong>Second Law ($dQ = TdS$ for reversible)</strong>, giving the fundamental equation:
+                    $$dU = TdS - PdV$$
+                    
+                    | Potential ($Z$) | Definition | Differential ($dZ$) | Natural Variables | Constant Condition for Equilibrium |
+                    | :--- | :--- | :--- | :--- | :--- |
+                    | <strong>Internal Energy ($U$)</strong> | $U$ | $dU = TdS - PdV$ | $S, V$ (Entropy, Volume) | $S, V$ |
+                    | <strong>Enthalpy ($H$)</strong> | $H = U + PV$ | $dH = TdS + VdP$ | $S, P$ (Entropy, Pressure) | $S, P$ |
+                    | <strong>Helmholtz Free Energy ($F$)</strong> | $F = U - TS$ | $dF = -SdT - PdV$ | $T, V$ (Temp, Volume) | $T, V$ |
+                    | <strong>Gibbs Free Energy ($G$)</strong> | $G = H - TS$ | $dG = -SdT + VdP$ | $T, P$ (Temp, Pressure) | $T, P$ |
+
+                    <em>The natural variables are the ones that must be held constant for that potential to indicate the equilibrium state (i.e., its value becomes minimum at equilibrium).</em>
+                    
+                    <h3>2. Derivation of Maxwell’s Relations</h3>
+                    Since $U, H, F, G$ are all <strong>state functions</strong>, their differentials ($dU, dH, dF, dG$) must be <strong>exact differentials</strong>.
+                    
+                    For any exact differential $dZ = Mdx + Ndy$, we must have:
+                    $$\left(\frac{\partial M}{\partial y}\right)_x = \left(\frac{\partial N}{\partial x}\right)_y$$
+                    
+                    Applying this cross-differentiation property to the four potentials gives the four Maxwell's Relations:
+                    
+                    | Potential | Exact Differential ($dZ = Mdx + Ndy$) | Maxwell Relation: $\left(\frac{\partial M}{\partial y}\right)_x = \left(\frac{\partial N}{\partial x}\right)_y$ |
+                    | :--- | :--- | :--- |
+                    | <strong>$U$</strong> | $dU = \mathbf{T}dS + (\mathbf{-P})dV$ | $\mathbf{\left(\frac{\partial T}{\partial V}\right)_S = -\left(\frac{\partial P}{\partial S}\right)_V}$ (M.R. I) |
+                    | <strong>$H$</strong> | $dH = \mathbf{T}dS + (\mathbf{V})dP$ | $\mathbf{\left(\frac{\partial T}{\partial P}\right)_S = \left(\frac{\partial V}{\partial S}\right)_P}$ (M.R. II) |
+                    | <strong>$F$</strong> | $dF = \mathbf{-S}dT + (\mathbf{-P})dV$ | $\mathbf{\left(\frac{\partial S}{\partial V}\right)_T = \left(\frac{\partial P}{\partial T}\right)_V}$ (M.R. III) |
+                    | <strong>$G$</strong> | $dG = \mathbf{-S}dT + (\mathbf{V})dP$ | $\mathbf{-\left(\frac{\partial S}{\partial P}\right)_T = \left(\frac{\partial V}{\partial T}\right)_P}$ (M.R. IV) |
+                    
+                    <strong>Significance of Maxwell's Relations:</strong>
+                    These equations are incredibly useful because they allow us to relate partial derivatives involving unmeasurable quantities (like $S$) to partial derivatives involving easily measurable quantities ($P, V, T$). For example, M.R. III allows us to calculate the change in entropy with respect to volume ($\partial S/\partial V$) simply by measuring the change in pressure with respect to temperature ($\partial P/\partial T$) at constant volume.
+                </div>
+            </div>
+
+            <div class="question-item">
+                <p class="question-text"><strong>Q.B4.</strong> Write short notes on the following: a) Clausius–Clapeyron Equation b) Triple Point</p>
+                <button class="solution-button" id="button-B4" onclick="toggleSolution('B4')">Show Answer / Detailed Solution</button>
+                <div class="solution-box" id="solution-B4">
+                    <strong>Detailed Explanation: Short Notes on Key Phase Concepts</strong>
+                    
+                    <h3>a) Clausius–Clapeyron Equation (Phase Coexistence)</h3>
+                    
+                    <h4>1. Definition and Purpose:</h4>
+                    The <strong>Clausius–Clapeyron equation</strong> is a differential equation that describes the slope of the coexistence curve ($\mathbf{dP/dT}$) between two phases (e.g., solid-liquid, liquid-vapor) of a pure substance on a pressure-temperature ($P-T$) diagram. It shows how the melting point or boiling point changes with pressure.
+                    
+                    <h4>2. Derivation (Basis):</h4>
+                    It is derived from the condition that for two phases (1 and 2) to coexist in equilibrium, their <strong>Gibbs Free Energies</strong> must be equal ($G_1 = G_2$). A small change along the coexistence curve also requires $dG_1 = dG_2$.
+                    
+                    Using $dG = -SdT + VdP$:
+                    $$dG_1 = -S_1 dT + V_1 dP$$
+                    $$dG_2 = -S_2 dT + V_2 dP$$
+                    Setting $dG_1 = dG_2$:
+                    $$-S_1 dT + V_1 dP = -S_2 dT + V_2 dP$$
+                    $$(V_2 - V_1) dP = (S_2 - S_1) dT$$
+                    
+                    <h4>3. Final Equation:</h4>
+                    Since the phase transition occurs at constant temperature $T$, the change in entropy $\Delta S = S_2 - S_1$ is related to the latent heat $L$ (or $\Delta L$) by $\Delta S = L/T$.
+                    $$\mathbf{\frac{dP}{dT} = \frac{L}{T(V_2 - V_1)}}$$
+                    
+                    <strong>Significance:</strong> It allows us to calculate the <strong>latent heat ($L$)</strong> of a phase transition by measuring only $P, T$, and the volume change ($\Delta V$).
+                    
+                    <h3>b) Triple Point (Unique Equilibrium)</h3>
+                    
+                    <h4>1. Definition:</h4>
+                    The <strong>triple point</strong> is the unique combination of <strong>thermodynamic pressure ($P$)</strong> and <strong>temperature ($T$)</strong> at which the three phases of a substance—<strong>solid, liquid, and gas</strong>—coexist in stable thermodynamic equilibrium.
+                    
+                    <h4>2. Characteristics:</h4>
+                    * <strong>Fixed Point:</strong> For any pure substance, the triple point is a unique, unchangeable, and experimentally reproducible point on its $P-T$ diagram.
+                    * <strong>Water Example:</strong> For water, the triple point is $T = 273.16 \text{ K}$ ($0.01^\circ \text{C}$) and $P = 611.73 \text{ Pascals}$.
+                    * <strong>Gibbs Phase Rule:</strong> The rule $F = C - P + 2$ (where $F$ is degrees of freedom, $C$ is components, $P$ is phases) confirms its uniqueness. For the triple point of water ($C=1, P=3$):
+                        $$F = 1 - 3 + 2 = 0$$
+                        Zero degrees of freedom means that both pressure and temperature are fixed and cannot be varied independently while maintaining all three phases.
+                        
+                    <strong>Significance:</strong> Because the triple point of water is so precisely fixed, it is used as the <strong>defining fundamental fixed point</strong> for the <strong>Kelvin</strong> temperature scale.
+                </div>
+            </div>
+
+            <div class="question-item">
+                <p class="question-text"><strong>Q.B5.</strong> Derive the expression for Wien’s Displacement Law in terms of thermodynamics.</p>
+                <button class="solution-button" id="button-B5" onclick="toggleSolution('B5')">Show Answer / Detailed Solution</button>
+                <div class="solution-box" id="solution-B5">
+                    <strong>Detailed Explanation: Derivation of Wien's Displacement Law</strong>
+                    
+                    Wien's Displacement Law describes how the spectrum of black-body radiation shifts with temperature.
+                    
+                    <strong>The Law:</strong> The wavelength ($\lambda_{\text{max}}$) at which the energy radiated by a black body is maximum is <strong>inversely proportional</strong> to its absolute temperature ($T$).
+                    $$\mathbf{\lambda_{\text{max}} T = \text{constant} \quad (\text{Wien's constant } b)}$$
+                    
+                    <h3>1. Thermodynamic Basis (Radiation Pressure)</h3>
+                    The derivation treats the black-body radiation inside a cavity as a <strong>thermodynamic system</strong> (a gas of photons). Key relations used:
+                    * <strong>Energy Density ($u$):</strong> Energy per unit volume, $u = U/V$.
+                    * <strong>Radiation Pressure ($P$):</strong> The pressure exerted by the photons is related to the energy density by $P = \frac{1}{3} u$.
+                    
+                    <h3>2. General Form of the Black-Body Energy Density</h3>
+                    Using the First and Second Laws, it can be rigorously shown (through the use of Maxwell's Relations and scaling arguments) that the energy density function $u(\lambda, T)$ must satisfy a general functional form:
+                    
+                    $$\mathbf{u(\lambda, T) = \frac{1}{\lambda^5} f(\lambda T)}$$
+                    
+                    <em>Where $f(\lambda T)$ is some universal function that depends only on the product of $\lambda$ and $T$. This expression is known as <strong>Wien's Distribution Law</strong> (in its general form).</em>
+                    
+                    <h3>3. Finding the Maximum Emission Wavelength ($\lambda_{\text{max}}$)</h3>
+                    To find the wavelength where the radiation energy density is maximum, we must differentiate $u(\lambda, T)$ with respect to $\lambda$ and set the derivative to zero:
+                    $$\frac{\partial u(\lambda, T)}{\partial \lambda} = 0$$
+                    
+                    Substituting the general form:
+                    $$\frac{\partial}{\partial \lambda} \left[ \frac{1}{\lambda^5} f(\lambda T) \right] = 0$$
+                    
+                    Applying the product rule ($\frac{d}{dx}(uv) = u'v + uv'$), where $u=1/\lambda^5$ and $v=f(\lambda T)$:
+                    $$\frac{-5}{\lambda^6} f(\lambda T) + \frac{1}{\lambda^5} f'(\lambda T) \cdot T = 0$$
+                    
+                    Multiplying by $\lambda^6$ and rearranging:
+                    $$T \lambda f'(\lambda T) = 5 f(\lambda T)$$
+                    
+                    <strong>Key Insight:</strong> Let $x = \lambda T$. The entire equation can be written solely in terms of $x$:
+                    $$x f'(x) = 5 f(x)$$
+                    
+                    Since the function $f$ is universal, the solution for $x$ that satisfies this differential equation is a unique constant value, let's call it $b$.
+                    
+                    $$x_{\text{max}} = \lambda_{\text{max}} T = b$$
+                    
+                    <strong>Conclusion:</strong> This rigorously proves that the wavelength of maximum emission is inversely proportional to the absolute temperature, $\mathbf{\lambda_{\text{max}} \propto \frac{1}{T}}$.
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <p class="question-text"><strong>Q.B6.</strong> Explain Planck’s Quantum Theory of Radiation and derive the expression for the average energy of a Planck oscillator.</p>
+                <button class="solution-button" id="button-B6" onclick="toggleSolution('B6')">Show Answer / Detailed Solution</button>
+                <div class="solution-box" id="solution-B6">
+                    <strong>Detailed Explanation: Planck's Theory and Average Oscillator Energy</strong>
+                    
+                    Max Planck's theory, introduced in 1900, was the revolutionary concept that solved the Ultraviolet Catastrophe and marked the birth of <strong>Quantum Mechanics</strong>.
+                    
+                    <h3>1. Planck’s Quantum Theory of Radiation (Postulates)</h3>
+                    
+                    Planck made two radical assumptions about the atomic oscillators in the walls of the black-body cavity:
+                    
+                    <h4>Postulate 1: Quantized Energy</h4>
+                    > An atomic oscillator can <strong>only</strong> possess discrete amounts of energy, which are integer multiples of a fundamental unit of energy ($\mathbf{h\nu}$).
+                    
+                    $$\mathbf{E_n = n h\nu} \quad (n = 0, 1, 2, 3, \dots)$$
+                    
+                    * <strong>$h$</strong> is <strong>Planck's constant</strong> ($6.626 \times 10^{-34} \text{ J}\cdot\text{s}$).
+                    * $\nu$ is the frequency of the radiation.
+                    * This means the energy of the oscillator is *not* continuous, but comes in packets (quanta).
+                    
+                    <h4>Postulate 2: Quantized Emission/Absorption</h4>
+                    > An oscillator can only absorb or emit energy when it jumps from one allowed energy level to another. The energy exchanged during this jump is exactly one quantum: $\mathbf{\Delta E = h\nu}$.
+                    
+                    <h3>2. Derivation of the Average Energy ($\langle E \rangle$)</h3>
+                    
+                    The goal is to calculate the average energy of a single oscillator (with frequency $\nu$) at a temperature $T$, using the statistical method.
+                    
+                    <h4>Step 1: Using the Boltzmann Distribution</h4>
+                    The number of oscillators $N_n$ in the energy state $E_n$ is proportional to the <strong>Boltzmann factor</strong> $e^{-E_n/k_B T}$:
+                    $$N_n \propto e^{-n h\nu / k_B T}$$
+                    
+                    <h4>Step 2: Formula for Average Energy</h4>
+                    The average energy $\langle E \rangle$ is the total energy of all oscillators divided by the total number of oscillators:
+                    $$\langle E \rangle = \frac{\sum_{\text{all states}} (\text{Energy of state}) \times (\text{Number of oscillators in state})}{\sum_{\text{all states}} (\text{Number of oscillators in state})}$$
+                    $$\langle E \rangle = \frac{\sum_{n=0}^{\infty} n h\nu \cdot e^{-n h\nu / k_B T}}{\sum_{n=0}^{\infty} e^{-n h\nu / k_B T}}$$
+                    
+                    <h4>Step 3: Simplification using Substitution</h4>
+                    Let $x = e^{-h\nu / k_B T}$. The sums become geometric series:
+                    $$\text{Denominator} = 1 + x + x^2 + x^3 + \dots = \frac{1}{1-x}$$
+                    $$\text{Numerator} = h\nu (0 \cdot 1 + 1 \cdot x + 2 \cdot x^2 + 3 \cdot x^3 + \dots)$$
+                    The series inside the parenthesis is $x(1 + 2x + 3x^2 + \dots) = x \frac{d}{dx} (1 + x + x^2 + x^3 + \dots) = x \frac{d}{dx} \left( \frac{1}{1-x} \right) = \frac{x}{(1-x)^2}$.
+                    $$\text{Numerator} = h\nu \cdot \frac{x}{(1-x)^2}$$
+                    
+                    <h4>Step 4: Final Expression</h4>
+                    Divide the numerator by the denominator:
+                    $$\langle E \rangle = \frac{h\nu \frac{x}{(1-x)^2}}{\frac{1}{1-x}} = \frac{h\nu x}{1-x}$$
+                    
+                    Substitute $x = e^{-h\nu / k_B T}$ back:
+                    $$\langle E \rangle = \frac{h\nu e^{-h\nu / k_B T}}{1 - e^{-h\nu / k_B T}}$$
+                    
+                    Divide the numerator and denominator by $e^{-h\nu / k_B T}$:
+                    $$\mathbf{\langle E \rangle = \frac{h\nu}{e^{h\nu / k_B T} - 1}}$$
+                    
+                    This is the correct quantum expression for the average energy of a Planck oscillator, which is fundamental to the <strong>Planck Radiation Formula</strong>.
+                </div>
+            </div>
+            
+            <div class="question-item">
+                <p class="question-text"><strong>Q.B7.</strong> Explain the concept of ensemble. Differentiate between microcanonical and grand canonical ensembles. Where are they used?</p>
+                <button class="solution-button" id="button-B7" onclick="toggleSolution('B7')">Show Answer / Detailed Solution</button>
+                <div class="solution-box" id="solution-B7">
+                    <strong>Detailed Explanation: Ensembles (The Statistical Toolbox)</strong>
+                    
+                    <h3>1. Concept of Ensemble</h3>
+                    
+                    In <strong>Statistical Mechanics</strong>, measuring the properties of a single system over a long period of time (a <strong>time average</strong>) is impractical. The <strong>Ensemble Concept</strong> replaces this with an <strong>ensemble average</strong>.
+                    
+                    > An <strong>ensemble</strong> is an infinite (or very large) collection of macroscopically identical, independent systems that all represent the same thermodynamic state as the single system being studied.
+                    
+                    * <strong>Macroscopically Identical:</strong> All systems have the same values for observable parameters like $P, V, T$.
+                    * <strong>Independent:</strong> Each system in the collection exists in its own microstate without influencing the others.
+                    
+                    The average value of a property taken over all the systems in the ensemble is assumed to be equal to the average value of that property measured over time for the single, actual system (**Ergodic Hypothesis**).
+                    
+                    <h3>2. Differentiation: Microcanonical vs. Grand Canonical</h3>
+                    
+                    The different types of ensembles are defined by the macroscopic parameters they hold <strong>constant</strong> and the types of exchange (energy, particles, volume) they allow with the surroundings (the "reservoir").
+                    
+                    | Feature | Microcanonical Ensemble (MCE) | Grand Canonical Ensemble (GCE) |
+                    | :--- | :--- | :--- |
+                    | <strong>Constant Parameters</strong> | <strong>$E, V, N$</strong> (Energy, Volume, Number of Particles) | <strong>$T, V, \mu$</strong> (Temperature, Volume, Chemical Potential) |
+                    | <strong>Nature of Systems</strong> | <strong>Isolated</strong> (Cannot exchange energy or particles) | <strong>Open</strong> (Can exchange energy and particles) |
+                    | <strong>Fluctuating Quantity</strong> | None. State is fixed by $E, V, N$. | <strong>$E$ and $N$</strong> (Energy and particle number can fluctuate) |
+                    | <strong>Associated Potential</strong> | Entropy ($S$) | Grand Potential ($\Omega_G$) |
+                    
+                    <h3>3. Usage of Ensembles</h3>
+                    
+                    | Ensemble | When is it Used? |
+                    | :--- | :--- |
+                    | <strong>Microcanonical (MCE)</strong> | Theoretically used for systems where the total <strong>Energy is fixed</strong>, such as deriving the foundational relations of statistical mechanics ($S=k_B \ln \Omega$). It is the most fundamental ensemble. |
+                    | <strong>Grand Canonical (GCE)</strong> | Used for systems that exchange <strong>both heat and particles</strong> with a large reservoir. Excellent for studying complex systems like <strong>chemical reactions</strong>, <strong>adsorption</strong> of gases on a surface, or the behavior of electrons in a semiconductor (where particle number effectively changes). |
+                    | <em>Canonical Ensemble (CE)</em> | <em>(For context):</em> Constant <strong>$T, V, N$</strong>. Used for closed systems (fixed $N$) in contact with a heat bath (fixed $T$). Ideal for most laboratory experiments. |
+                </div>
+            </div>
+
+            <div class="question-item">
+                <p class="question-text"><strong>Q.B8.</strong> What is Bose–Einstein Statistics? State its basic postulates and derive the Bose–Einstein Distribution Law.</p>
+                <button class="solution-button" id="button-B8" onclick="toggleSolution('B8')">Show Answer / Detailed Solution</button>
+                <div class="solution-box" id="solution-B8">
+                    <strong>Detailed Explanation: Bose–Einstein Statistics and Distribution Law</strong>
+                    
+                    <strong>Bose–Einstein (B-E) Statistics</strong> is one of the two major quantum statistics (the other is Fermi-Dirac) and is essential for understanding phenomena like black-body radiation and Bose–Einstein Condensation.
+                    
+                    <h3>1. What is Bose–Einstein Statistics?</h3>
+                    B-E Statistics applies to a class of particles called <strong>Bosons</strong>.
+                    
+                    * <strong>Bosons:</strong> Particles with <strong>integer spin</strong> ($s = 0, 1, 2, \dots$). Examples include photons (spin 1), phonons, and helium-4 atoms (spin 0).
+                    
+                    <h3>2. Basic Postulates</h3>
+                    
+                    <h4>Postulate 1: Indistinguishability</h4>
+                    > All bosons are completely <strong>identical and indistinguishable</strong>. Interchanging two particles in a system does not lead to a new, distinct microstate.
+                    
+                    <h4>Postulate 2: No Restriction on Occupation (Pauli Exclusion Principle Violation)</h4>
+                    > There is <strong>no restriction</strong> on the number of bosons that can occupy a given single-particle quantum state. Any number of bosons (from zero to infinity) can crowd into the same energy level.
+                    
+                    <h3>3. Derivation of the Bose–Einstein Distribution Law</h3>
+                    
+                    The goal is to find the most probable distribution of $N$ indistinguishable bosons among energy levels $\epsilon_i$.
+                    
+                    <h4>Step 1: Thermodynamic Probability ($\Omega_{BE}$)</h4>
+                    The number of ways $\Omega_i$ to distribute $n_i$ indistinguishable particles into $g_i$ (degeneracy) quantum states of energy $\epsilon_i$ is given by:
+                    $$\Omega_i = \frac{(n_i + g_i - 1)!}{n_i! (g_i - 1)!}$$
+                    The total thermodynamic probability is the product over all energy levels:
+                    $$\Omega_{BE} = \prod_i \Omega_i$$
+                    
+                    <h4>Step 2: Maximization (Lagrange Multipliers)</h4>
+                    We maximize $\ln \Omega_{BE}$ subject to two constraints (constant total number of particles $N$ and constant total energy $E$) using the method of <strong>Lagrange Multipliers</strong> ($\alpha$ and $\beta$):
+                    1.  $\sum n_i = N \quad (\text{Constraint 1})$
+                    2.  $\sum n_i \epsilon_i = E \quad (\text{Constraint 2})$
+                    3.  $\delta (\ln \Omega_{BE} + \alpha N + \beta E) = 0 \quad (\text{Condition for maximum})$
+                    
+                    <h4>Step 3: Final Result</h4>
+                    Solving the maximization leads to the average number of particles $\langle n_i \rangle$ (the occupancy) for the $i$-th energy state:
+                    
+                    $$\mathbf{\langle n_i \rangle = \frac{1}{e^{\alpha + \beta \epsilon_i} - 1}}$$
+                    
+                    By comparing this to the thermodynamic identity for the Grand Canonical Ensemble, the Lagrange multipliers are identified:
+                    $$\beta = 1/k_B T \quad \text{and} \quad \alpha = -\mu/k_B T$$
+                    
+                    <strong>Final Bose–Einstein Distribution Law:</strong>
+                    The average number of bosons occupying the state with energy $\epsilon_i$ is:
+                    $$\mathbf{\langle n_i \rangle = \frac{1}{e^{(\epsilon_i - \mu)/k_B T} - 1}}$$
+                    This formula is essential for describing phenomena like <strong>Bose–Einstein Condensation (BEC)</strong> and the radiation spectrum of <strong>photons</strong>.
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>You're Going to smash this one too &lt;3</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', renderMath);
+    </script>
+</body>
+</html>
